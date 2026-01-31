@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - Latitude Digital</title>
+</head>
+<style>
+  /* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fonts and colors */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  background: #fff;
+}
+
+.site-header {
+  background: #f8f8f8;
+  padding: 1.2rem 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img {
+  height: 60px;
+  width: 100%;
+  display: block;
+}
+
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #c9003a;
+}
+
+/* Responsive: stack nav for small screens */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    background: #fff;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    padding: 1rem;
+    border: 1px solid #eee;
+    display: none; /* You can toggle this with JS later */
+  }
+}
+</style>
+  <header class="site-header">
+    <div class="container header-container">
+      <div class="container header-container">
+        <div class="logo">
+          <a href="index.html">
+            <img src="images/Revision2(png).png" alt="Latitude Ltd Logo" style="height: 40px;">
+          </a>
+        </div>
+        
+        <nav class="nav">
+        <ul class="nav-links">
+          <li><a href="about.html">About</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <body>
+    
+</body>
+</html>
