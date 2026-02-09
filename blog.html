@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/favicon.jpg">
+  <title>Latest Blog Posts - Latitude Digital</title>
+
+  <style>
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fonts and colors */
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  background: #fff;
+}
+
+/* Top Bar */
+.top-bar {
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5%;
+  font-size: 14px;
+  color: #000;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+.top-bar i {
+  font-size: 16px;
+  color: #111134;
+  display: inline-block;
+}
+
+.top-bar .left, .top-bar .right {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.top-bar .divider { 
+  margin: 0 10px; 
+  border-left: 1px solid #ccc; 
+  height: 14px; 
+  display: inline-block; 
+  vertical-align: middle; 
+}
+
+.top-bar i { 
+  margin-right: 6px; 
+}
+
+.top-bar .left a {
+  color: #111134;
+  text-decoration: none;
+}
+
+.right a {
+  margin-left: 12px;
+  color: #111134;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+/* Hover brand colors */
+.right a:hover .fa-linkedin-in { color: #0077b5; }
+.right a:hover .fa-facebook-f { color: #1877f2; }
+.right a:hover .fa-instagram { color: #e1306c; }
+.right a:hover .fa-x-twitter { color: #000000; }
+.right a:hover .fa-tiktok { color: #69c9d0; }
+
+@media screen and (max-width: 768px) {
+  .top-bar { 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 8px; 
+    padding: 10px 5%; 
+  }
+  .top-bar .left, .top-bar .right { 
+    justify-content: flex-start; 
+    flex-wrap: wrap; 
+  }
+  .right a { 
+    margin-left: 10px; 
+    font-size: 18px; 
+  }
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background-color: rgba(255, 255, 255, 0.9);
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.logo img {
+  height: 30px;
+  width: auto;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+.nav-links li a:hover {
+  color: #6b3dfd;
+}
+
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 6px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #333;
+  display: block;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Mobile Styles */
+@media (max-width: 900px) {
+  .navbar {
+    padding: 12px 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100vw;
+    background: #fff;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 20px 0 10px 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.07);
+    gap: 0;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .nav-links li {
+    margin-bottom: 12px;
+    text-align: left;
+    padding: 0 20px;
+  }
+  .navbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo img {
+    height: 24px;
+  }
+  .nav-links li a {
+    font-size: 15px;
+  }
+}
+
+/* Blog posts grid */
+#rss-feed {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Always 3 columns */
+  gap: 24px;
+  padding: 120px 6% 40px 6%;
+  min-height: 60vh;
+  background: #fafbff;
+  transition: padding 0.2s;
+  justify-items: center;
+}
+
+@media (max-width: 768px) {
+  #rss-feed {
+    grid-template-columns: 1fr;
+    padding: 100px 4% 30px 4%;
+  }
+}
+
+/* Blog post card */
+.post {
+  background: #fff;
+  border: 1px solid #eee;
+  border-top: 5px solid #6b3dfd;
+  padding: 18px 15px 15px 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.045);
+  transition: transform 0.3s, box-shadow 0.3s;
+   width: 100%;
+  max-width: 360px;
+}
+.post:hover {
+  transform: translateY(-5px) scale(1.007);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.11);
+}
+.post h2 {
+  margin-top: 0;
+  font-size: 1.16rem;
+  margin-bottom: 8px;
+}
+.post h2 a {
+  text-decoration: none;
+  color: #252f3f;
+}
+.post p {
+  font-size: 0.97rem;
+  line-height: 1.44;
+  margin-top: 0;
+}
+.post a.read-more {
+  display: inline-block;
+  margin-top: 14px;
+  color: #fff;
+  background: #6b3dfd;
+  padding: 8px 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s;
+  letter-spacing: 0.01em;
+  font-size: 0.97rem;
+}
+.post a.read-more:hover {
+  background: #4e2bd6;
+}
+
+/* Blog images */
+.post-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  transition: transform 0.3s ease;
+}
+.post:hover .post-img {
+  transform: scale(1.03);
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0 50px 0;
+  gap: 10px;
+}
+.pagination button {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.pagination button:hover {
+  background: #6b3dfd;
+  color: #fff;
+  border-color: #6b3dfd;
+}
+.pagination button.active {
+  background: #6b3dfd;
+  color: #fff;
+  border-color: #6b3dfd;
+}
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+  </style>
+</head>
+<body>
+<header>
+  <div class="top-bar">
+    <div class="left">
+      <i class="fa-solid fa-envelope"></i> 
+      <a href="mailto:info@latitude.co.ke">info@latitude.co.ke</a>
+      <span class="divider"></span>
+      <i class="fa-solid fa-phone"></i> 
+      <a href="tel:+254758886707">+254 758 88 67 07</a>
+    </div>
+    <div class="right">
+      <a href="https://www.linkedin.com/company/latitudedigitalke/" target="_blank" rel="noopener" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://www.facebook.com/YOUR_PAGE" target="_blank" rel="noopener" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/latitudedigitalofficial?igsh=ODRvandiNjU5OGQ5" target="_blank" rel="noopener" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@latitudedigital?_t=ZM-8z44jDOMKlM&_r=1" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <div class="logo">
+      <a href="index.html"><img src="images/Revision2(png).png" alt="Latitude Logo" /></a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="blogs.html">Blog</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div id="rss-feed">Loading blog posts...</div>
+
+<script>
+  async function loadRSS() {
+    const proxy = 'https://api.rss2json.com/v1/api.json?rss_url=';
+    const feedUrl = 'https://latitudeltd12.wixstudio.com/latitudeblog/blog-feed.xml';
+    const postsPerPage = 6;
+    let currentPage = 1;
+    let posts = [];
+
+    const container = document.getElementById('rss-feed');
+
+    try {
+      const response = await fetch(proxy + encodeURIComponent(feedUrl));
+      const data = await response.json();
+
+      if (data.items && data.items.length > 0) {
+        posts = data.items;
+        renderPage(currentPage);
+        createPagination();
+      } else {
+        container.innerHTML = '<p>No blog posts found.</p>';
+      }
+    } catch (error) {
+      console.error('Failed to fetch RSS feed:', error);
+      container.innerHTML = '<p>Unable to load blog posts at the moment.</p>';
+    }
+
+    function renderPage(page) {
+      container.innerHTML = '';
+      const start = (page - 1) * postsPerPage;
+      const end = start + postsPerPage;
+      const paginatedPosts = posts.slice(start, end);
+
+      paginatedPosts.forEach(item => {
+        // Extract image
+        let imageUrl = '';
+        if (item.enclosure && item.enclosure.link) {
+          imageUrl = item.enclosure.link;
+        } else {
+          const match = item.description.match(/<img.*?src="(.*?)"/);
+          if (match && match[1]) imageUrl = match[1];
+        }
+
+        const post = document.createElement('div');
+        post.className = 'post';
+        post.innerHTML = `
+          ${imageUrl ? `<a href="${item.link}" target="_blank"><img src="${imageUrl}" alt="${item.title}" class="post-img" loading="lazy"></a>` : ''}
+          <h2><a href="${item.link}" target="_blank">${item.title}</a></h2>
+          <p>${item.description.replace(/<[^>]+>/g, '').substring(0, 120)}...</p>
+          <a href="${item.link}" class="read-more" target="_blank">Read More</a>
+        `;
+        container.appendChild(post);
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function createPagination() {
+      const totalPages = Math.ceil(posts.length / postsPerPage);
+      const pagination = document.createElement('div');
+      pagination.className = 'pagination';
+
+      const prevBtn = document.createElement('button');
+      prevBtn.textContent = '« Prev';
+      prevBtn.disabled = currentPage === 1;
+      prevBtn.onclick = () => {
+        if (currentPage > 1) {
+          currentPage--;
+          renderPage(currentPage);
+          createPagination();
+        }
+      };
+      pagination.appendChild(prevBtn);
+
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        if (i === currentPage) btn.classList.add('active');
+        btn.onclick = () => {
+          currentPage = i;
+          renderPage(currentPage);
+          createPagination();
+        };
+        pagination.appendChild(btn);
+      }
+
+      const nextBtn = document.createElement('button');
+      nextBtn.textContent = 'Next »';
+      nextBtn.disabled = currentPage === totalPages;
+      nextBtn.onclick = () => {
+        if (currentPage < totalPages) {
+          currentPage++;
+          renderPage(currentPage);
+          createPagination();
+        }
+      };
+      pagination.appendChild(nextBtn);
+
+      const oldPagination = document.querySelector('.pagination');
+      if (oldPagination) oldPagination.remove();
+
+      container.parentNode.appendChild(pagination);
+    }
+  }
+
+  loadRSS();
+
+  function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');
+  }
+</script>
+
+</body>
+</html>
