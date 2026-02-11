@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="images/favicon.jpg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our Services - Latitude Digital</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #fafbff;
+  color: #111134;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Modern Top Bar */
+.top-bar {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 6%;
+  font-size: 13px;
+  color: #000;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(107, 61, 253, 0.08);
+  font-weight: 500;
+}
+
+.top-bar i {
+  font-size: 14px;
+  color: #111134;
+  display: inline-block;
+}
+
+.top-bar .left, .top-bar .right {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.top-bar .divider { 
+  width: 1px;
+  height: 16px; 
+  background: rgba(107, 61, 253, 0.15);
+}
+
+.top-bar i { 
+  margin-right: 8px; 
+}
+
+.top-bar .left a {
+  color: #111134;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.top-bar .left a:hover {
+  color: #6b3dfd;
+}
+
+.right a {
+  color: #111134;
+  text-decoration: none;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(107, 61, 253, 0.05);
+}
+
+.right a:hover {
+  transform: translateY(-2px);
+  background: rgba(107, 61, 253, 0.1);
+}
+
+/* Hover brand colors */
+.right a:hover .fa-linkedin-in { color: #0077b5; }
+.right a:hover .fa-facebook-f { color: #1877f2; }
+.right a:hover .fa-instagram { color: #e1306c; }
+.right a:hover .fa-tiktok { color: #69c9d0; }
+
+@media screen and (max-width: 768px) {
+  .top-bar { 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 12px; 
+    padding: 14px 5%; 
+  }
+  .top-bar .left, .top-bar .right { 
+    justify-content: flex-start; 
+  }
+}
+
+/* Modern Sticky Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 6%;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(107, 61, 253, 0.08);
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  padding: 16px 6%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.logo img {
+  height: 32px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover img {
+  transform: scale(1.05);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.nav-links li a:hover {
+  color: #6b3dfd;
+  background: rgba(107, 61, 253, 0.06);
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #6b3dfd;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-links li a:hover::after {
+  width: 60%;
+}
+
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 24px;
+  height: 2.5px;
+  background: #333;
+  display: block;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Mobile Styles */
+@media (max-width: 900px) {
+  .navbar {
+    padding: 16px 5%;
+  }
+  .nav-links {
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100vw;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 24px 0;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    gap: 0;
+  }
+  .nav-links.active {
+    display: flex;
+    animation: slideDown 0.3s ease;
+  }
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .nav-links li {
+    margin-bottom: 8px;
+    text-align: left;
+    padding: 0 24px;
+  }
+  .nav-links li a {
+    display: block;
+    padding: 12px 16px;
+  }
+}
+
+/* Modern Services Section */
+.services-section {
+  background: #fafbff;
+  padding: 80px 0 100px 0;
+  min-height: 100vh;
+}
+
+.services-header {
+  text-align: center;
+  margin-bottom: 60px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 24px;
+}
+
+.services-header h2 {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: #252f3f;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.services-header .highlight {
+  color: #6b3dfd;
+  position: relative;
+  display: inline-block;
+}
+
+.services-header .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #6b3dfd;
+  opacity: 0.3;
+}
+
+.services-header p {
+  font-size: 1.15rem;
+  color: #666;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 6%;
+}
+
+.service-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px 32px;
+  border: 1px solid rgba(107, 61, 253, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #6b3dfd;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.service-card:hover::before {
+  transform: scaleX(1);
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(107, 61, 253, 0.15);
+  border-color: rgba(107, 61, 253, 0.25);
+}
+
+.service-icon {
+  width: 70px;
+  height: 70px;
+  background: #6b3dfd;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  font-size: 1.8rem;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.service-card h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #252f3f;
+  letter-spacing: -0.3px;
+}
+
+.service-card p {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+/* Responsive Grid */
+@media (max-width: 992px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+  
+  .services-header h2 {
+    font-size: 2.25rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .services-header h2 { 
+    font-size: 1.85rem; 
+  }
+  .services-header p { 
+    font-size: 1rem; 
+  }
+  .service-card { 
+    padding: 32px 24px; 
+  }
+}
+
+@media (max-width: 600px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 0 5%;
+  }
+
+  .service-card {
+    padding: 32px 24px;
+  }
+
+  .services-header h2 {
+    font-size: 1.75rem;
+  }
+}
+
+/* Modern Contact Form Section */
+.contact-section {
+  background: #fff;
+  padding: 80px 0;
+}
+
+.contact-wrapper {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 0 6%;
+}
+
+.contact-form {
+  background: #fff;
+  padding: 48px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(107, 61, 253, 0.1);
+}
+
+.contact-form h2 {
+  text-align: center;
+  color: #252f3f;
+  margin-bottom: 12px;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.contact-form .subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 36px;
+  font-size: 1.05rem;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(107, 61, 253, 0.15);
+  border-radius: 10px;
+  font-size: 1rem;
+  background-color: #fafbff;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #6b3dfd;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(107, 61, 253, 0.1);
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.contact-form button {
+  background-color: #6b3dfd;
+  color: white;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(107, 61, 253, 0.25);
+}
+
+.contact-form button:hover {
+  background-color: #5a2eea;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(107, 61, 253, 0.35);
+}
+
+.contact-form button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  .contact-form {
+    padding: 32px 24px;
+  }
+
+  .contact-form h2 {
+    font-size: 1.65rem;
+  }
+}
+
+/* Modern Footer */
+.footer {
+  background: #1a1a2e;
+  color: #fff;
+  padding: 60px 6% 30px 6%;
+  font-family: inherit;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  margin-bottom: 50px;
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-brand h2 {
+  font-size: 1.75rem;
+  margin-bottom: 12px;
+  font-weight: 800;
+  color: #6b3dfd;
+}
+
+.footer-brand p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.footer-contact p,
+.footer-socials p {
+  margin: 8px 0;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+.footer-contact strong,
+.footer-socials strong {
+  color: #fff;
+  display: block;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+}
+
+.footer-socials ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-socials ul li a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.footer-socials ul li a:hover {
+  color: #6b3dfd;
+  transform: translateX(4px);
+}
+
+.footer-contact a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-contact a:hover {
+  color: #6b3dfd;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 30px;
+  text-align: center;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.footer-policies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.footer-policies a {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-policies a:hover {
+  color: #6b3dfd;
+}
+
+.footer-bottom p {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 992px) {
+  .footer-top {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .footer-policies {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .footer {
+    padding: 40px 5% 24px 5%;
+  }
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+a:focus-visible, 
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #6b3dfd;
+  outline-offset: 2px;
+}
+  </style>
+</head>
+<body>
+<!-- Top contact bar -->
+<div class="top-bar">
+  <div class="left">
+    <i class="fa-solid fa-envelope"></i> 
+    <a href="mailto:info@latitude.co.ke">info@latitude.co.ke</a>
+    <span class="divider"></span>
+    <i class="fa-solid fa-phone"></i> 
+    <a href="tel:+254758886707">+254 758 88 67 07</a>
+  </div>
+  
+  <div class="right">
+    <a href="https://www.linkedin.com/company/latitudedigitalke/" target="_blank" rel="noopener" title="LinkedIn">
+      <i class="fa-brands fa-linkedin-in"></i>
+    </a>
+    <a href="https://www.facebook.com/YOUR_PAGE" target="_blank" rel="noopener" title="Facebook">
+      <i class="fa-brands fa-facebook-f"></i>
+    </a>
+    <a href="https://www.instagram.com/latitudedigitalofficial?igsh=ODRvandiNjU5OGQ5" target="_blank" rel="noopener" title="Instagram">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+    <a href="https://www.tiktok.com/@latitudedigital?_t=ZM-8z44jDOMKlM&_r=1" target="_blank" rel="noopener" title="TikTok">
+      <i class="fa-brands fa-tiktok"></i>
+    </a>
+  </div>
+</div>
+
+<!-- Main nav -->
+<header>
+  <nav class="navbar" id="navbar">
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/Revision2(png).png" alt="Latitude Logo" />
+      </a>
+    </div>
+
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Services Section -->
+<section class="services-section">
+  <div class="services-header">
+    <h2>What We <span class="highlight">Offer</span></h2>
+    <p>Creative solutions to power your brand's digital journey and drive meaningful results.</p>
+  </div>
+  
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">
+        <i class="fas fa-rocket"></i>
+      </div>
+      <h3>Brand Strategy</h3>
+      <p>Launch your brand with a bold, strategic vision that sets you apart from the competition.</p>
+    </div>
+    
+    <div class="service-card">
+      <div class="service-icon">
+        <i class="fas fa-camera-retro"></i>
+      </div>
+      <h3>Content Creation</h3>
+      <p>Engage your audience with stunning visuals and compelling storytelling across all platforms.</p>
+    </div>
+    
+    <div class="service-card">
+      <div class="service-icon">
+        <i class="fas fa-envelope"></i>
+      </div>
+      <h3>Email Campaigns</h3>
+      <p>Drive conversions with personalized, high-impact email marketing strategies.</p>
+    </div>
+    
+    <div class="service-card">
+      <div class="service-icon">
+        <i class="fab fa-instagram"></i>
+      </div>
+      <h3>Social Media</h3>
+      <p>Grow your community and spark conversations with creative, data-driven campaigns.</p>
+    </div>
+    
+    <div class="service-card">
+      <div class="service-icon">
+        <i class="fas fa-chart-bar"></i>
+      </div>
+      <h3>Growth Strategy</h3>
+      <p>Unlock your business potential with tailored plans for sustainable growth.</p>
+    </div>
+    
+    <div class="service-card">
+      <div class="service-icon">
+        <i class="fas fa-bullhorn"></i>
+      </div>
+      <h3>PPC Advertising</h3>
+      <p>Maximize ROI with targeted, AI-powered advertising across all major platforms.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section">
+  <div class="contact-wrapper">
+    <div class="contact-form">
+      <h2>Get In Touch</h2>
+      <p class="subtitle">Let's discuss how we can help grow your business</p>
+      
+      <form action="mailto:info@latitude.co.ke" method="post" enctype="text/plain">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <h2>Latitude Digital</h2>
+      <p>Unleash your brand's potential with innovative digital solutions.</p>
+    </div>
+    
+    <div class="footer-contact">
+      <strong>Contact Us</strong>
+      <p>+254 778 389 333</p>
+      <p>+254 758 886 707</p>
+      <p><a href="mailto:info@latitude.co.ke">info@latitude.co.ke</a></p>
+      <p>Kilimani, Nairobi, Kenya</p>
+    </div>
+    
+    <div class="footer-socials">
+      <strong>Follow Us</strong>
+      <ul>
+        <li><a href="https://www.instagram.com/latitudedigitalofficial?igsh=ODRvandiNjU5OGQ5" target="_blank">Instagram</a></li>
+        <li><a href="https://www.linkedin.com/company/latitudedigitalke/" target="_blank">LinkedIn</a></li>
+        <li><a href="https://www.tiktok.com/@latitudedigital?_t=ZM-8z44jDOMKlM&_r=1" target="_blank">TikTok</a></li>
+        <li><a href="https://www.facebook.com/YOUR_PAGE" target="_blank">Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-policies">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms & Conditions</a>
+      <a href="#">Accessibility Statement</a>
+    </div>
+    <p>© 2025 Latitude Digital. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');
+  }
+</script>
+</body>
+</html>
