@@ -3,374 +3,877 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="images/favicon.jpg">
-    <title>Boost Your Business with Latitude Digital | AI-Driven Marketing Solutions</title>
+    <title>Latitude Digital | AI-Driven Growth Marketing Agency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
-            /* Dark mode colors (default) */
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1a1a2e;
-            --bg-tertiary: #0f0f23;
-            --bg-card: #1e1e3f;
-            --text-primary: #e0e0e0;
-            --text-secondary: #9ca3af;
-            --text-muted: #6b7280;
-            --border-color: #2d2d44;
-            --accent-primary: #a78bfa;
-            --accent-secondary: #7c3aed;
-            --gradient-start: rgba(59, 7, 100, 0.85);
-            --gradient-mid: rgba(33, 9, 84, 0.85);
-            --gradient-end: rgba(76, 29, 149, 0.75);
+            --primary-purple: #6D2FFF;
+            --accent-pink: #FF6B9D;
+            --accent-yellow: #FFD60A;
+            --dark-bg: #FFFFFF;
+            --darker-bg: #F8F8FC;
+            --card-bg: #FFFFFF;
+            --text-primary: #1A1A2E;
+            --text-secondary: #6B6B7F;
+            --gradient-1: linear-gradient(135deg, #6D2FFF 0%, #C733FF 100%);
+            --gradient-2: linear-gradient(135deg, #FF6B9D 0%, #FFD60A 100%);
         }
 
-        [data-theme="light"] {
-            /* Light mode colors */
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8f9fa;
-            --bg-tertiary: #f3f4f6;
-            --bg-card: #ffffff;
-            --text-primary: #1a1a1a;
-            --text-secondary: #4b5563;
-            --text-muted: #9ca3af;
-            --border-color: #e5e7eb;
-            --accent-primary: #7c3aed;
-            --accent-secondary: #6d28d9;
-            --gradient-start: rgba(124, 58, 237, 0.9);
-            --gradient-mid: rgba(109, 40, 217, 0.9);
-            --gradient-end: rgba(91, 33, 182, 0.85);
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-weight: 400;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
         }
 
-        *  {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background-color: #fafbff;
-  color: #111134;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Modern Top Bar */
-.top-bar {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 6%;
-  font-size: 13px;
-  color: #000;
-  flex-wrap: wrap;
-  border-bottom: 1px solid rgba(107, 61, 253, 0.08);
-  font-weight: 500;
-}
-
-.top-bar i {
-  font-size: 14px;
-  color: #111134;
-  display: inline-block;
-}
-
-.top-bar .left, .top-bar .right {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.top-bar .divider { 
-  width: 1px;
-  height: 16px; 
-  background: rgba(107, 61, 253, 0.15);
-}
-
-.top-bar i { 
-  margin-right: 8px; 
-}
-
-.top-bar .left a {
-  color: #111134;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.top-bar .left a:hover {
-  color: #6b3dfd;
-}
-
-.right a {
-  color: #111134;
-  text-decoration: none;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: rgba(107, 61, 253, 0.05);
-}
-
-.right a:hover {
-  transform: translateY(-2px);
-  background: rgba(107, 61, 253, 0.1);
-}
-
-/* Hover brand colors */
-.right a:hover .fa-linkedin-in { color: #0077b5; }
-.right a:hover .fa-facebook-f { color: #1877f2; }
-.right a:hover .fa-instagram { color: #e1306c; }
-.right a:hover .fa-tiktok { color: #69c9d0; }
-
-@media screen and (max-width: 768px) {
-  .top-bar { 
-    flex-direction: column; 
-    align-items: flex-start; 
-    gap: 12px; 
-    padding: 14px 5%; 
-  }
-  .top-bar .left, .top-bar .right { 
-    justify-content: flex-start; 
-  }
-}
-
-/* Modern Sticky Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 6%;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(20px);
-  position: sticky;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  border-bottom: 1px solid rgba(107, 61, 253, 0.08);
-  transition: all 0.3s ease;
-}
-
-.navbar.scrolled {
-  padding: 16px 6%;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 700;
-  font-size: 22px;
-}
-
-.logo img {
-  height: 32px;
-  width: auto;
-  transition: transform 0.3s ease;
-}
-
-.logo:hover img {
-  transform: scale(1.05);
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 40px;
-}
-
-.nav-links li a {
-  text-decoration: none;
-  color: #333;
-  font-size: 15px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  padding: 8px 16px;
-  border-radius: 8px;
-  position: relative;
-}
-
-.nav-links li a:hover {
-  color: #6b3dfd;
-  background: rgba(107, 61, 253, 0.06);
-}
-
-.nav-links li a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: #6b3dfd;
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
-}
-
-.nav-links li a:hover::after {
-  width: 60%;
-}
-
-/* Hamburger menu */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 5px;
-}
-
-.hamburger span {
-  width: 24px;
-  height: 2.5px;
-  background: #333;
-  display: block;
-  border-radius: 2px;
-  transition: 0.3s;
-}
-
-/* Mobile Styles */
-@media (max-width: 900px) {
-  .navbar {
-    padding: 16px 5%;
-  }
-  .nav-links {
-    gap: 32px;
-  }
-}
-
-@media (max-width: 768px) {
-  .hamburger {
-    display: flex;
-  }
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100vw;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(20px);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    padding: 24px 0;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    gap: 0;
-  }
-  .nav-links.active {
-    display: flex;
-    animation: slideDown 0.3s ease;
-  }
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  .nav-links li {
-    margin-bottom: 8px;
-    text-align: left;
-    padding: 0 24px;
-  }
-  .nav-links li a {
-    display: block;
-    padding: 12px 16px;
-  }
-}
-
-
-        /* Sticky Contact Buttons */
-        .sticky-contact {
+        /* Header & Navigation */
+        header {
             position: fixed;
-            right: 30px;
-            bottom: 30px;
-            z-index: 999;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .sticky-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 200;
+            letter-spacing: 0.05em;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
             text-decoration: none;
+            font-weight: 300;
+            transition: color 0.3s;
         }
 
-        .sticky-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+        .nav-links a:hover {
+            color: var(--text-primary);
         }
 
-        .whatsapp-btn {
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        .cta-button {
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 400;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .email-btn {
-            background: linear-gradient(135deg, #6b3dfd 0%, #4e2bd6 100%);
-        }
-
-        .phone-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(109, 47, 255, 0.3);
         }
 
         /* Hero Section */
         .hero {
+            padding: 12rem 2rem 8rem;
+            max-width: 1400px;
+            margin: 0 auto;
             position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 200;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 700px;
+        }
+
+        .impact-badge {
+            display: inline-block;
+            background: var(--gradient-2);
             color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 400;
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-purple);
+            box-shadow: 0 10px 30px rgba(109, 47, 255, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 200;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 2rem;
+            background: var(--darker-bg);
+        }
+
+        .section-title {
             text-align: center;
+            font-size: 3rem;
+            font-weight: 200;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            font-weight: 300;
+            margin-bottom: 5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 24px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
+        .service-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-mid) 50%, var(--gradient-end) 100%);
-            z-index: 1;
+            height: 4px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.3s;
         }
 
-        .hero-bg {
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-purple);
+            box-shadow: 0 15px 40px rgba(109, 47, 255, 0.1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Why Choose Us Section */
+        .why-choose {
+            padding: 8rem 2rem;
+            background: var(--darker-bg);
+        }
+
+        .why-choose-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .why-choose-text h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .benefits-list {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: start;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .benefit-item:hover {
+            transform: translateX(10px);
+            border-color: var(--primary-purple);
+            box-shadow: 0 10px 30px rgba(109, 47, 255, 0.1);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-content h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .benefit-content p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* Clients Section */
+        .clients {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .client-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .client-card:hover {
+            transform: scale(1.05);
+            border-color: var(--accent-pink);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.1);
+        }
+
+        .client-name {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .client-type {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        /* Case Studies */
+        .case-studies {
+            padding: 8rem 2rem;
+            background: var(--darker-bg);
+        }
+
+        .case-study-grid {
+            max-width: 1400px;
+            margin: 4rem auto 0;
+            display: grid;
+            gap: 3rem;
+        }
+
+        .case-study {
+            background: var(--card-bg);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .case-study:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-purple);
+            box-shadow: 0 15px 40px rgba(109, 47, 255, 0.1);
+        }
+
+        .case-study-content {
+            padding: 3rem;
+        }
+
+        .case-study-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 2rem;
+        }
+
+        .case-study h3 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .case-study-tag {
+            background: var(--gradient-2);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        .case-study-description {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .impact-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 300;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 300;
+            margin-top: 0.5rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 24px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-purple);
+            box-shadow: 0 20px 40px rgba(109, 47, 255, 0.1);
+        }
+
+        .quote-icon {
+            font-size: 4rem;
+            color: var(--primary-purple);
+            opacity: 0.2;
+            line-height: 1;
+            margin-bottom: 1rem;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+            font-weight: 300;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .author-name {
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-position {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        /* Our Process Section */
+        .process {
+            padding: 8rem 2rem;
+            background: var(--darker-bg);
+        }
+
+        .process-grid {
+            max-width: 1400px;
+            margin: 4rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+
+        .process-step {
+            position: relative;
+            padding: 2.5rem;
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(109, 47, 255, 0.1);
+        }
+
+        .step-number {
+            font-size: 4rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .process-step h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .process-step p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 3rem;
+            font-weight: 200;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .founder-card {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 24px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .founder-name {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .founder-title {
+            color: var(--accent-pink);
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+
+        .achievements {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .achievements li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        .achievements li::before {
+            content: '→';
             position: absolute;
-            top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
+            color: var(--primary-purple);
+            font-weight: bold;
         }
 
-        .hero-content {
+        /* FAQ Section */
+        .faq {
+            padding: 8rem 2rem;
+            background: var(--darker-bg);
+        }
+
+        .faq-container {
             max-width: 900px;
-            padding: 0 20px;
-            z-index: 2;
-            animation: fadeInUp 1s ease-out;
+            margin: 4rem auto 0;
         }
 
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary-purple);
+        }
+
+        .faq-item summary {
+            padding: 2rem;
+            font-size: 1.15rem;
+            font-weight: 500;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--primary-purple);
+            transition: transform 0.3s;
+        }
+
+        .faq-item[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-item summary:hover {
+            color: var(--primary-purple);
+        }
+
+        .faq-item p {
+            padding: 0 2rem 2rem 2rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 2rem;
+            background: var(--darker-bg);
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-size: 3.5rem;
+            font-weight: 200;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .contact p {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+        }
+
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 300;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary-purple);
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            padding: 6rem 2rem;
+            background: var(--gradient-1);
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .newsletter p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            white-space: nowrap;
+            background: white;
+            color: var(--primary-purple);
+        }
+
+        .newsletter-form button:hover {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .newsletter-privacy {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker-bg);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact h2 {
+                font-size: 2.5rem;
+            }
+
+            .contact-details {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefit-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .newsletter h2 {
+                font-size: 1.75rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+
+        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -382,1249 +885,487 @@ body {
             }
         }
 
-        .hero h2 {
-            font-size: 56px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .hero h5 {
-            font-size: 24px;
-            font-weight: 400;
-            margin-bottom: 30px;
-            line-height: 1.8;
-        }
-
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 40px;
-            line-height: 1.8;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-        }
-
-        .tagline {
-            font-size: 26px;
-            font-weight: 600;
-            margin-top: 30px;
-            background: linear-gradient(90deg, #fff 0%, #f0f0f0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Quiz Section */
-        .quiz-section {
-            background: white;
-            color: linear-gradient(135deg, #4c1d95 0%, #5b21b6 50%, #6d28d9 100%);
-            padding: 80px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .quiz-section::before {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: rgba(139, 92, 246, 0.1);
-            border-radius: 50%;
-            top: -200px;
-            left: -100px;
-        }
-
-        .quiz-section::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: rgba(139, 92, 246, 0.1);
-            border-radius: 50%;
-            bottom: -150px;
-            right: -100px;
-        }
-
-        .quiz-section h1 {
-            font-size: 42px;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-            color: #5b21b6;
-        }
-
-        .quiz-section p {
-            font-size: 18px;
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 1;
-            color: #5b21b6;
-        }
-
-        .quiz-form {
-            max-width: 500px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .quiz-form input {
-            padding: 15px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: transform 0.3s;
-        }
-
-        .quiz-form input:focus {
-            outline: none;
-            transform: scale(1.02);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .quiz-form button {
-            padding: 15px;
-            background-color: #5b21b6;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .quiz-form button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-            background-color: #6d28d9;
-        }
-
-        /* Services Section */
-        .services {
-            padding: 100px 20px;
-            background: linear-gradient(180deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
-            transition: background 0.3s ease;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-label {
-            font-size: 14px;
-            letter-spacing: 3px;
-            color: var(--accent-primary);
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .section-header h2 {
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-header p {
-            max-width: 900px;
-            margin: 0 auto;
-            font-size: 16px;
-            line-height: 1.8;
-            color: var(--text-secondary);
-        }
-
-        .service-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-            margin-bottom: 60px;
-        }
-
-        .service-card {
-            background: var(--bg-card);
-            padding: 40px 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
-            border-top: 4px solid var(--accent-secondary);
-            position: relative;
-            overflow: hidden;
-        }
-
-        [data-theme="light"] .service-card {
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            border: 1px solid var(--border-color);
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
-        }
-
-        .service-card:hover::before {
-            opacity: 1;
-        }
-
-        .service-card h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            font-weight: 700;
-            position: relative;
-            z-index: 1;
-            color: var(--text-primary);
-        }
-
-        .service-card p {
-            font-size: 15px;
-            line-height: 1.8;
-            color: var(--text-secondary);
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Detailed Services */
-        .detailed-services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .detailed-service {
-            text-align: center;
-            background: var(--bg-card);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-        }
-
-        [data-theme="light"] .detailed-service {
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border: 1px solid var(--border-color);
-        }
-
-        .detailed-service:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
-        }
-
-        .detailed-service img {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .detailed-service:hover img {
-            transform: scale(1.1);
-        }
-
-        .service-content {
-            padding: 30px 20px;
-        }
-
-        .detailed-service h4 {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: var(--text-primary);
-        }
-
-        .detailed-service p {
-            font-size: 14px;
-            line-height: 1.8;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.6);
-        }
-
-        /* About Section */
-        .about {
-            padding: 100px 20px;
-            background: var(--bg-tertiary);
-            transition: background 0.3s ease;
-        }
-
-        .about-content {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 18px;
-            line-height: 1.9;
-            color: var(--text-secondary);
-        }
-
-        /* Projects Section */
-        .projects {
-            padding: 100px 20px;
-            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
-            transition: background 0.3s ease;
-        }
-
-        .project-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .project-card {
-            background: var(--bg-card);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-        }
-
-        [data-theme="light"] .project-card {
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border: 1px solid var(--border-color);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
-        }
-
-        .project-card img {
-            width: 100%;
-            height: 377px;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .project-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .project-info {
-            padding: 30px;
-        }
-
-        .project-label {
-            font-size: 12px;
-            letter-spacing: 2px;
-            color: var(--accent-primary);
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .project-info h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: var(--text-primary);
-        }
-
-        .project-info p {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 100px 20px;
-            background: var(--bg-tertiary);
-            transition: background 0.3s ease;
-        }
-
-        .contact-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .contact h6 {
-            font-size: 18px;
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--accent-primary);
-        }
-
-        .contact-form {
-            display: grid;
-            gap: 20px;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            padding: 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 16px;
-            font-family: inherit;
-            transition: all 0.3s;
-            background: var(--bg-card);
-            color: var(--text-primary);
-        }
-
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--accent-secondary);
-            box-shadow: 0 0 10px rgba(124, 58, 237, 0.3);
-        }
-
-        .contact-form input::placeholder,
-        .contact-form textarea::placeholder {
-            color: var(--text-muted);
-        }
-
-        .contact-form textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .contact-form button {
-            padding: 15px;
-            background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .contact-form button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.6);
-        }
-
-        .contact-info {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 16px;
-            color: var(--text-secondary);
-        }
-
-        .contact-info a {
-            color: var(--accent-primary);
-            text-decoration: none;
-        }
-
-        .clients-section { padding: 60px 20px; background: #fff; text-align: center; }
-  .clients-section h2 { font-size: 40px; margin-bottom: 30px; font-weight: 700; color:#5b21b6 ;}
-  .clients-slider { overflow: hidden; position: relative; }
-  .clients-track {
-    display: flex; width: max-content; animation: slide 25s linear infinite;
-    gap: 80px; align-items: center;
-  }
-  .clients-track img { height: 60px; width: auto; opacity: 0.8; transition: transform 0.3s ease, opacity 0.3s ease; }
-  .clients-track img:hover { transform: scale(1.05); opacity: 1; }
-  @keyframes slide {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-        /* Testimonials */
-        .testimonials {
-            padding: 100px 20px;
-            background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 50%, #6d28d9 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .testimonials::before {
-            content: '';
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: rgba(139, 92, 246, 0.1);
-            border-radius: 50%;
-            top: -300px;
-            right: -200px;
-        }
-
-        .testimonial-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.2;
-            z-index: 0;
-        }
-
-        .testimonial-slider {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .testimonial {
-            padding: 40px;
-            display: none;
-            animation: fadeIn 0.5s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .testimonial.active {
-            display: block;
-        }
-
-        .testimonial p {
-            font-size: 22px;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .testimonial cite {
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 600;
-        }
-
-        .testimonial-dots {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 30px;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: rgba(255,255,255,0.5);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .dot:hover {
-            background-color: rgba(255,255,255,0.8);
-            transform: scale(1.2);
-        }
-
-        .dot.active {
-            background-color: white;
-        }
-
-        /* Newsletter */
-        .newsletter {
-            padding: 80px 20px;
-            background: var(--bg-tertiary);
-            text-align: center;
-            transition: background 0.3s ease;
-        }
-
-        .newsletter h3 {
-            font-size: 14px;
-            letter-spacing: 3px;
-            color: var(--accent-primary);
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .newsletter p {
-            max-width: 700px;
-            margin: 0 auto 30px;
-            font-size: 16px;
-            line-height: 1.8;
-            color: var(--text-secondary);
-        }
-
-        .newsletter-form {
-            max-width: 500px;
-            margin: 0 auto;
-            display: flex;
-            gap: 10px;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 16px;
-            background: var(--bg-card);
-            color: var(--text-primary);
-        }
-
-        .newsletter-form input::placeholder {
-            color: var(--text-muted);
-        }
-
-        .newsletter-form button {
-            padding: 15px 30px;
-            background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .newsletter-form button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.6);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            padding: 40px 20px 20px;
-            text-align: center;
-            transition: background 0.3s ease;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(124, 58, 237, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent-secondary);
-            transform: translateY(-5px);
-        }
-
-        .social-links img {
-            width: 20px;
-            height: 20px;
-        }
-
-        footer p {
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-
-        .success-message {
-            display: none;
-            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            text-align: center;
-            animation: slideDown 0.3s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .navbar {
-                padding: 12px 18px;
-            }
-
-            .theme-toggle {
-                top: 80px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .top-bar { 
-                flex-direction: column; 
-                align-items: flex-start; 
-                gap: 8px; 
-                padding: 10px 5%; 
-            }
-            
-            .hamburger {
-                display: flex;
-            }
-            
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100vw;
-                background: var(--bg-secondary);
-                position: absolute;
-                top: 100%;
-                left: 0;
-                padding: 20px 0 10px 0;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-                gap: 0;
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .nav-links li {
-                margin-bottom: 12px;
-                text-align: left;
-                padding: 0 20px;
-            }
-
-            .hero h2 {
-                font-size: 36px;
-            }
-
-            .hero h5 {
-                font-size: 18px;
-            }
-
-            .section-header h2 {
-                font-size: 32px;
-            }
-
-            .service-cards,
-            .detailed-services,
-            .project-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-            }
-
-            .sticky-contact {
-                right: 20px;
-                bottom: 20px;
-            }
-
-            .sticky-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
-            }
-
-            .theme-toggle {
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo img {
-                height: 24px;
-            }
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
         }
     </style>
 </head>
 <body>
-    <!-- Theme Toggle Button -->
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" title="Toggle Light/Dark Mode">
-        <i class="fas fa-moon" id="theme-icon"></i>
-    </button>
-
-   <div class="top-bar">
-  <div class="left">
-    <i class="fa-solid fa-envelope"></i> 
-    <a href="mailto:info@latitude.co.ke">info@latitude.co.ke</a>
-    <span class="divider"></span>
-    <i class="fa-solid fa-phone"></i> 
-    <a href="tel:+254758886707">+254 758 88 67 07</a>
-  </div>
-  
-  <div class="right">
-    <a href="https://www.linkedin.com/company/latitudedigitalke/" target="_blank" rel="noopener" title="LinkedIn">
-      <i class="fa-brands fa-linkedin-in"></i>
-    </a>
-    <a href="https://www.facebook.com/YOUR_PAGE" target="_blank" rel="noopener" title="Facebook">
-      <i class="fa-brands fa-facebook-f"></i>
-    </a>
-    <a href="https://www.instagram.com/latitudedigitalofficial?igsh=ODRvandiNjU5OGQ5" target="_blank" rel="noopener" title="Instagram">
-      <i class="fa-brands fa-instagram"></i>
-    </a>
-    <a href="https://www.tiktok.com/@latitudedigital?_t=ZM-8z44jDOMKlM&_r=1" target="_blank" rel="noopener" title="TikTok">
-      <i class="fa-brands fa-tiktok"></i>
-    </a>
-  </div>
-</div>
-
-<!-- Main nav -->
-<header>
-  <nav class="navbar" id="navbar">
-    <div class="logo">
-      <a href="index.html">
-        <img src="images/Revision2(png).png" alt="Latitude Logo" />
-      </a>
-    </div>
-
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="blog.html">Blog</a></li>
-    </ul>
-  </nav>
-</header>
-
-    <!-- Sticky Contact Buttons -->
-    <div class="sticky-contact">
-        <a href="https://wa.me/254758886707" class="sticky-btn whatsapp-btn" target="_blank" title="WhatsApp Us">
-            <i class="fa-brands fa-whatsapp"></i>
-        </a>
-        <a href="mailto:hello@latitude.co.ke" class="sticky-btn email-btn" title="Email Us">
-            <i class="fa-solid fa-envelope"></i>
-        </a>
-        <a href="tel:+254758886707" class="sticky-btn phone-btn" title="Call Us">
-            <i class="fa-solid fa-phone"></i>
-        </a>
-    </div>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">⚡ Latitude</div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#clients">Clients</a></li>
+                <li><a href="#case-studies">Work</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <img class="hero-bg" src="https://static.wixstatic.com/media/11062b_b7cfa4e925d14b32a70401123a356e96~mv2.jpg/v1/fill/w_1920,h_1080,al_c,q_90/11062b_b7cfa4e925d14b32a70401123a356e96~mv2.jpg" alt="Online Communications">
+    <section class="hero fade-in-up">
         <div class="hero-content">
-            <h2>LET'S GROW YOUR REVENUE</h2>
-            <h5>Through AI-Driven Growth Marketing</h5>
-            
+            <div class="impact-badge">🚀 3X Market Impact</div>
+            <h1>AI-Driven Growth Marketing for Africa</h1>
+            <p class="hero-subtitle">Empowering businesses with data-driven, culturally relevant campaigns that deliver measurable results across Kenya and beyond.</p>
+            <a href="#contact" class="cta-button">Start Your Growth Journey</a>
         </div>
-    </section>
 
-    <!-- Quiz Section -->
-    <section class="quiz-section">
-        <h1>Is Your Digital Presence Holding Your Business Back?</h1>
-        <p>Find and Fix Your Online Gaps.</p>
-        <form class="quiz-form" id="quizForm">
-            <input type="email" placeholder="Email" required>
-            <input type="url" placeholder="Website" required>
-            <button type="submit">Let's Fix It Now!</button>
-        </form>
-        <div class="success-message" id="quizSuccess">Thanks for submitting! We'll analyze your digital presence and get back to you soon.</div>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">120+</div>
+                <div class="stat-label">Clients Served</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Projects Delivered</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3X</div>
+                <div class="stat-label">Revenue Growth</div>
+            </div>
+        </div>
     </section>
 
     <!-- Services Section -->
     <section id="services" class="services">
-        <div class="section-header">
-            <div class="section-label">SERVICES</div>
-            <h2>WHAT WE DO</h2>
-            <p>As a marketing agency, we specialise in helping businesses navigate the complexities of marketing in today's fast-paced environment. We architect growth systems for Kenya's boldest innovators. Where traditional agencies see campaigns, we engineer market entry blueprints – combining behavioural science, AI-driven analytics, and Gen-Z digital fluency to make your brand unavoidable.</p>
-        </div>
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">Comprehensive digital solutions powered by AI and data insights</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <h3>AI-Driven Marketing</h3>
+                <p>Leverage cutting-edge AI technology to optimize campaigns, reduce customer acquisition costs by 25%, and drive 2-5X growth in lead generation.</p>
+            </div>
 
-        <div class="service-cards">
             <div class="service-card">
-                <h3>Sector & Association Marketing</h3>
-                <p>Amplify your voice and engage stakeholders with culturally relevant digital strategies that build lasting impact.</p>
+                <div class="service-icon">📱</div>
+                <h3>Digital Strategy</h3>
+                <p>Data-driven strategies tailored to your market, ensuring culturally relevant campaigns that resonate with your target audience.</p>
             </div>
+
             <div class="service-card">
-                <h3>Growth Marketing for Tech Startups</h3>
-                <p>Accelerate your user acquisition and revenue with AI-enhanced, data-driven campaigns designed for African markets.</p>
+                <div class="service-icon">🎯</div>
+                <h3>Brand Management & Strategy</h3>
+                <p>Comprehensive brand development from positioning to identity, ensuring consistent messaging across all touchpoints that builds lasting brand equity.</p>
             </div>
+
             <div class="service-card">
-                <h3>MSMEs</h3>
-                <p>Embarking on the digital journey is an exciting adventure that calls for smart strategies! We offer comprehensive digital marketing solutions</p>
+                <div class="service-icon">🚀</div>
+                <h3>Campaign Management</h3>
+                <p>End-to-end campaign execution across multiple channels with real-time optimization, performance tracking, and measurable ROI.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📈</div>
+                <h3>Growth Hacking</h3>
+                <p>Rapid experimentation across marketing channels to identify the most effective ways to grow your business exponentially.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">✍️</div>
+                <h3>Content Marketing</h3>
+                <p>Compelling content that tells your story, builds community, and drives engagement across all digital platforms.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Social Media Management</h3>
+                <p>Strategic social media campaigns that increase visibility, engagement, and build lasting relationships with your audience.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">💻</div>
+                <h3>Web & App Development</h3>
+                <p>Custom websites and mobile applications designed for performance, user experience, and conversion optimization.</p>
             </div>
         </div>
+    </section>
 
-        <div class="detailed-services">
-            <div class="detailed-service">
-                <img src="https://static.wixstatic.com/media/11062b_044034876a9446578363bdd629bf497f~mv2.jpg/v1/fill/w_310,h_282,al_c,q_80/Advertising.jpg" alt="PPC Advertising">
-                <div class="service-content">
-                    <h4>PPC Advertising</h4>
-                    <p>Comprehensive planning and execution of Google Ads, Meta Ads, X, TikTok and LinkedIn Ads for digital advertising campaigns tailored to your goals, leveraging AI-driven analytics for maximum impact.</p>
-                    <a href="mailto:hello@latitude.co.ke?subject=Tell me more about..." class="cta-button">Get A Quote</a>
+    <!-- Why Choose Us Section -->
+    <section class="why-choose">
+        <div class="why-choose-content">
+            <div class="why-choose-text">
+                <h2>Why Choose Latitude Digital</h2>
+                <p class="section-subtitle" style="text-align: left; margin-bottom: 3rem;">We combine global expertise with deep local market understanding</p>
+                
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🤖</div>
+                        <div class="benefit-content">
+                            <h3>AI-First Approach</h3>
+                            <p>Leveraging cutting-edge AI technology to optimize every campaign and reduce costs by up to 25%</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🌍</div>
+                        <div class="benefit-content">
+                            <h3>Cultural Intelligence</h3>
+                            <p>Culturally relevant strategies that resonate with African audiences while maintaining global standards</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">📈</div>
+                        <div class="benefit-content">
+                            <h3>Proven Results</h3>
+                            <p>Consistent 3X growth impact across 120+ clients in diverse industries</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">👥</div>
+                        <div class="benefit-content">
+                            <h3>Girl-Powered Team</h3>
+                            <p>Diverse, Gen-Z representation bringing fresh perspectives and digital-native insights</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">⚡</div>
+                        <div class="benefit-content">
+                            <h3>Agile Methodology</h3>
+                            <p>Fast iteration, data-driven decisions, and transparent reporting at every stage</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🎯</div>
+                        <div class="benefit-content">
+                            <h3>Full-Service Solutions</h3>
+                            <p>From strategy to execution—content, development, training, and ongoing optimization</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="detailed-service">
-                <img src="https://static.wixstatic.com/media/nsplsh_666d633670376d46377167~mv2_d_7952_5304_s_4_2.jpg/v1/fill/w_310,h_282,al_c,q_80/Image%20by%20Pineapple%20Supply%20Co_.jpg" alt="Brand Development">
-                <div class="service-content">
-                    <h4>Brand Development</h4>
-                    <p>Our team specializes in building cohesive brand identities that reflect your organization's core values and resonate with your audience.</p>
-                    <a href="mailto:hello@latitude.co.ke?subject=Tell me more about..." class="cta-button">Get A Quote</a>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section id="clients" class="clients">
+        <h2 class="section-title">Trusted by Industry Leaders</h2>
+        <p class="section-subtitle">From startups to global brands, we deliver results</p>
+
+        <div class="clients-grid">
+            <div class="client-card">
+                <div class="client-name">KAHC</div>
+                <div class="client-type">Hospitality Association</div>
+            </div>
+            <div class="client-card">
+                <div class="client-name">IHTI</div>
+                <div class="client-type">Education</div>
+            </div>
+            <div class="client-card">
+                <div class="client-name">Voyager</div>
+                <div class="client-type">Travel & Tourism</div>
+            </div>
+            <div class="client-card">
+                <div class="client-name">Hipora</div>
+                <div class="client-type">Security</div>
+            </div>
+            <div class="client-card">
+                <div class="client-name">Koddi</div>
+                <div class="client-type">PropTech</div>
+            </div>
+            <div class="client-card">
+                <div class="client-name">Memora</div>
+                <div class="client-type">Digital Platform</div>
+            </div>
+            <div class="client-card">
+                <div class="client-name">VisitSasa</div>
+                <div class="client-type">AI Tourism</div>
+            </div>
+            <div class="client-card">
+                <div class="client-name">RETRAK</div>
+                <div class="client-type">Trade Association</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section id="case-studies" class="case-studies">
+        <h2 class="section-title">Success Stories</h2>
+        <p class="section-subtitle">Real results for real businesses</p>
+
+        <div class="case-study-grid">
+            <div class="case-study">
+                <div class="case-study-content">
+                    <div class="case-study-header">
+                        <div>
+                            <h3>Byon8 Health-Tech</h3>
+                            <p style="color: var(--text-secondary);">Growth Hacking & Digital Marketing</p>
+                        </div>
+                        <div class="case-study-tag">2021-2024</div>
+                    </div>
+                    <p class="case-study-description">
+                        Scaled a Swedish health-tech startup to become Kenya's leading telehealth provider through AI-driven digital marketing, app development support, and strategic content partnerships.
+                    </p>
+                    <div class="impact-metrics">
+                        <div class="metric">
+                            <div class="metric-value">#1</div>
+                            <div class="metric-label">Market Position</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">3X</div>
+                            <div class="metric-label">User Growth</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">25%</div>
+                            <div class="metric-label">CAC Reduction</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="detailed-service">
-                <img src="https://static.wixstatic.com/media/11062b_36573af9ba214c97a47a21430fbc6c21~mv2.jpg/v1/fill/w_310,h_282,al_c,q_80/Colorful%20Abstract%20Shapes.jpg" alt="Social Media & Content Strategy">
-                <div class="service-content">
-                    <h4>Social Media & Content Strategy</h4>
-                    <p>We craft compelling stories through high-quality content that speaks directly to your target audience's needs and interests. Our goal is to engage users effectively while establishing your brand as a trusted authority in its field.</p>
-                    <a href="mailto:hello@latitude.co.ke?subject=Tell me more about..." class="cta-button">Get A Quote</a>
+
+            <div class="case-study">
+                <div class="case-study-content">
+                    <div class="case-study-header">
+                        <div>
+                            <h3>Memora Platform</h3>
+                            <p style="color: var(--text-secondary);">Content & Social Media Strategy</p>
+                        </div>
+                        <div class="case-study-tag">2025</div>
+                    </div>
+                    <p class="case-study-description">
+                        Transformed a sensitive digital memorial platform through culturally-aware content that addresses death taboos while building community trust and engagement.
+                    </p>
+                    <div class="impact-metrics">
+                        <div class="metric">
+                            <div class="metric-value">240%</div>
+                            <div class="metric-label">Engagement Increase</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">🏆</div>
+                            <div class="metric-label">Market Leader</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="detailed-service">
-                <img src="https://static.wixstatic.com/media/11062b_1c1f8ba914d14e599fe9116cdbe003d6~mv2.png/v1/fill/w_310,h_282,al_c,q_85/Abstract%20Mindful%20Illustration.png" alt="Growth Strategy">
-                <div class="service-content">
-                    <h4>Growth Strategy</h4>
-                    <p>We create growth marketing plans customized to your business goals, focusing on attracting, engaging, converting, retaining, and advocating for your brand.</p>
-                    <a href="mailto:hello@latitude.co.ke?subject=Tell me more about..." class="cta-button">Get A Quote</a>
+
+            <div class="case-study">
+                <div class="case-study-content">
+                    <div class="case-study-header">
+                        <div>
+                            <h3>Sote Hub MSMEs</h3>
+                            <p style="color: var(--text-secondary);">Digital Marketing Training</p>
+                        </div>
+                        <div class="case-study-tag">2025</div>
+                    </div>
+                    <p class="case-study-description">
+                        Delivered comprehensive digital marketing training to 30+ MSMEs across 6 Kenyan cities, covering AI marketing, website development, and content creation.
+                    </p>
+                    <div class="impact-metrics">
+                        <div class="metric">
+                            <div class="metric-value">63%</div>
+                            <div class="metric-label">Revenue Increase</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">30+</div>
+                            <div class="metric-label">Businesses Empowered</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">6</div>
+                            <div class="metric-label">Cities Reached</div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2 class="section-title">What Our Clients Say</h2>
+        <p class="section-subtitle">Trusted partnerships delivering exceptional results</p>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">Latitude Digital transformed our digital presence completely. Their AI-driven approach helped us reduce customer acquisition costs by 25% while scaling our user base exponentially.</p>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <div class="author-name">Healthcare Technology Leader</div>
+                        <div class="author-position">Chief Marketing Officer</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">Working with Vivien and her team was a game-changer. They understood our cultural context and created campaigns that truly resonated with our audience. Revenue increased by 63%.</p>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <div class="author-name">MSME Owner</div>
+                        <div class="author-position">Nairobi, Kenya</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">Their strategic approach to social media management increased our engagement by 240%. Latitude Digital doesn't just execute—they innovate and deliver measurable impact.</p>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <div class="author-name">Digital Platform CEO</div>
+                        <div class="author-position">Tech Startup</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Process Section -->
+    <section class="process">
+        <h2 class="section-title">Our Process</h2>
+        <p class="section-subtitle">A proven methodology for sustainable growth</p>
+
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="step-number">01</div>
+                <h3>Discovery & Research</h3>
+                <p>Deep dive into your business, market, and audience using AI-powered analytics and cultural insights to understand what drives your growth.</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">02</div>
+                <h3>Strategy Development</h3>
+                <p>Create data-driven strategies tailored to your specific goals, combining global best practices with local market expertise.</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">03</div>
+                <h3>Implementation</h3>
+                <p>Execute campaigns with precision using cutting-edge AI tools, creative excellence, and agile methodologies for rapid iteration.</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">04</div>
+                <h3>Optimization & Scale</h3>
+                <p>Continuously analyze performance, optimize for better results, and scale successful strategies to maximize your ROI.</p>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
-        <div class="section-header">
-            <div class="section-label">ABOUT US</div>
-            <h2>WHO WE ARE</h2>
-        </div>
         <div class="about-content">
-            <p>Latitude is more than a digital marketing agency - we are a growth partner for African innovators. For over 12 years, we have empowered tech startups and sector associations to scale their impact using a mentorship-first model that trains and deploys Kenya's brightest Gen-Z digital talent. Our unique blend of AI-powered marketing and youthful platform intuition delivers authentic, agile campaigns that resonate deeply and drive measurable growth.</p>
+            <div class="about-text">
+                <h2>About Latitude Digital</h2>
+                <p>Founded in 2014 and headquartered in Nairobi, Kenya, Latitude Digital is a pioneering AI marketing agency specializing in growth marketing for African and global markets.</p>
+                <p>We empower tech startups, MSMEs, corporates, and sector associations with data-driven, culturally relevant campaigns designed to deliver 3X greater market impact.</p>
+                <p>Our mission is to bridge the gap between cutting-edge technology and authentic local engagement, driving measurable growth for businesses across Africa and beyond.</p>
+            </div>
+
+            <div class="founder-card">
+                <div class="founder-name">Vivien Wamalwa</div>
+                <div class="founder-title">Founder & Growth Strategist</div>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Award-winning entrepreneur with 15+ years of industry experience, leading Latitude to 3X revenue growth.</p>
+                
+                <ul class="achievements">
+                    <li>Winner of "The Magnate" reality show, ChoraBizna</li>
+                    <li>Co-founded Safari Hunters & VisitSasa</li>
+                    <li>Scaled Byon8 to leading telehealth status in one year</li>
+                    <li>Strategy consulting for global brands like LEGO</li>
+                    <li>Specializes in AI-driven marketing & startup scale-up</li>
+                </ul>
+            </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section class="projects">
-        <div class="section-header">
-            <h2>SELECTED PROJECTS</h2>
-        </div>
-        <div class="project-cards">
-            <div class="project-card">
-                <img src="https://static.wixstatic.com/media/9c039d_141cbb539d6c48798de62e042d428b4c~mv2.png/v1/fill/w_280,h_438,al_c,q_85/byon8_edited.png" alt="Byon8">
-                <div class="project-info">
-                    <div class="project-label">Growth Marketing</div>
-                    <h3>Byon8 – Digital Health</h3>
-                    <p>Revolution 2021 - 2023<br>Scaled user base by 400% through targeted AI-driven campaigns & strategic partnerships.</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="https://static.wixstatic.com/media/6d86bd_ebf4eae08e9944ddb7fee74503a61d41~mv2.png/v1/fill/w_280,h_438,al_c,q_85/Latitude%20free%20audit.png" alt="Memora">
-                <div class="project-info">
-                    <div class="project-label">Social Media & Content</div>
-                    <h3>Memora.global 2025</h3>
-                    <p>Boosted social media engagement by 240%, breaking taboos around death and memorialization.</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="https://static.wixstatic.com/media/9c039d_6b5434d105804e1b829ac207c5781b7c~mv2.jpg/v1/fill/w_280,h_438,al_c,q_80/Pink%20Screen_edited.jpg" alt="Sote Hub">
-                <div class="project-info">
-                    <div class="project-label">Digital Skills Training</div>
-                    <h3>Sote Hub 2025</h3>
-                    <p>Empowered MSMEs with digital marketing training, driving a 63% revenue increase.</p>
-                </div>
-            </div>
+    <!-- FAQ Section -->
+    <section class="faq">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Everything you need to know about working with us</p>
+
+        <div class="faq-container">
+            <details class="faq-item">
+                <summary>What makes Latitude Digital different from other marketing agencies?</summary>
+                <p>We combine AI-driven technology with deep cultural intelligence specific to African markets. Our proven track record shows consistent 3X growth impact, and we offer a unique blend of global best practices with local expertise. Plus, our girl-powered, Gen-Z team brings fresh, digital-native perspectives.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>What industries do you specialize in?</summary>
+                <p>We work across multiple sectors including tech startups, healthcare & digital health, tourism & hospitality, fintech, education, NGOs & development organizations, SMEs, corporates, and sector associations. Our diverse portfolio includes over 120 clients across these industries.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>How long does it typically take to see results?</summary>
+                <p>While timelines vary by project scope, most clients see measurable improvements within 6-12 months. Our case studies show 2-5X growth in lead generation, up to 4X increase in website traffic, and 25% customer acquisition cost savings through AI optimization.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Do you work with businesses outside Kenya?</summary>
+                <p>Yes! While we're headquartered in Nairobi, we serve clients across Africa and have worked with global brands. Our digital-first approach allows us to effectively support businesses regardless of location.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>What is your pricing structure?</summary>
+                <p>We offer flexible pricing models tailored to each client's needs and budget, including project-based, retainer, and performance-based options. Contact us for a customized quote based on your specific requirements.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Can you help with both strategy and execution?</summary>
+                <p>Absolutely! We're a full-service agency offering everything from strategic planning to complete execution—including content creation, web & app development, social media management, PPC campaigns, and ongoing optimization.</p>
+            </details>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="contact-content">
-            <h6>CURIOUS HOW WE CAN HELP YOUR BRAND THRIVE ONLINE?</h6>
-            <form class="contact-form" id="contactForm">
-                <input type="text" placeholder="Enter Your Name" required>
-                <input type="email" placeholder="Enter Your Email" required>
-                <input type="text" placeholder="Enter Your Subject" required>
-                <textarea placeholder="Enter Your Message" required></textarea>
-                <button type="submit">Submit</button>
-            </form>
-            <div class="success-message" id="contactSuccess">Thanks for reaching out! We'll get back to you within 24 hours.</div>
-            <div class="contact-info">
-                <p><a href="mailto:hello@latitude.co.ke">hello@latitude.co.ke</a></p>
-                <p>+254 758 886707</p>
-                <p>+254 778 389 333</p>
-            </div>
-        </div>
-    </section>
+            <h2>Let's Create Impact Together</h2>
+            <p>Ready to achieve 3X growth? Let's discuss how our AI-driven strategies can transform your business.</p>
+            
+            <a href="mailto:info@latitude.co.ke" class="cta-button" style="display: inline-block; margin-bottom: 2rem;">Start Your Project</a>
 
-    <!-- Clients Section -->
-   <section class="clients-section">
-    <h2>OUR CLIENTS</h2>
-    <div class="clients-slider">
-      <div class="clients-track">
-        <img src="images/4.png" alt="Fourth Media" />
-        <img src="images/5.png" alt="KHA" />
-        <img src="images/6.png" alt="Memora" />
-        <img src="images/8.png" alt="Retrack" />
-        <img src="images/9.png" alt="Visit Sasa" />
-        <img src="images/10.png" alt="Hipora" />
-        <img src="images/11.png" alt="Byon 8" />
-        
-        <!-- Repeat logos for continuous loop -->
-        <img src="images/4.png" alt="Nivben" />
-        <img src="images/5.png" alt="Fourth Media" />
-        <img src="images/6.png" alt="Byon8" />
-        <img src="images/8.png" alt="Hipora" />
-        <img src="images/9.png" alt="NA Comm" />
-        <img src="images/10.png" alt="Hipora" />
-    
-      </div>
-    </div>
-  </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <img class="testimonial-bg" src="https://static.wixstatic.com/media/11062b_17f38841cd734c97b747ab9a5913f94c~mv2.jpg/v1/fill/w_1920,h_500,al_c,q_90/11062b_17f38841cd734c97b747ab9a5913f94c~mv2.jpg" alt="Background">
-        <div class="testimonial-slider">
-            <div class="testimonial active">
-                <p>"Working with Latitude helped us see growth from online clients. Very happy with their services. Their professionalism and commitment to results make them an invaluable partner."</p>
-                <cite>— John, CEO, Hipora Security</cite>
-            </div>
-            <div class="testimonial">
-                <p>"Latitude's expertise in digital marketing and campaign management has significantly improved our lead generation efforts. Their team crafted a tailored PPC strategy that resulted in a 40% increase in qualified leads within just three months."</p>
-                <cite>— John O, Director, Fourth Media Logistics</cite>
-            </div>
-            <div class="testimonial">
-                <p>"The branding and communication strategies developed by Latitude have transformed how we connect with our stakeholders. Their ability to create compelling content that resonates with our audience has enhanced our outreach efforts tremendously."</p>
-                <cite>— Lucy, Comms. Dir, Advocacy NGO</cite>
-            </div>
-            <div class="testimonial-dots">
-                <span class="dot active" onclick="showTestimonial(0)"></span>
-                <span class="dot" onclick="showTestimonial(1)"></span>
-                <span class="dot" onclick="showTestimonial(2)"></span>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <div style="color: var(--text-secondary);">Email</div>
+                    <a href="mailto:info@latitude.co.ke">info@latitude.co.ke</a>
+                </div>
+                <div class="contact-item">
+                    <div style="color: var(--text-secondary);">Phone</div>
+                    <a href="tel:+254758886707">+254 758 886 707</a>
+                </div>
+                <div class="contact-item">
+                    <div style="color: var(--text-secondary);">WhatsApp</div>
+                    <a href="tel:+254778389333">+254 778 389 333</a>
+                </div>
+                <div class="contact-item">
+                    <div style="color: var(--text-secondary);">Social</div>
+                    <a href="#">@latitudedigital</a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Newsletter Section -->
     <section class="newsletter">
-        <h3>INSIGHTS & RESOURCES</h3>
-        <p>Stay ahead with our latest insights on AI in marketing, African digital trends, and growth strategies for startups and associations.</p>
-        <form class="newsletter-form" id="newsletterForm">
-            <input type="email" placeholder="Enter your email" required>
-            <button type="submit">Subscribe</button>
-        </form>
-        <div class="success-message" id="newsletterSuccess">Thanks for subscribing! Check your inbox for the latest insights.</div>
+        <div class="newsletter-content">
+            <h2>Stay Ahead of the Curve</h2>
+            <p>Get the latest insights on AI marketing, growth strategies, and African market trends delivered to your inbox.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit" class="cta-button">Subscribe</button>
+            </form>
+            <p class="newsletter-privacy">We respect your privacy. Unsubscribe at any time.</p>
+        </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>Be a Social Light and Follow Us:</p>
-        <div class="social-links">
-            <a href="https://www.tiktok.com/@latitudedigital" target="_blank" aria-label="TikTok">
-                <img src="https://static.wixstatic.com/media/11062b_7edd292d29b34c309100535a26dc5033~mv2.png/v1/fill/w_40,h_40,al_c,q_85/11062b_7edd292d29b34c309100535a26dc5033~mv2.png" alt="TikTok">
-            </a>
-            <a href="https://www.linkedin.com/company/latitudedigitalke/" target="_blank" aria-label="LinkedIn">
-                <img src="https://static.wixstatic.com/media/11062b_b5690303a8ff470e9b1c03a24aff140b~mv2.png/v1/fill/w_40,h_40,al_c,q_85/11062b_b5690303a8ff470e9b1c03a24aff140b~mv2.png" alt="LinkedIn">
-            </a>
-            <a href="https://www.facebook.com/share/1XW1QcjY2k/" target="_blank" aria-label="Facebook">
-                <img src="https://static.wixstatic.com/media/23fd2a2be53141ed810f4d3dcdcd01fa.png/v1/fill/w_40,h_40,al_c,q_85/23fd2a2be53141ed810f4d3dcdcd01fa.png" alt="Facebook">
-            </a>
-            <a href="http://www.x.com/LatitudeKe" target="_blank" aria-label="Twitter">
-                <img src="https://static.wixstatic.com/media/01ab6619093f45388d66736ec22e5885.png/v1/fill/w_40,h_40,al_c,q_85/01ab6619093f45388d66736ec22e5885.png" alt="Twitter">
-            </a>
-            <a href="https://www.instagram.com/latitudedigitalofficial" target="_blank" aria-label="Instagram">
-                <img src="https://static.wixstatic.com/media/81af6121f84c41a5b4391d7d37fce12a.png/v1/fill/w_40,h_40,al_c,q_85/81af6121f84c41a5b4391d7d37fce12a.png" alt="Instagram">
-            </a>
-        </div>
-        <p>© 2025 LATITUDE DIGITAL</p>
+        <p>&copy; 2025 Latitude Digital. Your Growth Marketing Partner. All rights reserved.</p>
+        <p style="margin-top: 1rem;"><a href="http://www.latitude.co.ke" style="color: var(--primary-purple); text-decoration: none;">www.latitude.co.ke</a></p>
     </footer>
-
-    <script>
-        // Theme Toggle Functionality
-        function toggleTheme() {
-            const html = document.documentElement;
-            const themeIcon = document.getElementById('theme-icon');
-            const currentTheme = html.getAttribute('data-theme');
-            
-            if (currentTheme === 'light') {
-                html.removeAttribute('data-theme');
-                themeIcon.className = 'fas fa-moon';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                html.setAttribute('data-theme', 'light');
-                themeIcon.className = 'fas fa-sun';
-                localStorage.setItem('theme', 'light');
-            }
-        }
-
-        // Load saved theme on page load
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
-            const themeIcon = document.getElementById('theme-icon');
-            
-            if (savedTheme === 'light') {
-                document.documentElement.setAttribute('data-theme', 'light');
-                themeIcon.className = 'fas fa-sun';
-            }
-        });
-
-        // Toggle mobile menu
-        function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
-        }
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth scrolling for navigation
-        document.querySelectorAll('.nav-links a, .navbar a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                
-                // Only prevent default for anchor links (starting with #)
-                if (href && href.startsWith('#')) {
-                    e.preventDefault();
-                    const targetId = href;
-                    const targetSection = document.querySelector(targetId);
-                    if (targetSection) {
-                        targetSection.scrollIntoView({ behavior: 'smooth' });
-                        // Close mobile menu if open
-                        document.querySelector('.nav-links').classList.remove('active');
-                    }
-                }
-            });
-        });
-
-        // Testimonial slider
-        let currentTestimonial = 0;
-        const testimonials = document.querySelectorAll('.testimonial');
-        const dots = document.querySelectorAll('.dot');
-
-        function showTestimonial(index) {
-            testimonials.forEach((testimonial, i) => {
-                testimonial.classList.remove('active');
-                dots[i].classList.remove('active');
-            });
-            testimonials[index].classList.add('active');
-            dots[index].classList.add('active');
-            currentTestimonial = index;
-        }
-
-        // Auto-rotate testimonials
-        setInterval(() => {
-            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-            showTestimonial(currentTestimonial);
-        }, 6000);
-
-        // Form submissions with enhanced feedback
-        document.getElementById('quizForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const successMsg = document.getElementById('quizSuccess');
-            successMsg.style.display = 'block';
-            setTimeout(() => {
-                successMsg.style.display = 'none';
-                this.reset();
-            }, 4000);
-        });
-
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const successMsg = document.getElementById('contactSuccess');
-            successMsg.style.display = 'block';
-            setTimeout(() => {
-                successMsg.style.display = 'none';
-                this.reset();
-            }, 4000);
-        });
-
-        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const successMsg = document.getElementById('newsletterSuccess');
-            successMsg.style.display = 'block';
-            setTimeout(() => {
-                successMsg.style.display = 'none';
-                this.reset();
-            }, 4000);
-        });
-
-        // Parallax effect for hero
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const heroBackground = document.querySelector('.hero-bg');
-            if (heroBackground && scrolled < window.innerHeight) {
-                heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
-
-        // Animate elements on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe service cards, project cards, etc.
-        document.querySelectorAll('.service-card, .project-card, .detailed-service').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-            observer.observe(el);
-        });
-
-        // Sticky buttons hover effect enhancement
-        document.querySelectorAll('.sticky-btn').forEach(btn => {
-            btn.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px) scale(1.1)';
-            });
-            btn.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-    </script>
 </body>
 </html>
