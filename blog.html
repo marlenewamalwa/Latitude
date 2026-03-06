@@ -9,730 +9,92 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="images/favicon.jpg">
   <title>Latest Blog Posts - Latitude Digital</title>
-
   <style>
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    /* Reset & Base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #fafbff; color: #333; line-height: 1.6; }
 
-/* Modern Fonts and Base */
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  color: #333;
-  background: #fafbff;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+    /* Top Bar */
+    .top-bar { display:flex; justify-content:space-between; align-items:center; padding:12px 6%; background:rgba(255,255,255,0.95); border-bottom:1px solid rgba(107,61,253,0.08); font-weight:500; flex-wrap:wrap;}
+    .top-bar .left, .top-bar .right { display:flex; gap:20px; align-items:center; flex-wrap:wrap; }
+    .top-bar .divider { width:1px; height:16px; background:rgba(107,61,253,0.15); }
+    .top-bar a { color:#111134; text-decoration:none; }
+    .top-bar a:hover { color:#6b3dfd; }
 
-/* Modern Top Bar */
-.top-bar {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 6%;
-  font-size: 13px;
-  color: #000;
-  flex-wrap: wrap;
-  border-bottom: 1px solid rgba(107, 61, 253, 0.08);
-  font-weight: 500;
-}
+    /* Navbar */
+    .navbar { display:flex; justify-content:space-between; align-items:center; padding:20px 6%; background:rgba(255,255,255,0.8); backdrop-filter:blur(20px); position:sticky; top:0; z-index:1000; border-bottom:1px solid rgba(107,61,253,0.08); }
+    .navbar.scrolled { padding:16px 6%; box-shadow:0 4px 20px rgba(0,0,0,0.05);}
+    .logo img { height:32px; transition:transform 0.3s ease; }
+    .logo:hover img { transform:scale(1.05); }
+    .nav-links { list-style:none; display:flex; gap:40px; }
+    .nav-links li a { text-decoration:none; color:#333; padding:8px 16px; border-radius:8px; position:relative; font-weight:500; }
+    .nav-links li a:hover { color:#6b3dfd; background:rgba(107,61,253,0.06); }
+    .hamburger { display:none; flex-direction:column; cursor:pointer; gap:5px; }
+    .hamburger span { width:24px; height:2.5px; background:#333; border-radius:2px; }
 
-.top-bar i {
-  font-size: 14px;
-  color: #111134;
-  display: inline-block;
-}
-
-.top-bar .left, .top-bar .right {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.top-bar .divider { 
-  width: 1px;
-  height: 16px; 
-  background: rgba(107, 61, 253, 0.15);
-}
-
-.top-bar i { 
-  margin-right: 8px; 
-}
-
-.top-bar .left a {
-  color: #111134;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.top-bar .left a:hover {
-  color: #6b3dfd;
-}
-
-.right a {
-  color: #111134;
-  text-decoration: none;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: rgba(107, 61, 253, 0.05);
-}
-
-.right a:hover {
-  transform: translateY(-2px);
-  background: rgba(107, 61, 253, 0.1);
-}
-
-/* Hover brand colors */
-.right a:hover .fa-linkedin-in { color: #0077b5; }
-.right a:hover .fa-facebook-f { color: #1877f2; }
-.right a:hover .fa-instagram { color: #e1306c; }
-.right a:hover .fa-tiktok { color: #69c9d0; }
-
-@media screen and (max-width: 768px) {
-  .top-bar { 
-    flex-direction: column; 
-    align-items: flex-start; 
-    gap: 12px; 
-    padding: 14px 5%; 
-  }
-  .top-bar .left, .top-bar .right { 
-    justify-content: flex-start; 
-  }
-  .right a { 
-    font-size: 15px; 
-  }
-}
-
-/* Modern Sticky Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 6%;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(20px);
-  position: sticky;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  border-bottom: 1px solid rgba(107, 61, 253, 0.08);
-  transition: all 0.3s ease;
-}
-
-.navbar.scrolled {
-  padding: 16px 6%;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 700;
-  font-size: 22px;
-}
-
-.logo img {
-  height: 32px;
-  width: auto;
-  transition: transform 0.3s ease;
-}
-
-.logo:hover img {
-  transform: scale(1.05);
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 40px;
-}
-
-.nav-links li a {
-  text-decoration: none;
-  color: #333;
-  font-size: 15px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  padding: 8px 16px;
-  border-radius: 8px;
-  position: relative;
-}
-
-.nav-links li a:hover {
-  color: #6b3dfd;
-  background: rgba(107, 61, 253, 0.06);
-}
-
-.nav-links li a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: #6b3dfd;
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
-}
-
-.nav-links li a:hover::after {
-  width: 60%;
-}
-
-/* Hamburger menu */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 5px;
-}
-
-.hamburger span {
-  width: 24px;
-  height: 2.5px;
-  background: #333;
-  display: block;
-  border-radius: 2px;
-  transition: 0.3s;
-}
-
-/* Mobile Styles */
-@media (max-width: 900px) {
-  .navbar {
-    padding: 16px 5%;
-  }
-  .nav-links {
-    gap: 32px;
-  }
-}
-
-@media (max-width: 768px) {
-  .hamburger {
-    display: flex;
-  }
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100vw;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(20px);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    padding: 24px 0;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    gap: 0;
-  }
-  .nav-links.active {
-    display: flex;
-    animation: slideDown 0.3s ease;
-  }
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
+    @media(max-width:768px) {
+      .hamburger { display:flex; }
+      .nav-links { display:none; flex-direction:column; width:100vw; position:absolute; top:100%; left:0; padding:24px 0; background:rgba(255,255,255,0.98); backdrop-filter:blur(20px); }
+      .nav-links.active { display:flex; }
+      .nav-links li { padding:0 24px; margin-bottom:8px; }
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  .nav-links li {
-    margin-bottom: 8px;
-    text-align: left;
-    padding: 0 24px;
-  }
-  .nav-links li a {
-    display: block;
-    padding: 12px 16px;
-  }
-}
 
-@media (max-width: 480px) {
-  .logo img {
-    height: 26px;
-  }
-  .nav-links li a {
-    font-size: 15px;
-  }
-}
+    /* Featured post */
+    #featured-post { max-width:1400px; margin:0 auto; padding:40px 6% 20px 6%; }
+    .featured-blog { display:grid; grid-template-columns:1fr 1fr; gap:0; border-radius:20px; overflow:hidden; box-shadow:0 8px 32px rgba(107,61,253,0.12); position:relative; transition:all 0.4s; }
+    .featured-blog:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(107,61,253,0.2);}
+    .featured-img-wrapper { position:relative; height:100%; min-height:400px; overflow:hidden; }
+    .featured-img { width:100%; height:100%; object-fit:cover; transition:transform 0.6s; }
+    .featured-blog:hover .featured-img { transform:scale(1.05); }
+    .featured-content { padding:48px 44px; display:flex; flex-direction:column; justify-content:center; background:#fff; }
+    .featured-content h2 { font-size:2rem; margin-bottom:20px; }
+    .featured-content h2 a { text-decoration:none; color:inherit; }
+    .featured-content h2 a:hover { color:#6b3dfd; }
+    .featured-excerpt { font-size:1.05rem; color:#666; margin-bottom:28px; }
+    .featured-read-more { display:inline-flex; align-items:center; gap:12px; color:#fff; background:linear-gradient(135deg,#6b3dfd 0%,#5a2eea 100%); padding:14px 32px; border-radius:12px; text-decoration:none; font-weight:600; }
+    .featured-read-more::after { content:'→'; font-size:1.2rem; transition:transform 0.3s; }
+    .featured-read-more:hover { background:linear-gradient(135deg,#5a2eea 0%,#4e2bd6 100%); transform:translateX(4px); }
+    .featured-read-more:hover::after { transform:translateX(6px); }
 
-/* Featured Blog Section */
-#featured-post {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 40px 6% 20px 6%;
-}
+    /* Blog grid */
+    #rss-feed { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:32px; padding:60px 6%; min-height:60vh; max-width:1400px; margin:0 auto; }
+    .post { background:#fff; border:1px solid rgba(107,61,253,0.08); border-radius:16px; display:flex; flex-direction:column; transition:all 0.4s; }
+    .post:hover { transform:translateY(-8px); box-shadow:0 12px 32px rgba(107,61,253,0.15); border-color:rgba(107,61,253,0.2); }
+    .post-img-wrapper { height:220px; overflow:hidden; }
+    .post-img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s; }
+    .post:hover .post-img { transform:scale(1.08); }
+    .post-content { padding:24px; display:flex; flex-direction:column; flex-grow:1; }
+    .post h2 { margin-bottom:12px; font-size:1.25rem; font-weight:600; }
+    .post h2 a { text-decoration:none; color:#252f3f; }
+    .post h2 a:hover { color:#6b3dfd; }
+    .post p { font-size:0.95rem; color:#666; margin-bottom:auto; }
+    .read-more { display:inline-flex; align-items:center; gap:8px; margin-top:20px; padding:12px 24px; border-radius:10px; color:#fff; background:linear-gradient(135deg,#6b3dfd 0%,#5a2eea 100%); text-decoration:none; font-weight:600; }
+    .read-more:hover { background:linear-gradient(135deg,#5a2eea 0%,#4e2bd6 100%); }
 
-.featured-blog {
-  background: linear-gradient(135deg, rgba(107, 61, 253, 0.03) 0%, rgba(139, 93, 255, 0.05) 100%);
-  border: 1px solid rgba(107, 61, 253, 0.12);
-  border-radius: 20px;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  box-shadow: 0 8px 32px rgba(107, 61, 253, 0.12);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-}
-
-.featured-blog::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 5px;
-  background: linear-gradient(90deg, #6b3dfd 0%, #8b5dff 100%);
-}
-
-.featured-blog:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(107, 61, 253, 0.2);
-}
-
-.featured-img-wrapper {
-  position: relative;
-  height: 100%;
-  min-height: 400px;
-  overflow: hidden;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf4 100%);
-}
-
-.featured-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.featured-blog:hover .featured-img {
-  transform: scale(1.05);
-}
-
-.featured-badge {
-  position: absolute;
-  top: 24px;
-  left: 24px;
-  background: linear-gradient(135deg, #6b3dfd 0%, #5a2eea 100%);
-  color: #fff;
-  padding: 8px 20px;
-  border-radius: 30px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  box-shadow: 0 4px 16px rgba(107, 61, 253, 0.4);
-  z-index: 10;
-}
-
-.featured-content {
-  padding: 48px 44px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: #fff;
-}
-
-.featured-content h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 0 0 20px 0;
-  line-height: 1.3;
-  color: #252f3f;
-}
-
-.featured-content h2 a {
-  text-decoration: none;
-  color: inherit;
-  transition: color 0.3s ease;
-}
-
-.featured-content h2 a:hover {
-  color: #6b3dfd;
-}
-
-.featured-excerpt {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: #666;
-  margin-bottom: 28px;
-  font-weight: 400;
-}
-
-.featured-read-more {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  color: #fff;
-  background: linear-gradient(135deg, #6b3dfd 0%, #5a2eea 100%);
-  padding: 14px 32px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-  letter-spacing: 0.3px;
-  box-shadow: 0 6px 20px rgba(107, 61, 253, 0.3);
-  align-self: flex-start;
-}
-
-.featured-read-more::after {
-  content: '→';
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
-}
-
-.featured-read-more:hover {
-  background: linear-gradient(135deg, #5a2eea 0%, #4e2bd6 100%);
-  box-shadow: 0 8px 28px rgba(107, 61, 253, 0.4);
-  transform: translateX(4px);
-}
-
-.featured-read-more:hover::after {
-  transform: translateX(6px);
-}
-
-@media (max-width: 968px) {
-  .featured-blog {
-    grid-template-columns: 1fr;
-  }
-  
-  .featured-img-wrapper {
-    min-height: 320px;
-  }
-  
-  .featured-content {
-    padding: 36px 32px;
-  }
-  
-  .featured-content h2 {
-    font-size: 1.65rem;
-  }
-}
-
-@media (max-width: 768px) {
-  #featured-post {
-    padding: 30px 5% 20px 5%;
-  }
-  
-  .featured-img-wrapper {
-    min-height: 280px;
-  }
-  
-  .featured-content {
-    padding: 28px 24px;
-  }
-  
-  .featured-content h2 {
-    font-size: 1.5rem;
-    margin-bottom: 16px;
-  }
-  
-  .featured-excerpt {
-    font-size: 0.98rem;
-    margin-bottom: 24px;
-  }
-  
-  .featured-badge {
-    top: 16px;
-    left: 16px;
-    padding: 6px 16px;
-    font-size: 0.75rem;
-  }
-}
-
-/* Section Title */
-.section-title {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 40px 6% 0 6%;
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #252f3f;
-  position: relative;
-  padding-bottom: 16px;
-}
-
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 6%;
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, #6b3dfd 0%, #8b5dff 100%);
-  border-radius: 2px;
-}
-
-@media (max-width: 768px) {
-  .section-title {
-    padding: 30px 5% 0 5%;
-    font-size: 1.5rem;
-  }
-  
-  .section-title::after {
-    left: 5%;
-    width: 60px;
-  }
-}
-
-/* Modern Blog Grid */
-#rss-feed {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 32px;
-  padding: 60px 6%;
-  min-height: 60vh;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-@media (max-width: 768px) {
-  #rss-feed {
-    grid-template-columns: 1fr;
-    padding: 40px 5%;
-    gap: 24px;
-  }
-}
-
-/* Modern Blog Card */
-.post {
-  background: #fff;
-  border: 1px solid rgba(107, 61, 253, 0.08);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.post::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #6b3dfd 0%, #8b5dff 100%);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-
-.post:hover::before {
-  transform: scaleX(1);
-}
-
-.post:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(107, 61, 253, 0.15);
-  border-color: rgba(107, 61, 253, 0.2);
-}
-
-.post-content {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.post h2 {
-  margin: 0 0 12px 0;
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 1.4;
-}
-
-.post h2 a {
-  text-decoration: none;
-  color: #252f3f;
-  transition: color 0.3s ease;
-}
-
-.post h2 a:hover {
-  color: #6b3dfd;
-}
-
-.post p {
-  font-size: 0.95rem;
-  line-height: 1.65;
-  color: #666;
-  margin: 0 0 auto 0;
-  font-weight: 400;
-}
-
-.post a.read-more {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 20px;
-  color: #fff;
-  background: linear-gradient(135deg, #6b3dfd 0%, #5a2eea 100%);
-  padding: 12px 24px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
-  letter-spacing: 0.3px;
-  box-shadow: 0 4px 12px rgba(107, 61, 253, 0.25);
-  align-self: flex-start;
-}
-
-.post a.read-more::after {
-  content: '→';
-  transition: transform 0.3s ease;
-}
-
-.post a.read-more:hover {
-  background: linear-gradient(135deg, #5a2eea 0%, #4e2bd6 100%);
-  box-shadow: 0 6px 20px rgba(107, 61, 253, 0.35);
-  transform: translateX(2px);
-}
-
-.post a.read-more:hover::after {
-  transform: translateX(4px);
-}
-
-/* Modern Blog Images */
-.post-img-wrapper {
-  position: relative;
-  width: 100%;
-  height: 220px;
-  overflow: hidden;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf4 100%);
-}
-
-.post-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.post:hover .post-img {
-  transform: scale(1.08);
-}
-
-/* Modern Pagination */
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 40px 0 60px 0;
-  gap: 8px;
-}
-
-.pagination button {
-  background: #fff;
-  border: 1px solid rgba(107, 61, 253, 0.15);
-  padding: 10px 16px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: inherit;
-  font-weight: 500;
-  color: #333;
-  min-width: 44px;
-  font-size: 14px;
-}
-
-.pagination button:hover:not(:disabled) {
-  background: #6b3dfd;
-  color: #fff;
-  border-color: #6b3dfd;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(107, 61, 253, 0.25);
-}
-
-.pagination button.active {
-  background: #6b3dfd;
-  color: #fff;
-  border-color: #6b3dfd;
-  box-shadow: 0 4px 12px rgba(107, 61, 253, 0.25);
-}
-
-.pagination button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-/* Loading State */
-.loading {
-  text-align: center;
-  padding: 80px 20px;
-  font-size: 1.1rem;
-  color: #666;
-  font-weight: 500;
-}
-
-.loading::after {
-  content: '...';
-  animation: dots 1.5s steps(4, end) infinite;
-}
-
-@keyframes dots {
-  0%, 20% { content: '.'; }
-  40% { content: '..'; }
-  60%, 100% { content: '...'; }
-}
-
-/* Smooth Scroll */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Focus styles for accessibility */
-a:focus-visible, button:focus-visible {
-  outline: 2px solid #6b3dfd;
-  outline-offset: 2px;
-}
+    .loading { text-align:center; padding:80px 20px; font-size:1.1rem; color:#666; }
+    html { scroll-behavior:smooth; }
   </style>
 </head>
 <body>
+
 <header>
   <div class="top-bar">
     <div class="left">
-      <i class="fa-solid fa-envelope"></i> 
-      <a href="mailto:info@latitude.co.ke">info@latitude.co.ke</a>
+      <i class="fa-solid fa-envelope"></i> <a href="mailto:info@latitude.co.ke">info@latitude.co.ke</a>
       <span class="divider"></span>
-      <i class="fa-solid fa-phone"></i> 
-      <a href="tel:+254758886707">+254 758 88 67 07</a>
+      <i class="fa-solid fa-phone"></i> <a href="tel:+254758886707">+254 758 88 67 07</a>
     </div>
     <div class="right">
-      <a href="https://www.linkedin.com/company/latitudedigitalke/" target="_blank" rel="noopener" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-      <a href="https://www.facebook.com/YOUR_PAGE" target="_blank" rel="noopener" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-      <a href="https://www.instagram.com/latitudedigitalofficial?igsh=ODRvandiNjU5OGQ5" target="_blank" rel="noopener" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-      <a href="https://www.tiktok.com/@latitudedigital?_t=ZM-8z44jDOMKlM&_r=1" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://www.linkedin.com/company/latitudedigitalke/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://www.facebook.com/YOUR_PAGE" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/latitudedigitalofficial" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@latitudedigital" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
     </div>
   </div>
 
   <nav class="navbar" id="navbar">
-    <div class="logo">
-      <a href="index.html"><img src="images/Revision2(png).png" alt="Latitude Logo" /></a>
-    </div>
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </div>
+    <div class="logo"><a href="index.html"><img src="images/Revision2(png).png" alt="Latitude Logo"></a></div>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="services.html">Services</a></li>
@@ -742,23 +104,18 @@ a:focus-visible, button:focus-visible {
 </header>
 
 <div id="featured-post"></div>
-
-<div id="rss-feed" class="loading">Loading blog posts</div>
+<div id="rss-feed" class="loading">Loading blog posts...</div>
 
 <script>
   // Navbar scroll effect
   window.addEventListener('scroll', () => {
     const navbar = document.getElementById('navbar');
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
+    window.scrollY > 50 ? navbar.classList.add('scrolled') : navbar.classList.remove('scrolled');
   });
 
   async function loadRSS() {
-    const proxy = 'https://api.rss2json.com/v1/api.json?rss_url=';
     const feedUrl = 'https://latitudeltd12.wixstudio.com/latitudeblog/blog-feed.xml';
+    const proxy = 'https://api.allorigins.win/raw?url=';
     const postsPerPage = 6;
     let currentPage = 1;
     let posts = [];
@@ -769,169 +126,91 @@ a:focus-visible, button:focus-visible {
 
     try {
       const response = await fetch(proxy + encodeURIComponent(feedUrl));
-      const data = await response.json();
+      const xmlText = await response.text();
+      const parser = new DOMParser();
+      const xml = parser.parseFromString(xmlText, "text/xml");
+      const items = Array.from(xml.querySelectorAll("item"));
 
-      if (data.items && data.items.length > 0) {
-        // Set first post as featured
-        featuredPost = data.items[0];
-        // Remaining posts for grid
-        posts = data.items.slice(1);
-        
-        renderFeaturedPost();
-        renderPage(currentPage);
-        createPagination();
-      } else {
+      if (items.length === 0) {
         container.innerHTML = '<p class="loading">No blog posts found.</p>';
-      }
-    } catch (error) {
-      console.error('Failed to fetch RSS feed:', error);
-      container.innerHTML = '<p class="loading">Unable to load blog posts at the moment.</p>';
-    }
-
-    function renderFeaturedPost() {
-      if (!featuredPost) return;
-
-      // Extract image
-      let imageUrl = '';
-      if (featuredPost.enclosure && featuredPost.enclosure.link) {
-        imageUrl = featuredPost.enclosure.link;
-      } else {
-        const match = featuredPost.description.match(/<img.*?src="(.*?)"/);
-        if (match && match[1]) imageUrl = match[1];
+        return;
       }
 
-      const excerpt = featuredPost.description.replace(/<[^>]+>/g, '').substring(0, 200);
+      // First post as featured
+      featuredPost = items[0];
+      posts = items.slice(1);
 
-      featuredContainer.innerHTML = `
-        <div class="featured-blog">
-          ${imageUrl ? `
-            <div class="featured-img-wrapper">
-              <div class="featured-badge">Featured</div>
-              <a href="${featuredPost.link}" target="_blank">
-                <img src="${imageUrl}" alt="${featuredPost.title}" class="featured-img" loading="eager">
-              </a>
+      function getText(item, tag) { 
+        const el = item.querySelector(tag); 
+        return el ? el.textContent : ''; 
+      }
+
+      function getImage(item) {
+        const enclosure = item.querySelector('enclosure');
+        if (enclosure && enclosure.getAttribute('url')) return enclosure.getAttribute('url');
+        const match = getText(item,'description').match(/<img.*?src="(.*?)"/);
+        return match ? match[1] : '';
+      }
+
+      function renderFeaturedPost() {
+        const imageUrl = getImage(featuredPost);
+        const excerpt = getText(featuredPost,'description').replace(/<[^>]+>/g,'').substring(0,200);
+
+        featuredContainer.innerHTML = `
+          <div class="featured-blog">
+            ${imageUrl ? `<div class="featured-img-wrapper"><div class="featured-badge">Featured</div>
+            <a href="${getText(featuredPost,'link')}" target="_blank"><img src="${imageUrl}" alt="${getText(featuredPost,'title')}" class="featured-img" loading="eager"></a></div>` : ''}
+            <div class="featured-content">
+              <h2><a href="${getText(featuredPost,'link')}" target="_blank">${getText(featuredPost,'title')}</a></h2>
+              <p class="featured-excerpt">${excerpt}...</p>
+              <a href="${getText(featuredPost,'link')}" class="featured-read-more" target="_blank">Read Full Article</a>
             </div>
-          ` : ''}
-          <div class="featured-content">
-            <h2><a href="${featuredPost.link}" target="_blank">${featuredPost.title}</a></h2>
-            <p class="featured-excerpt">${excerpt}...</p>
-            <a href="${featuredPost.link}" class="featured-read-more" target="_blank">Read Full Article</a>
-          </div>
-        </div>
-      `;
-    }
-
-    function renderPage(page) {
-      container.innerHTML = '';
-      container.classList.remove('loading');
-      
-      // Add section title
-      const existingTitle = document.querySelector('.section-title');
-      if (!existingTitle && posts.length > 0) {
-        const sectionTitle = document.createElement('div');
-        sectionTitle.className = 'section-title';
-        sectionTitle.textContent = 'Latest Articles';
-        featuredContainer.parentNode.insertBefore(sectionTitle, container);
-      }
-      
-      const start = (page - 1) * postsPerPage;
-      const end = start + postsPerPage;
-      const paginatedPosts = posts.slice(start, end);
-
-      paginatedPosts.forEach(item => {
-        // Extract image
-        let imageUrl = '';
-        if (item.enclosure && item.enclosure.link) {
-          imageUrl = item.enclosure.link;
-        } else {
-          const match = item.description.match(/<img.*?src="(.*?)"/);
-          if (match && match[1]) imageUrl = match[1];
-        }
-
-        const post = document.createElement('div');
-        post.className = 'post';
-        post.innerHTML = `
-          ${imageUrl ? `
-            <div class="post-img-wrapper">
-              <a href="${item.link}" target="_blank">
-                <img src="${imageUrl}" alt="${item.title}" class="post-img" loading="lazy">
-              </a>
-            </div>
-          ` : ''}
-          <div class="post-content">
-            <h2><a href="${item.link}" target="_blank">${item.title}</a></h2>
-            <p>${item.description.replace(/<[^>]+>/g, '').substring(0, 130)}...</p>
-            <a href="${item.link}" class="read-more" target="_blank">Read More</a>
-          </div>
-        `;
-        container.appendChild(post);
-      });
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function createPagination() {
-      const totalPages = Math.ceil(posts.length / postsPerPage);
-      const pagination = document.createElement('div');
-      pagination.className = 'pagination';
-
-      const prevBtn = document.createElement('button');
-      prevBtn.textContent = '← Prev';
-      prevBtn.disabled = currentPage === 1;
-      prevBtn.onclick = () => {
-        if (currentPage > 1) {
-          currentPage--;
-          renderPage(currentPage);
-          createPagination();
-        }
-      };
-      pagination.appendChild(prevBtn);
-
-      // Show max 5 page numbers
-      const maxVisible = 5;
-      let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
-      let endPage = Math.min(totalPages, startPage + maxVisible - 1);
-      
-      if (endPage - startPage < maxVisible - 1) {
-        startPage = Math.max(1, endPage - maxVisible + 1);
+          </div>`;
       }
 
-      for (let i = startPage; i <= endPage; i++) {
-        const btn = document.createElement('button');
-        btn.textContent = i;
-        if (i === currentPage) btn.classList.add('active');
-        btn.onclick = () => {
-          currentPage = i;
-          renderPage(currentPage);
-          createPagination();
-        };
-        pagination.appendChild(btn);
+      function renderPage(page) {
+        container.innerHTML = '';
+        container.classList.remove('loading');
+
+        if (!document.querySelector('.section-title')) {
+          const title = document.createElement('div');
+          title.className = 'section-title';
+          title.textContent = 'Latest Articles';
+          featuredContainer.parentNode.insertBefore(title, container);
+        }
+
+        const start = (page-1)*postsPerPage;
+        const end = start + postsPerPage;
+        const paginated = posts.slice(start,end);
+
+        paginated.forEach(item => {
+          const imageUrl = getImage(item);
+          const postDiv = document.createElement('div');
+          postDiv.className = 'post';
+          postDiv.innerHTML = `
+            ${imageUrl ? `<div class="post-img-wrapper"><a href="${getText(item,'link')}" target="_blank"><img src="${imageUrl}" alt="${getText(item,'title')}" class="post-img" loading="lazy"></a></div>` : ''}
+            <div class="post-content">
+              <h2><a href="${getText(item,'link')}" target="_blank">${getText(item,'title')}</a></h2>
+              <p>${getText(item,'description').replace(/<[^>]+>/g,'').substring(0,130)}...</p>
+              <a href="${getText(item,'link')}" class="read-more" target="_blank">Read More</a>
+            </div>`;
+          container.appendChild(postDiv);
+        });
       }
 
-      const nextBtn = document.createElement('button');
-      nextBtn.textContent = 'Next →';
-      nextBtn.disabled = currentPage === totalPages;
-      nextBtn.onclick = () => {
-        if (currentPage < totalPages) {
-          currentPage++;
-          renderPage(currentPage);
-          createPagination();
-        }
-      };
-      pagination.appendChild(nextBtn);
+      renderFeaturedPost();
+      renderPage(currentPage);
 
-      const oldPagination = document.querySelector('.pagination');
-      if (oldPagination) oldPagination.remove();
-
-      container.parentNode.appendChild(pagination);
+    } catch(err) {
+      console.error('RSS load failed:', err);
+      container.innerHTML = '<p class="loading">Unable to load blog posts.</p>';
     }
   }
 
   loadRSS();
 
   function toggleMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    navLinks.classList.toggle('active');
+    document.querySelector('.nav-links').classList.toggle('active');
   }
 </script>
 

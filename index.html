@@ -57,6 +57,20 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 44px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* Fallback if image fails to load */
+        .logo-fallback {
             font-size: 1.5rem;
             font-weight: 200;
             letter-spacing: 0.05em;
@@ -327,35 +341,60 @@
 
         .clients-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1.5rem;
             margin-top: 4rem;
         }
 
         .client-card {
             background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            border-radius: 16px;
             border: 1px solid rgba(0, 0, 0, 0.08);
             text-align: center;
             transition: all 0.3s;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            min-height: 120px;
         }
 
         .client-card:hover {
-            transform: scale(1.05);
+            transform: translateY(-4px);
             border-color: var(--accent-pink);
-            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.1);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.12);
         }
 
+        .client-logo {
+            width: 100%;
+            max-width: 110px;
+            height: 48px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+            /* Greyscale by default, colour on hover */
+            filter: grayscale(1) opacity(0.6);
+            transition: filter 0.3s;
+        }
+
+        .client-card:hover .client-logo {
+            filter: grayscale(0) opacity(1);
+        }
+
+        /* Fallback text shown when no logo image is set */
         .client-name {
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            letter-spacing: 0.02em;
         }
 
         .client-type {
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 300;
         }
 
@@ -369,62 +408,74 @@
             max-width: 1400px;
             margin: 4rem auto 0;
             display: grid;
-            gap: 3rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
         }
 
         .case-study {
             background: var(--card-bg);
-            border-radius: 24px;
+            border-radius: 20px;
             overflow: hidden;
             border: 1px solid rgba(0, 0, 0, 0.08);
             transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
         }
 
         .case-study:hover {
-            transform: translateY(-10px);
+            transform: translateY(-6px);
             border-color: var(--primary-purple);
             box-shadow: 0 15px 40px rgba(109, 47, 255, 0.1);
         }
 
         .case-study-content {
-            padding: 3rem;
+            padding: 1.75rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .case-study-header {
             display: flex;
             justify-content: space-between;
             align-items: start;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
+            gap: 0.75rem;
         }
 
         .case-study h3 {
-            font-size: 2rem;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            line-height: 1.3;
         }
 
         .case-study-tag {
             background: var(--gradient-2);
             color: white;
-            padding: 0.5rem 1.5rem;
+            padding: 0.3rem 0.9rem;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 0.78rem;
             font-weight: 400;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .case-study-description {
             color: var(--text-secondary);
-            margin-bottom: 2rem;
-            line-height: 1.8;
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
             font-weight: 300;
+            font-size: 0.9rem;
+            flex: 1;
         }
 
         .impact-metrics {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 1rem;
+            margin-top: 1.25rem;
+            padding-top: 1.25rem;
             border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
 
@@ -433,7 +484,7 @@
         }
 
         .metric-value {
-            font-size: 2rem;
+            font-size: 1.4rem;
             font-weight: 300;
             background: var(--gradient-1);
             -webkit-background-clip: text;
@@ -443,9 +494,9 @@
 
         .metric-label {
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             font-weight: 300;
-            margin-top: 0.5rem;
+            margin-top: 0.25rem;
         }
 
         /* Testimonials Section */
@@ -824,9 +875,151 @@
             font-weight: 300;
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--primary-purple);
+        }
+
+        .mobile-menu .cta-button {
+            font-size: 1.25rem;
+            color: white;
+            margin-top: 1rem;
+        }
+
+        /* Hero image */
+        .hero-image-wrap {
+            margin-top: 4rem;
+            border-radius: 24px;
+            overflow: hidden;
+            max-height: 480px;
+            border: 1px solid rgba(0,0,0,0.07);
+            box-shadow: 0 20px 60px rgba(109,47,255,0.08);
+        }
+
+        .hero-image-wrap img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Section image strips */
+        .section-image {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            display: block;
+            border-radius: 20px;
+            margin: 3rem 0;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        /* Founder image */
+        .founder-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Process images */
+        .process-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Case study banner images */
+        .case-study-banner {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+        }
+
+
         /* Responsive */
         @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
             .nav-links {
+                display: none;
+            }
+
+            nav > .cta-button {
                 display: none;
             }
 
@@ -871,7 +1064,91 @@
             .newsletter-form {
                 flex-direction: column;
             }
+
+            .hero {
+                padding: 8rem 1.25rem 4rem;
+            }
+
+            .hero-image-wrap img {
+                height: 240px;
+            }
+
+            .hero-image-wrap {
+                margin-top: 2.5rem;
+            }
+
+            .services {
+                padding: 5rem 1.25rem;
+            }
+
+            .why-choose, .clients, .case-studies, .testimonials,
+            .process, .about, .faq, .contact, .newsletter {
+                padding: 5rem 1.25rem;
+            }
+
+            .case-study-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .case-study-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 1.9rem;
+            }
+
+            .about-text h2 {
+                font-size: 2rem;
+            }
+
+            .contact h2 {
+                font-size: 2rem;
+            }
+
+            .section-image {
+                height: 220px;
+            }
+
+            .case-study-banner {
+                height: 160px;
+            }
+
+            nav {
+                padding: 1rem 1.25rem;
+            }
         }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .services-grid,
+            .clients-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+        }
+
 
         /* Animations */
         @keyframes fadeInUp {
@@ -894,7 +1171,15 @@
     <!-- Header -->
     <header>
         <nav>
-            <div class="logo">⚡ Latitude</div>
+            <a href="/" class="logo" aria-label="Latitude Digital - Home">
+                <!-- 📌 REPLACE src below with your actual logo image path, e.g. src="images/logo.png" -->
+                <img 
+                    src="logo.png" 
+                    alt="Latitude Digital Logo"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                />
+                <span class="logo-fallback" style="display:none;">⚡ Latitude</span>
+            </a>
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
                 <li><a href="#clients">Clients</a></li>
@@ -903,8 +1188,23 @@
                 <li><a href="#about">About</a></li>
             </ul>
             <a href="#contact" class="cta-button">Get Started</a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
     </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#services" class="mobile-nav-link">Services</a>
+        <a href="#clients" class="mobile-nav-link">Clients</a>
+        <a href="#case-studies" class="mobile-nav-link">Work</a>
+        <a href="#process" class="mobile-nav-link">Process</a>
+        <a href="#about" class="mobile-nav-link">About</a>
+        <a href="#contact" class="cta-button mobile-nav-link">Get Started</a>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero fade-in-up">
@@ -932,6 +1232,20 @@
                 <div class="stat-number">3X</div>
                 <div class="stat-label">Revenue Growth</div>
             </div>
+        </div>
+
+        <!-- 
+            📸 HERO IMAGE SUGGESTION:
+            Unsplash: https://unsplash.com/photos/African-business-team-meeting
+            Suggested search: "african business team nairobi" or "digital marketing team africa"
+            Recommended photo: Photo by Afif Ramdhasuma or Mapbox on Unsplash
+        -->
+        <div class="hero-image-wrap">
+            <img 
+                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1400&auto=format&fit=crop&q=80" 
+                alt="Diverse professional team collaborating on digital marketing strategy"
+                loading="lazy"
+            />
         </div>
     </section>
 
@@ -1057,38 +1371,65 @@
         <p class="section-subtitle">From startups to global brands, we deliver results</p>
 
         <div class="clients-grid">
-            <div class="client-card">
-                <div class="client-name">KAHC</div>
-                <div class="client-type">Hospitality Association</div>
-            </div>
-            <div class="client-card">
-                <div class="client-name">IHTI</div>
-                <div class="client-type">Education</div>
-            </div>
-            <div class="client-card">
-                <div class="client-name">Voyager</div>
-                <div class="client-type">Travel & Tourism</div>
-            </div>
-            <div class="client-card">
-                <div class="client-name">Hipora</div>
-                <div class="client-type">Security</div>
-            </div>
-            <div class="client-card">
-                <div class="client-name">Koddi</div>
-                <div class="client-type">PropTech</div>
-            </div>
-            <div class="client-card">
-                <div class="client-name">Memora</div>
-                <div class="client-type">Digital Platform</div>
-            </div>
-            <div class="client-card">
-                <div class="client-name">VisitSasa</div>
-                <div class="client-type">AI Tourism</div>
-            </div>
-            <div class="client-card">
-                <div class="client-name">RETRAK</div>
-                <div class="client-type">Trade Association</div>
-            </div>
+            <!-- 📌 For each card: replace href="#" with the company URL, and replace the src in <img> with the company logo file.
+                 Until you have logos, the company name text shows as a fallback. -->
+
+            <a href="https://www.kahc.co.ke" target="_blank" rel="noopener" class="client-card" aria-label="KAHC — Hospitality Association">
+                <!-- 📌 Replace src with KAHC logo: src="images/logos/kahc.png" -->
+                <img src="images/logos/kahc.png" alt="KAHC Logo" class="client-logo"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="client-name" style="display:none;">KAHC</span>
+                <span class="client-type">Hospitality</span>
+            </a>
+
+            <a href="https://www.ihti.ac.ke" target="_blank" rel="noopener" class="client-card" aria-label="IHTI — Education">
+                <img src="images/logos/ihti.png" alt="IHTI Logo" class="client-logo"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="client-name" style="display:none;">IHTI</span>
+                <span class="client-type">Education</span>
+            </a>
+
+            <a href="https://www.voyager.co.ke" target="_blank" rel="noopener" class="client-card" aria-label="Voyager — Travel & Tourism">
+                <img src="images/logos/voyager.png" alt="Voyager Logo" class="client-logo"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="client-name" style="display:none;">Voyager</span>
+                <span class="client-type">Travel & Tourism</span>
+            </a>
+
+            <a href="https://www.hipora.com" target="_blank" rel="noopener" class="client-card" aria-label="Hipora — Security">
+                <img src="images/logos/hipora.png" alt="Hipora Logo" class="client-logo"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="client-name" style="display:none;">Hipora</span>
+                <span class="client-type">Security</span>
+            </a>
+
+            <a href="https://www.koddi.co.ke" target="_blank" rel="noopener" class="client-card" aria-label="Koddi — PropTech">
+                <img src="images/logos/koddi.png" alt="Koddi Logo" class="client-logo"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="client-name" style="display:none;">Koddi</span>
+                <span class="client-type">PropTech</span>
+            </a>
+
+            <a href="https://www.memora.co.ke" target="_blank" rel="noopener" class="client-card" aria-label="Memora — Digital Platform">
+                <img src="images/logos/memora.png" alt="Memora Logo" class="client-logo"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="client-name" style="display:none;">Memora</span>
+                <span class="client-type">Digital Platform</span>
+            </a>
+
+            <a href="https://www.visitsasa.com" target="_blank" rel="noopener" class="client-card" aria-label="VisitSasa — AI Tourism">
+                <img src="images/logos/visitsasa.png" alt="VisitSasa Logo" class="client-logo"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="client-name" style="display:none;">VisitSasa</span>
+                <span class="client-type">AI Tourism</span>
+            </a>
+
+            <a href="https://www.retrak.org" target="_blank" rel="noopener" class="client-card" aria-label="RETRAK — Trade Association">
+                <img src="images/logos/retrak.png" alt="RETRAK Logo" class="client-logo"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="client-name" style="display:none;">RETRAK</span>
+                <span class="client-type">Trade Association</span>
+            </a>
         </div>
     </section>
 
@@ -1099,6 +1440,13 @@
 
         <div class="case-study-grid">
             <div class="case-study">
+                <!-- 📸 Suggested: https://unsplash.com - search "telehealth mobile app africa" or "digital health kenya" -->
+                <img 
+                    src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&auto=format&fit=crop&q=80" 
+                    alt="Byon8 Health Technology" 
+                    class="case-study-banner"
+                    loading="lazy"
+                />
                 <div class="case-study-content">
                     <div class="case-study-header">
                         <div>
@@ -1128,6 +1476,13 @@
             </div>
 
             <div class="case-study">
+                <!-- 📸 Suggested: search "community digital platform social media" on Unsplash -->
+                <img 
+                    src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&auto=format&fit=crop&q=80" 
+                    alt="Memora Digital Platform" 
+                    class="case-study-banner"
+                    loading="lazy"
+                />
                 <div class="case-study-content">
                     <div class="case-study-header">
                         <div>
@@ -1153,6 +1508,13 @@
             </div>
 
             <div class="case-study">
+                <!-- 📸 Suggested: search "workshop training africa business" on Unsplash -->
+                <img 
+                    src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=80" 
+                    alt="Sote Hub MSME Training" 
+                    class="case-study-banner"
+                    loading="lazy"
+                />
                 <div class="case-study-content">
                     <div class="case-study-header">
                         <div>
@@ -1260,6 +1622,13 @@
     <section id="about" class="about">
         <div class="about-content">
             <div class="about-text">
+                <!-- 📸 Suggested Unsplash image: search "nairobi kenya cityscape" or "africa tech hub" -->
+                <img 
+                    src="https://images.unsplash.com/photo-1611348586840-ea9872d33411?w=800&auto=format&fit=crop&q=80" 
+                    alt="Nairobi, Kenya — Home of Latitude Digital" 
+                    class="about-image"
+                    loading="lazy"
+                />
                 <h2>About Latitude Digital</h2>
                 <p>Founded in 2014 and headquartered in Nairobi, Kenya, Latitude Digital is a pioneering AI marketing agency specializing in growth marketing for African and global markets.</p>
                 <p>We empower tech startups, MSMEs, corporates, and sector associations with data-driven, culturally relevant campaigns designed to deliver 3X greater market impact.</p>
@@ -1267,6 +1636,14 @@
             </div>
 
             <div class="founder-card">
+                <!-- 📌 REPLACE with Vivien's actual photo: src="images/vivien.jpg" -->
+                <!-- 📸 Suggested placeholder: search "professional woman entrepreneur" on Unsplash -->
+                <img 
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80" 
+                    alt="Vivien Wamalwa — Founder & Growth Strategist"
+                    class="founder-img"
+                    loading="lazy"
+                />
                 <div class="founder-name">Vivien Wamalwa</div>
                 <div class="founder-title">Founder & Growth Strategist</div>
                 <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Award-winning entrepreneur with 15+ years of industry experience, leading Latitude to 3X revenue growth.</p>
@@ -1326,12 +1703,12 @@
             <h2>Let's Create Impact Together</h2>
             <p>Ready to achieve 3X growth? Let's discuss how our AI-driven strategies can transform your business.</p>
             
-            <a href="mailto:info@latitude.co.ke" class="cta-button" style="display: inline-block; margin-bottom: 2rem;">Start Your Project</a>
+            <a href="/cdn-cgi/l/email-protection#eb82858d84ab878a9f829f9e8f8ec58884c5808e" class="cta-button" style="display: inline-block; margin-bottom: 2rem;">Start Your Project</a>
 
             <div class="contact-details">
                 <div class="contact-item">
                     <div style="color: var(--text-secondary);">Email</div>
-                    <a href="mailto:info@latitude.co.ke">info@latitude.co.ke</a>
+                    <a href="/cdn-cgi/l/email-protection#3c55525a537c505d485548495859125f53125759"><span class="__cf_email__" data-cfemail="7d14131b123d111c091409081918531e12531618">[email&#160;protected]</span></a>
                 </div>
                 <div class="contact-item">
                     <div style="color: var(--text-secondary);">Phone</div>
@@ -1365,7 +1742,29 @@
     <!-- Footer -->
     <footer>
         <p>&copy; 2025 Latitude Digital. Your Growth Marketing Partner. All rights reserved.</p>
-        <p style="margin-top: 1rem;"><a href="http://www.latitude.co.ke" style="color: var(--primary-purple); text-decoration: none;">www.latitude.co.ke</a></p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">Powered by AI. Built for Africa.</p>
     </footer>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close mobile menu when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+    </script>
 </body>
 </html>
