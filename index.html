@@ -63,7 +63,7 @@
         }
 
         .logo img {
-            height: 44px;
+            height: 30px;
             width: auto;
             display: block;
             object-fit: contain;
@@ -259,8 +259,12 @@
         }
 
         .service-icon {
-            font-size: 3rem;
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 14px;
             margin-bottom: 1.5rem;
+            display: block;
         }
 
         .service-card h3 {
@@ -292,37 +296,46 @@
             margin-bottom: 1rem;
         }
 
-        .benefits-list {
-            display: grid;
-            gap: 2rem;
+        /* Slider */
+        .benefits-slider-wrap {
+            position: relative;
+            overflow: hidden;
+            margin-top: 3rem;
+        }
+
+        .benefits-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .benefit-item {
+            min-width: 100%;
             display: flex;
             gap: 1.5rem;
             align-items: start;
-            padding: 2rem;
+            padding: 3rem;
             background: var(--card-bg);
-            border-radius: 16px;
+            border-radius: 20px;
             border: 1px solid rgba(0, 0, 0, 0.08);
-            transition: all 0.3s;
-        }
-
-        .benefit-item:hover {
-            transform: translateX(10px);
-            border-color: var(--primary-purple);
-            box-shadow: 0 10px 30px rgba(109, 47, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(109, 47, 255, 0.06);
         }
 
         .benefit-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             flex-shrink: 0;
+            width: 72px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(109,47,255,0.1), rgba(199,51,255,0.1));
+            border-radius: 16px;
         }
 
         .benefit-content h3 {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: 500;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             color: var(--text-primary);
         }
 
@@ -330,6 +343,57 @@
             color: var(--text-secondary);
             line-height: 1.7;
             font-weight: 300;
+            font-size: 1.05rem;
+        }
+
+        .slider-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .slider-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-purple);
+            background: transparent;
+            color: var(--primary-purple);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .slider-btn:hover {
+            background: var(--primary-purple);
+            color: white;
+        }
+
+        .slider-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(109,47,255,0.25);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            padding: 0;
+        }
+
+        .slider-dot.active {
+            background: var(--primary-purple);
+            width: 28px;
+            border-radius: 5px;
         }
 
         /* Clients Section */
@@ -341,61 +405,62 @@
 
         .clients-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.25rem;
             margin-top: 4rem;
         }
 
         .client-card {
             background: var(--card-bg);
             padding: 2rem 1.5rem;
-            border-radius: 16px;
-            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.07);
             text-align: center;
-            transition: all 0.3s;
+            transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
             text-decoration: none;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 0.75rem;
-            min-height: 120px;
+            gap: 0.6rem;
+            min-height: 130px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
         }
 
         .client-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent-pink);
-            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.12);
+            transform: translateY(-6px) scale(1.02);
+            border-color: var(--primary-purple);
+            box-shadow: 0 16px 40px rgba(109, 47, 255, 0.14);
         }
 
         .client-logo {
             width: 100%;
-            max-width: 110px;
-            height: 48px;
+            max-width: 120px;
+            height: 52px;
             object-fit: contain;
             display: block;
             margin: 0 auto;
-            /* Greyscale by default, colour on hover */
-            filter: grayscale(1) opacity(0.6);
-            transition: filter 0.3s;
+            filter: grayscale(1) opacity(0.55);
+            transition: filter 0.35s;
         }
 
         .client-card:hover .client-logo {
             filter: grayscale(0) opacity(1);
         }
 
-        /* Fallback text shown when no logo image is set */
         .client-name {
-            font-size: 1.15rem;
-            font-weight: 500;
+            font-size: 1.1rem;
+            font-weight: 600;
             color: var(--text-primary);
-            letter-spacing: 0.02em;
+            letter-spacing: 0.01em;
         }
 
         .client-type {
             color: var(--text-secondary);
-            font-size: 0.8rem;
-            font-weight: 300;
+            font-size: 0.78rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
         }
 
         /* Case Studies */
@@ -405,10 +470,10 @@
         }
 
         .case-study-grid {
-            max-width: 1400px;
+            max-width: 1000px;
             margin: 4rem auto 0;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
         }
 
@@ -985,10 +1050,12 @@
         /* Founder image */
         .founder-img {
             width: 100%;
-            height: 200px;
+            height: 280px;
             object-fit: cover;
+            object-position: center top;
             border-radius: 16px;
             margin-bottom: 1.5rem;
+            display: block;
         }
 
         /* Process images */
@@ -1096,7 +1163,7 @@
             }
 
             .stats-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr;
                 gap: 1rem;
             }
 
@@ -1150,6 +1217,156 @@
         }
 
 
+        /* Contact Popup Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(26, 26, 46, 0.65);
+            backdrop-filter: blur(6px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: #fff;
+            border-radius: 28px;
+            padding: 3rem;
+            max-width: 560px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(109, 47, 255, 0.2);
+            animation: modalIn 0.35s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.97); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            line-height: 1;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover { color: var(--primary-purple); }
+
+        .modal-box h2 {
+            font-size: 1.9rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modal-box p.modal-sub {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .modal-form input,
+        .modal-form textarea,
+        .modal-form select {
+            width: 100%;
+            padding: 0.9rem 1.25rem;
+            border: 1.5px solid rgba(0,0,0,0.1);
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            background: var(--darker-bg);
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .modal-form input:focus,
+        .modal-form textarea:focus,
+        .modal-form select:focus {
+            border-color: var(--primary-purple);
+            background: #fff;
+        }
+
+        .modal-form textarea { resize: vertical; min-height: 110px; }
+
+        .modal-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .modal-submit {
+            background: var(--gradient-1);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .modal-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(109, 47, 255, 0.3);
+        }
+
+        .modal-submit:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .form-success .success-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-success h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-success p { color: var(--text-secondary); font-weight: 300; }
+
+        @media (max-width: 480px) {
+            .modal-box { padding: 2rem 1.5rem; }
+            .modal-form .form-row { grid-template-columns: 1fr; }
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -1171,10 +1388,10 @@
     <!-- Header -->
     <header>
         <nav>
-            <a href="/" class="logo" aria-label="Latitude Digital - Home">
+            <a href="index.html" class="logo" aria-label="Latitude Digital - Home">
                 <!-- 📌 REPLACE src below with your actual logo image path, e.g. src="images/logo.png" -->
                 <img 
-                    src="logo.png" 
+                    src="images/Revision2(png).png" 
                     alt="Latitude Digital Logo"
                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
                 />
@@ -1184,8 +1401,8 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#clients">Clients</a></li>
                 <li><a href="#case-studies">Work</a></li>
-                <li><a href="#process">Process</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="blog.html">Blog</a></li>
             </ul>
             <a href="#contact" class="cta-button">Get Started</a>
             <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -1201,9 +1418,9 @@
         <a href="#services" class="mobile-nav-link">Services</a>
         <a href="#clients" class="mobile-nav-link">Clients</a>
         <a href="#case-studies" class="mobile-nav-link">Work</a>
-        <a href="#process" class="mobile-nav-link">Process</a>
         <a href="#about" class="mobile-nav-link">About</a>
         <a href="#contact" class="cta-button mobile-nav-link">Get Started</a>
+         <li><a href="blog.html">Blog</a></li>
     </div>
 
     <!-- Hero Section -->
@@ -1212,7 +1429,7 @@
             <div class="impact-badge">🚀 3X Market Impact</div>
             <h1>AI-Driven Growth Marketing for Africa</h1>
             <p class="hero-subtitle">Empowering businesses with data-driven, culturally relevant campaigns that deliver measurable results across Kenya and beyond.</p>
-            <a href="#contact" class="cta-button">Start Your Growth Journey</a>
+            <button onclick="openContactModal()" class="cta-button" style="border:none;cursor:pointer;font-family:inherit;font-size:1rem;">Start Your Growth Journey</button>
         </div>
 
         <div class="stats-grid">
@@ -1233,16 +1450,9 @@
                 <div class="stat-label">Revenue Growth</div>
             </div>
         </div>
-
-        <!-- 
-            📸 HERO IMAGE SUGGESTION:
-            Unsplash: https://unsplash.com/photos/African-business-team-meeting
-            Suggested search: "african business team nairobi" or "digital marketing team africa"
-            Recommended photo: Photo by Afif Ramdhasuma or Mapbox on Unsplash
-        -->
         <div class="hero-image-wrap">
             <img 
-                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1400&auto=format&fit=crop&q=80" 
+                src="images/girls.png" 
                 alt="Diverse professional team collaborating on digital marketing strategy"
                 loading="lazy"
             />
@@ -1256,49 +1466,49 @@
         
         <div class="services-grid">
             <div class="service-card">
-                <div class="service-icon">🤖</div>
+                <img class="service-icon" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&auto=format&fit=crop&q=80" alt="AI-Driven Marketing" loading="lazy">
                 <h3>AI-Driven Marketing</h3>
                 <p>Leverage cutting-edge AI technology to optimize campaigns, reduce customer acquisition costs by 25%, and drive 2-5X growth in lead generation.</p>
             </div>
 
             <div class="service-card">
-                <div class="service-icon">📱</div>
+                <img class="service-icon" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80" alt="Digital Strategy" loading="lazy">
                 <h3>Digital Strategy</h3>
                 <p>Data-driven strategies tailored to your market, ensuring culturally relevant campaigns that resonate with your target audience.</p>
             </div>
 
             <div class="service-card">
-                <div class="service-icon">🎯</div>
+                <img class="service-icon" src="images/girl.jpg" alt="Brand Management" loading="lazy">
                 <h3>Brand Management & Strategy</h3>
                 <p>Comprehensive brand development from positioning to identity, ensuring consistent messaging across all touchpoints that builds lasting brand equity.</p>
             </div>
 
             <div class="service-card">
-                <div class="service-icon">🚀</div>
+                <img class="service-icon" src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&auto=format&fit=crop&q=80" alt="Campaign Management" loading="lazy">
                 <h3>Campaign Management</h3>
                 <p>End-to-end campaign execution across multiple channels with real-time optimization, performance tracking, and measurable ROI.</p>
             </div>
 
             <div class="service-card">
-                <div class="service-icon">📈</div>
+                <img class="service-icon" src="https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=600&auto=format&fit=crop&q=80" alt="Growth Hacking" loading="lazy">
                 <h3>Growth Hacking</h3>
                 <p>Rapid experimentation across marketing channels to identify the most effective ways to grow your business exponentially.</p>
             </div>
 
             <div class="service-card">
-                <div class="service-icon">✍️</div>
+                <img class="service-icon" src="images/content.jpg" alt="Content Marketing" loading="lazy">
                 <h3>Content Marketing</h3>
                 <p>Compelling content that tells your story, builds community, and drives engagement across all digital platforms.</p>
             </div>
 
             <div class="service-card">
-                <div class="service-icon">📊</div>
+                <img class="service-icon" src="images/socialmedia.jpg" alt="Social Media Management" loading="lazy">
                 <h3>Social Media Management</h3>
                 <p>Strategic social media campaigns that increase visibility, engagement, and build lasting relationships with your audience.</p>
             </div>
 
             <div class="service-card">
-                <div class="service-icon">💻</div>
+                <img class="service-icon" src="images/coding.jpg" alt="Web & App Development" loading="lazy">
                 <h3>Web & App Development</h3>
                 <p>Custom websites and mobile applications designed for performance, user experience, and conversion optimization.</p>
             </div>
@@ -1310,56 +1520,59 @@
         <div class="why-choose-content">
             <div class="why-choose-text">
                 <h2>Why Choose Latitude Digital</h2>
-                <p class="section-subtitle" style="text-align: left; margin-bottom: 3rem;">We combine global expertise with deep local market understanding</p>
+                <p class="section-subtitle" style="text-align: left; margin-bottom: 1rem;">We combine global expertise with deep local market understanding</p>
                 
-                <div class="benefits-list">
-                    <div class="benefit-item">
-                        <div class="benefit-icon">🤖</div>
-                        <div class="benefit-content">
-                            <h3>AI-First Approach</h3>
-                            <p>Leveraging cutting-edge AI technology to optimize every campaign and reduce costs by up to 25%</p>
+                <div class="benefits-slider-wrap">
+                    <div class="benefits-track" id="benefitsTrack">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">🤖</div>
+                            <div class="benefit-content">
+                                <h3>AI-First Approach</h3>
+                                <p>Leveraging cutting-edge AI technology to optimize every campaign and reduce costs by up to 25%</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">🌍</div>
+                            <div class="benefit-content">
+                                <h3>Cultural Intelligence</h3>
+                                <p>Culturally relevant strategies that resonate with African audiences while maintaining global standards</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">📈</div>
+                            <div class="benefit-content">
+                                <h3>Proven Results</h3>
+                                <p>Consistent 3X growth impact across 120+ clients in diverse industries</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">👥</div>
+                            <div class="benefit-content">
+                                <h3>Girl-Powered Team</h3>
+                                <p>Diverse, Gen-Z representation bringing fresh perspectives and digital-native insights</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">⚡</div>
+                            <div class="benefit-content">
+                                <h3>Agile Methodology</h3>
+                                <p>Fast iteration, data-driven decisions, and transparent reporting at every stage</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">🎯</div>
+                            <div class="benefit-content">
+                                <h3>Full-Service Solutions</h3>
+                                <p>From strategy to execution—content, development, training, and ongoing optimization</p>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="benefit-item">
-                        <div class="benefit-icon">🌍</div>
-                        <div class="benefit-content">
-                            <h3>Cultural Intelligence</h3>
-                            <p>Culturally relevant strategies that resonate with African audiences while maintaining global standards</p>
-                        </div>
-                    </div>
-
-                    <div class="benefit-item">
-                        <div class="benefit-icon">📈</div>
-                        <div class="benefit-content">
-                            <h3>Proven Results</h3>
-                            <p>Consistent 3X growth impact across 120+ clients in diverse industries</p>
-                        </div>
-                    </div>
-
-                    <div class="benefit-item">
-                        <div class="benefit-icon">👥</div>
-                        <div class="benefit-content">
-                            <h3>Girl-Powered Team</h3>
-                            <p>Diverse, Gen-Z representation bringing fresh perspectives and digital-native insights</p>
-                        </div>
-                    </div>
-
-                    <div class="benefit-item">
-                        <div class="benefit-icon">⚡</div>
-                        <div class="benefit-content">
-                            <h3>Agile Methodology</h3>
-                            <p>Fast iteration, data-driven decisions, and transparent reporting at every stage</p>
-                        </div>
-                    </div>
-
-                    <div class="benefit-item">
-                        <div class="benefit-icon">🎯</div>
-                        <div class="benefit-content">
-                            <h3>Full-Service Solutions</h3>
-                            <p>From strategy to execution—content, development, training, and ongoing optimization</p>
-                        </div>
-                    </div>
+                <div class="slider-controls">
+                    <button class="slider-btn" id="benefitsPrev" aria-label="Previous">&#8592;</button>
+                    <div class="slider-dots" id="benefitsDots"></div>
+                    <button class="slider-btn" id="benefitsNext" aria-label="Next">&#8594;</button>
                 </div>
             </div>
         </div>
@@ -1376,56 +1589,56 @@
 
             <a href="https://www.kahc.co.ke" target="_blank" rel="noopener" class="client-card" aria-label="KAHC — Hospitality Association">
                 <!-- 📌 Replace src with KAHC logo: src="images/logos/kahc.png" -->
-                <img src="images/logos/kahc.png" alt="KAHC Logo" class="client-logo"
+                <img src="images/KAHKC.png" alt="KAHC Logo" class="client-logo"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <span class="client-name" style="display:none;">KAHC</span>
                 <span class="client-type">Hospitality</span>
             </a>
 
-            <a href="https://www.ihti.ac.ke" target="_blank" rel="noopener" class="client-card" aria-label="IHTI — Education">
-                <img src="images/logos/ihti.png" alt="IHTI Logo" class="client-logo"
+            <a href="https://ihti.net" target="_blank" rel="noopener" class="client-card" aria-label="IHTI — Education">
+                <img src="images/ihti.png" alt="IHTI Logo" class="client-logo"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <span class="client-name" style="display:none;">IHTI</span>
                 <span class="client-type">Education</span>
             </a>
 
-            <a href="https://www.voyager.co.ke" target="_blank" rel="noopener" class="client-card" aria-label="Voyager — Travel & Tourism">
-                <img src="images/logos/voyager.png" alt="Voyager Logo" class="client-logo"
+            <a href="http://www.voyagerbeachresortmombasa.com/" target="_blank" rel="noopener" class="client-card" aria-label="Voyager — Travel & Tourism">
+                <img src="images/.png" alt="Voyager Logo" class="client-logo"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <span class="client-name" style="display:none;">Voyager</span>
                 <span class="client-type">Travel & Tourism</span>
             </a>
 
-            <a href="https://www.hipora.com" target="_blank" rel="noopener" class="client-card" aria-label="Hipora — Security">
-                <img src="images/logos/hipora.png" alt="Hipora Logo" class="client-logo"
+            <a href="https://www.hiporabsea.com/" target="_blank" rel="noopener" class="client-card" aria-label="Hipora — Security">
+                <img src="images/hipora.png" alt="Hipora Logo" class="client-logo"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <span class="client-name" style="display:none;">Hipora</span>
                 <span class="client-type">Security</span>
             </a>
 
-            <a href="https://www.koddi.co.ke" target="_blank" rel="noopener" class="client-card" aria-label="Koddi — PropTech">
-                <img src="images/logos/koddi.png" alt="Koddi Logo" class="client-logo"
+            <a href="https://koddi.com/" target="_blank" rel="noopener" class="client-card" aria-label="Koddi — PropTech">
+                <img src="images/koddi.jpg" alt="Koddi Logo" class="client-logo"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <span class="client-name" style="display:none;">Koddi</span>
                 <span class="client-type">PropTech</span>
             </a>
 
-            <a href="https://www.memora.co.ke" target="_blank" rel="noopener" class="client-card" aria-label="Memora — Digital Platform">
-                <img src="images/logos/memora.png" alt="Memora Logo" class="client-logo"
+            <a href="https://memoraapp.io/" target="_blank" rel="noopener" class="client-card" aria-label="Memora — Digital Platform">
+                <img src="images/memora.png" alt="Memora Logo" class="client-logo"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <span class="client-name" style="display:none;">Memora</span>
                 <span class="client-type">Digital Platform</span>
             </a>
 
             <a href="https://www.visitsasa.com" target="_blank" rel="noopener" class="client-card" aria-label="VisitSasa — AI Tourism">
-                <img src="images/logos/visitsasa.png" alt="VisitSasa Logo" class="client-logo"
+                <img src="images/visitsasa.png" alt="VisitSasa Logo" class="client-logo"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <span class="client-name" style="display:none;">VisitSasa</span>
                 <span class="client-type">AI Tourism</span>
             </a>
 
             <a href="https://www.retrak.org" target="_blank" rel="noopener" class="client-card" aria-label="RETRAK — Trade Association">
-                <img src="images/logos/retrak.png" alt="RETRAK Logo" class="client-logo"
+                <img src="images/retrak.png" alt="RETRAK Logo" class="client-logo"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <span class="client-name" style="display:none;">RETRAK</span>
                 <span class="client-type">Trade Association</span>
@@ -1474,39 +1687,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="case-study">
-                <!-- 📸 Suggested: search "community digital platform social media" on Unsplash -->
-                <img 
-                    src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&auto=format&fit=crop&q=80" 
-                    alt="Memora Digital Platform" 
-                    class="case-study-banner"
-                    loading="lazy"
-                />
-                <div class="case-study-content">
-                    <div class="case-study-header">
-                        <div>
-                            <h3>Memora Platform</h3>
-                            <p style="color: var(--text-secondary);">Content & Social Media Strategy</p>
-                        </div>
-                        <div class="case-study-tag">2025</div>
-                    </div>
-                    <p class="case-study-description">
-                        Transformed a sensitive digital memorial platform through culturally-aware content that addresses death taboos while building community trust and engagement.
-                    </p>
-                    <div class="impact-metrics">
-                        <div class="metric">
-                            <div class="metric-value">240%</div>
-                            <div class="metric-label">Engagement Increase</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">🏆</div>
-                            <div class="metric-label">Market Leader</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="case-study">
                 <!-- 📸 Suggested: search "workshop training africa business" on Unsplash -->
                 <img 
@@ -1624,7 +1804,7 @@
             <div class="about-text">
                 <!-- 📸 Suggested Unsplash image: search "nairobi kenya cityscape" or "africa tech hub" -->
                 <img 
-                    src="https://images.unsplash.com/photo-1611348586840-ea9872d33411?w=800&auto=format&fit=crop&q=80" 
+                    src="images/latitude.png" 
                     alt="Nairobi, Kenya — Home of Latitude Digital" 
                     class="about-image"
                     loading="lazy"
@@ -1639,7 +1819,7 @@
                 <!-- 📌 REPLACE with Vivien's actual photo: src="images/vivien.jpg" -->
                 <!-- 📸 Suggested placeholder: search "professional woman entrepreneur" on Unsplash -->
                 <img 
-                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80" 
+                    src="images/viv.jpeg" 
                     alt="Vivien Wamalwa — Founder & Growth Strategist"
                     class="founder-img"
                     loading="lazy"
@@ -1703,7 +1883,7 @@
             <h2>Let's Create Impact Together</h2>
             <p>Ready to achieve 3X growth? Let's discuss how our AI-driven strategies can transform your business.</p>
             
-            <a href="/cdn-cgi/l/email-protection#eb82858d84ab878a9f829f9e8f8ec58884c5808e" class="cta-button" style="display: inline-block; margin-bottom: 2rem;">Start Your Project</a>
+            <button onclick="openContactModal()" class="cta-button" style="display: inline-block; margin-bottom: 2rem; border: none; cursor: pointer; font-family: inherit; font-size: 1rem;">Start Your Project</button>
 
             <div class="contact-details">
                 <div class="contact-item">
@@ -1745,6 +1925,46 @@
         <p style="margin-top: 0.5rem; font-size: 0.85rem;">Powered by AI. Built for Africa.</p>
     </footer>
 
+    <!-- Contact Modal -->
+    <div class="modal-overlay" id="contactModal" onclick="handleModalOverlayClick(event)">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeContactModal()" aria-label="Close">&times;</button>
+            
+            <div id="formContent">
+                <h2>Start a Project</h2>
+                <p class="modal-sub">Tell us about your goals — we'll get back to you within 24 hours.</p>
+
+                <div class="modal-form" id="contactForm">
+                    <div class="form-row">
+                        <input type="text" id="fname" placeholder="Your Name" required>
+                        <input type="email" id="femail" placeholder="Email Address" required>
+                    </div>
+                    <input type="text" id="fcompany" placeholder="Company / Organisation">
+                    <select id="fservice">
+                        <option value="" disabled selected>What service are you interested in?</option>
+                        <option>AI-Driven Marketing</option>
+                        <option>Digital Strategy</option>
+                        <option>Brand Management & Strategy</option>
+                        <option>Campaign Management</option>
+                        <option>Growth Hacking</option>
+                        <option>Content Marketing</option>
+                        <option>Social Media Management</option>
+                        <option>Web & App Development</option>
+                        <option>Other / Not Sure Yet</option>
+                    </select>
+                    <textarea id="fmessage" placeholder="Tell us about your project and goals…"></textarea>
+                    <button class="modal-submit" id="submitBtn" onclick="submitContactForm()">Send Message ✦</button>
+                </div>
+            </div>
+
+            <div class="form-success" id="formSuccess">
+                <div class="success-icon">✅</div>
+                <h3>Message Sent!</h3>
+                <p>Thanks for reaching out. The Latitude Digital team will be in touch within 24 hours.</p>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Hamburger menu toggle
         const hamburger = document.getElementById('hamburger');
@@ -1757,7 +1977,6 @@
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         });
 
-        // Close mobile menu when a link is clicked
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
@@ -1765,6 +1984,97 @@
                 document.body.style.overflow = '';
             });
         });
+
+        // ---- Contact Modal ----
+        function openContactModal() {
+            document.getElementById('contactModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function handleModalOverlayClick(e) {
+            if (e.target === document.getElementById('contactModal')) closeContactModal();
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeContactModal();
+        });
+
+        function submitContactForm() {
+            const name    = document.getElementById('fname').value.trim();
+            const email   = document.getElementById('femail').value.trim();
+            const company = document.getElementById('fcompany').value.trim();
+            const service = document.getElementById('fservice').value;
+            const message = document.getElementById('fmessage').value.trim();
+
+            if (!name || !email) {
+                alert('Please fill in your name and email address.');
+                return;
+            }
+
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.textContent = 'Sending…';
+
+            const subject = encodeURIComponent(`New Project Enquiry from ${name}${company ? ' — ' + company : ''}`);
+            const body = encodeURIComponent(
+                `Name: ${name}\nEmail: ${email}\nCompany: ${company || 'N/A'}\nService: ${service || 'N/A'}\n\nMessage:\n${message}`
+            );
+
+            // Open mailto link to send the email
+            window.location.href = `mailto:latitude12@gmail.com?subject=${subject}&body=${body}`;
+
+            // Show success state after a short delay
+            setTimeout(() => {
+                document.getElementById('formContent').style.display = 'none';
+                document.getElementById('formSuccess').style.display = 'block';
+                btn.disabled = false;
+                btn.textContent = 'Send Message ✦';
+            }, 800);
+        }
+
+        // ---- Benefits Slider ----
+        (function() {
+            const track  = document.getElementById('benefitsTrack');
+            const dotsWrap = document.getElementById('benefitsDots');
+            const items  = track ? track.querySelectorAll('.benefit-item') : [];
+            let current  = 0;
+            let autoTimer;
+
+            if (!track || items.length === 0) return;
+
+            // Build dots
+            items.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', `Slide ${i + 1}`);
+                dot.addEventListener('click', () => goTo(i));
+                dotsWrap.appendChild(dot);
+            });
+
+            function goTo(index) {
+                current = (index + items.length) % items.length;
+                track.style.transform = `translateX(-${current * 100}%)`;
+                dotsWrap.querySelectorAll('.slider-dot').forEach((d, i) => {
+                    d.classList.toggle('active', i === current);
+                });
+                resetAuto();
+            }
+
+            function resetAuto() {
+                clearInterval(autoTimer);
+                autoTimer = setInterval(() => goTo(current + 1), 4500);
+            }
+
+            document.getElementById('benefitsNext').addEventListener('click', () => goTo(current + 1));
+            document.getElementById('benefitsPrev').addEventListener('click', () => goTo(current - 1));
+
+            resetAuto();
+        })();
     </script>
 </body>
 </html>
