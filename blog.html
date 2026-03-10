@@ -257,7 +257,7 @@
 
         featuredContainer.innerHTML = `
           <div class="featured-blog">
-            ${imageUrl ? `<div class="featured-img-wrapper"><div class="featured-badge">Featured</div>
+            ${imageUrl ? `<div class="featured-img-wrapper"><div class="featured-badge"></div>
             <a href="${getText(featuredPost,'link')}" target="_blank"><img src="${imageUrl}" alt="${getText(featuredPost,'title')}" class="featured-img" loading="eager"></a></div>` : ''}
             <div class="featured-content">
               <h2><a href="${getText(featuredPost,'link')}" target="_blank">${getText(featuredPost,'title')}</a></h2>
