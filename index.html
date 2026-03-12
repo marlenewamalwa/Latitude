@@ -37,22 +37,22 @@
             overflow-x: hidden;
         }
 
-        /* Header & Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
+            /* Header & Navigation */
+            header {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                z-index: 1000;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
 
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.5rem 2rem;
-            display: flex;
+            nav {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 1.5rem 2rem;
+                display: flex;
             justify-content: space-between;
             align-items: center;
         }
@@ -1397,7 +1397,7 @@
                     alt="Latitude Digital Logo"
                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
                 />
-                <span class="logo-fallback" style="display:none;">⚡ Latitude</span>
+                <span class="logo-fallback" style="display:none;">Latitude</span>
             </a>
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
@@ -1406,7 +1406,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="blog.html">Blog</a></li>
             </ul>
-            <a href="#contact" class="cta-button">Get Started</a>
+            <button onclick="openContactModal()" class="cta-button" style="display: inline-block; margin-bottom: 2rem; border: none; cursor: pointer; font-family: inherit; font-size: 1rem;">Get Started</button>
             <button class="hamburger" id="hamburger" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
@@ -1933,9 +1933,7 @@
             <button class="modal-close" onclick="closeContactModal()" aria-label="Close">&times;</button>
             
             <div id="formContent">
-                <h2>Start a Project</h2>
-                <p class="modal-sub">Tell us about your goals — we'll get back to you within 24 hours.</p>
-
+                <h2>Tell us about your goals — we'll get back to you within 24 hours</h2>
                 <div class="modal-form" id="contactForm">
                     <div class="form-row">
                         <input type="text" id="fname" placeholder="Your Name" required>
