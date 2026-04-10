@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog - Latitude Digital</title>
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --primary-purple: #6D2FFF;
+    --accent-pink: #FF6B9D;
+    --accent-yellow: #FFD60A;
+    --dark-bg: #FFFFFF;
+    --darker-bg: #F8F8FC;
+    --card-bg: #FFFFFF;
+    --text-primary: #1A1A2E;
+    --text-secondary: #6B6B7F;
+    --gradient-1: linear-gradient(135deg, #6D2FFF 0%, #C733FF 100%);
+    --gradient-2: linear-gradient(135deg, #FF6B9D 0%, #FFD60A 100%);
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 400;
+    background-color: var(--dark-bg);
+    color: var(--text-primary);
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+/* ── Header ── */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+nav {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo img {
+    height: 30px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.logo-fallback {
+    font-size: 1.5rem;
+    font-weight: 200;
+    letter-spacing: 0.05em;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 300;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active { color: var(--text-primary); }
+
+.cta-button {
+    background: var(--gradient-1);
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 400;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    display: inline-block;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(109,47,255,0.3);
+}
+
+/* ── Hamburger ── */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+    background: none;
+    border: none;
+    z-index: 1001;
+}
+
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100vh;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(20px);
+    z-index: 999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.mobile-menu.active { display: flex; }
+
+.mobile-menu a {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.mobile-menu a:hover { color: var(--primary-purple); }
+.mobile-menu .cta-button { font-size: 1.25rem; color: white; margin-top: 1rem; }
+
+/* ── Blog Hero ── */
+.blog-hero {
+    padding: 10rem 2rem 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.blog-hero h1 {
+    font-size: 4rem;
+    font-weight: 200;
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+}
+
+.blog-hero p {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ── Featured Post ── */
+.featured-section {
+    max-width: 1400px;
+    margin: 0 auto 0;
+    padding: 0 2rem 3rem;
+}
+
+.featured-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--primary-purple);
+    margin-bottom: 1.25rem;
+}
+
+.featured-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 8px 40px rgba(109,47,255,0.08);
+    transition: all 0.3s;
+    text-decoration: none;
+    color: inherit;
+}
+
+.featured-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(109,47,255,0.14);
+    border-color: var(--primary-purple);
+}
+
+.featured-img-wrap {
+    overflow: hidden;
+    min-height: 360px;
+}
+
+.featured-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.featured-card:hover .featured-img-wrap img { transform: scale(1.04); }
+
+.featured-content {
+    padding: 3.5rem;
+    background: var(--card-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.post-tag {
+    display: inline-block;
+    background: var(--gradient-2);
+    color: white;
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+    width: fit-content;
+}
+
+.featured-content h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.featured-content p {
+    color: var(--text-secondary);
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.post-meta {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+    margin-bottom: 1.75rem;
+}
+
+.read-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gradient-1);
+    color: white;
+    padding: 0.85rem 1.75rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 0.95rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: fit-content;
+}
+
+.read-more-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(109,47,255,0.3);
+}
+
+/* ── Posts Grid ── */
+.posts-section {
+    background: var(--darker-bg);
+    padding: 5rem 2rem;
+}
+
+.posts-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.posts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.posts-header h2 {
+    font-size: 2rem;
+    font-weight: 200;
+    letter-spacing: -0.01em;
+}
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2rem;
+}
+
+.post-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.07);
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+}
+
+.post-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--gradient-1);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+}
+
+.post-card:hover::before { transform: scaleX(1); }
+
+.post-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary-purple);
+    box-shadow: 0 16px 40px rgba(109,47,255,0.12);
+}
+
+.post-img-wrap {
+    overflow: hidden;
+    height: 210px;
+}
+
+.post-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.post-card:hover .post-img-wrap img { transform: scale(1.06); }
+
+.post-body {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.post-body h3 {
+    font-size: 1.15rem;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+}
+
+.post-body p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.7;
+    flex: 1;
+}
+
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.post-date {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+.post-link {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--primary-purple);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: gap 0.2s;
+}
+
+.post-link:hover { gap: 0.6rem; }
+
+/* ── Loading & Empty States ── */
+.state-loading,
+.state-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 5rem 2rem;
+    color: var(--text-secondary);
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid rgba(109,47,255,0.15);
+    border-top-color: var(--primary-purple);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 1.5rem;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Footer ── */
+footer {
+    background: var(--darker-bg);
+    padding: 3rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+footer p {
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+/* ── Contact Modal (same as index) ── */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26,26,46,0.65);
+    backdrop-filter: blur(6px);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.modal-overlay.active { display: flex; }
+
+.modal-box {
+    background: #fff;
+    border-radius: 28px;
+    padding: 3rem;
+    max-width: 560px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 30px 80px rgba(109,47,255,0.2);
+    animation: modalIn 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+
+@keyframes modalIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-close {
+    position: absolute;
+    top: 1.25rem; right: 1.5rem;
+    background: none; border: none;
+    font-size: 1.6rem; cursor: pointer;
+    color: var(--text-secondary);
+    line-height: 1; transition: color 0.2s;
+}
+
+.modal-close:hover { color: var(--primary-purple); }
+
+.modal-box h2 {
+    font-size: 1.9rem;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.modal-form input,
+.modal-form textarea,
+.modal-form select {
+    width: 100%;
+    padding: 0.9rem 1.25rem;
+    border: 1.5px solid rgba(0,0,0,0.1);
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    background: var(--darker-bg);
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.modal-form input:focus,
+.modal-form textarea:focus,
+.modal-form select:focus {
+    border-color: var(--primary-purple);
+    background: #fff;
+}
+
+.modal-form textarea { resize: vertical; min-height: 110px; }
+
+.modal-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.modal-submit {
+    background: var(--gradient-1);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-top: 0.5rem;
+}
+
+.modal-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(109,47,255,0.3); }
+.modal-submit:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+
+.form-success {
+    display: none;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.form-success .success-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+.form-success h3 { font-size: 1.5rem; font-weight: 400; margin-bottom: 0.5rem; }
+.form-success p { color: var(--text-secondary); font-weight: 300; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .nav-links { display: none; }
+    nav > .cta-button { display: none; }
+
+    .blog-hero h1 { font-size: 2.5rem; }
+    .blog-hero { padding: 8rem 1.25rem 3rem; }
+
+    .featured-card { grid-template-columns: 1fr; }
+    .featured-img-wrap { min-height: 240px; }
+    .featured-content { padding: 2rem; }
+    .featured-content h2 { font-size: 1.5rem; }
+
+    .featured-section { padding: 0 1.25rem 2.5rem; }
+    .posts-section { padding: 4rem 1.25rem; }
+
+    .posts-grid { grid-template-columns: 1fr; }
+
+    nav { padding: 1rem 1.25rem; }
+}
+
+@media (max-width: 480px) {
+    .modal-box { padding: 2rem 1.5rem; }
+    .modal-form .form-row { grid-template-columns: 1fr; }
+    .blog-hero h1 { font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <nav>
+        <a href="/" class="logo" aria-label="Latitude Digital - Home">
+            <img
+                src="/images/Revision2(png).png"
+                alt="Latitude Digital Logo"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+            />
+            <span class="logo-fallback" style="display:none;">Latitude</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/#clients">Clients</a></li>
+            <li><a href="/#case-studies">Work</a></li>
+            <li><a href="/#about">About</a></li>
+            <li><a href="/blog" class="active">Blog</a></li>
+        </ul>
+        <button onclick="openContactModal()" class="cta-button">Get Started</button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="/#services" class="mobile-nav-link">Services</a>
+    <a href="/#clients" class="mobile-nav-link">Clients</a>
+    <a href="/#case-studies" class="mobile-nav-link">Work</a>
+    <a href="/#about" class="mobile-nav-link">About</a>
+    <a href="/blog" class="mobile-nav-link">Blog</a>
+    <button onclick="openContactModal(); closeMobileMenu();" class="cta-button">Get Started</button>
+</div>
+
+<!-- Blog Hero -->
+<section class="blog-hero">
+    <h1>Insights & Ideas</h1>
+    <p>Perspectives on AI-driven marketing, growth strategy, and African market trends.</p>
+</section>
+
+<!-- Featured Post -->
+<section class="featured-section">
+    <div class="featured-label">Featured Article</div>
+    <div id="featured-post">
+        <!-- injected by JS -->
+    </div>
+</section>
+
+<!-- Posts Grid -->
+<section class="posts-section">
+    <div class="posts-inner">
+        <div class="posts-header">
+            <h2>Latest Posts</h2>
+        </div>
+        <div class="posts-grid" id="rss-feed">
+            <div class="state-loading">
+                <div class="spinner"></div>
+                <p>Loading blog posts…</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 Latitude Digital. Your Growth Marketing Partner. All rights reserved.</p>
+    <p style="margin-top:0.5rem;font-size:0.85rem;">Powered by AI. Built for Africa.</p>
+</footer>
+
+<!-- Contact Modal -->
+<div class="modal-overlay" id="contactModal" onclick="handleModalOverlayClick(event)">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeContactModal()" aria-label="Close">&times;</button>
+        <div id="formContent">
+            <h2>Tell us about your goals — we'll get back to you within 24 hours</h2>
+            <div class="modal-form" id="contactForm">
+                <div class="form-row">
+                    <input type="text" id="fname" placeholder="Your Name" required>
+                    <input type="email" id="femail" placeholder="Email Address" required>
+                </div>
+                <input type="text" id="fcompany" placeholder="Company / Organisation">
+                <select id="fservice">
+                    <option value="" disabled selected>What service are you interested in?</option>
+                    <option>AI-Driven Marketing</option>
+                    <option>Digital Strategy</option>
+                    <option>Brand Management &amp; Strategy</option>
+                    <option>Campaign Management</option>
+                    <option>Growth Hacking</option>
+                    <option>Content Marketing</option>
+                    <option>Social Media Management</option>
+                    <option>Web &amp; App Development</option>
+                    <option>Other / Not Sure Yet</option>
+                </select>
+                <textarea id="fmessage" placeholder="Tell us about your project and goals…"></textarea>
+                <button class="modal-submit" id="submitBtn" onclick="submitContactForm()">Send Message ✦</button>
+            </div>
+        </div>
+        <div class="form-success" id="formSuccess">
+            <div class="success-icon">✅</div>
+            <h3>Message Sent!</h3>
+            <p>Thanks for reaching out. The Latitude Digital team will be in touch within 24 hours.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+/* ── RSS Feed ── */
+async function loadRSS() {
+    const container = document.getElementById('rss-feed');
+    const featuredContainer = document.getElementById('featured-post');
+
+    try {
+        const response = await fetch('/api/rss');
+        const xmlText = await response.text();
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(xmlText, 'text/xml');
+        const items = [...xml.querySelectorAll('item')];
+
+        if (items.length === 0) {
+            container.innerHTML = '<div class="state-empty"><p>No blog posts found.</p></div>';
+            featuredContainer.innerHTML = '';
+            return;
+        }
+
+        function getText(item, tag) {
+            const el = item.querySelector(tag);
+            return el ? el.textContent : '';
+        }
+
+        function getImage(item) {
+            const enclosure = item.querySelector('enclosure');
+            if (enclosure) return enclosure.getAttribute('url');
+            const match = getText(item, 'description').match(/<img.*?src="(.*?)"/);
+            return match ? match[1] : '';
+        }
+
+        function stripHtml(html) {
+            return html.replace(/<[^>]+>/g, '');
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            try {
+                return new Date(dateStr).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+            } catch { return ''; }
+        }
+
+        /* ── Featured ── */
+        const featured = items[0];
+        const featuredImg = getImage(featured);
+        const featuredLink = getText(featured, 'link');
+        const featuredTitle = getText(featured, 'title');
+        const featuredDesc = stripHtml(getText(featured, 'description')).substring(0, 220);
+        const featuredDate = formatDate(getText(featured, 'pubDate'));
+
+        featuredContainer.innerHTML = `
+            <a href="${featuredLink}" target="_blank" class="featured-card">
+                ${featuredImg ? `<div class="featured-img-wrap"><img src="${featuredImg}" alt="${featuredTitle}" loading="lazy"></div>` : ''}
+                <div class="featured-content">
+                    <span class="post-tag">Featured</span>
+                    <h2>${featuredTitle}</h2>
+                    <p>${featuredDesc}…</p>
+                    ${featuredDate ? `<div class="post-meta">${featuredDate}</div>` : ''}
+                    <span class="read-more-btn">Read Article →</span>
+                </div>
+            </a>`;
+
+        /* ── Grid posts ── */
+        container.innerHTML = '';
+        items.slice(1, 13).forEach(item => {
+            const img = getImage(item);
+            const link = getText(item, 'link');
+            const title = getText(item, 'title');
+            const desc = stripHtml(getText(item, 'description')).substring(0, 130);
+            const date = formatDate(getText(item, 'pubDate'));
+
+            const card = document.createElement('a');
+            card.href = link;
+            card.target = '_blank';
+            card.rel = 'noopener';
+            card.className = 'post-card';
+
+            card.innerHTML = `
+                ${img ? `<div class="post-img-wrap"><img src="${img}" alt="${title}" loading="lazy"></div>` : ''}
+                <div class="post-body">
+                    <h3>${title}</h3>
+                    <p>${desc}…</p>
+                    <div class="post-footer">
+                        <span class="post-date">${date}</span>
+                        <span class="post-link">Read More →</span>
+                    </div>
+                </div>`;
+
+            container.appendChild(card);
+        });
+
+    } catch (err) {
+        container.innerHTML = '<div class="state-empty"><p>Unable to load blog posts. Please try again later.</p></div>';
+        console.error(err);
+    }
+}
+
+loadRSS();
+
+/* ── Hamburger ── */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+});
+
+mobileLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+
+function closeMobileMenu() {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+/* ── Modal ── */
+function openContactModal() {
+    document.getElementById('contactModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeContactModal() {
+    document.getElementById('contactModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function handleModalOverlayClick(e) {
+    if (e.target === document.getElementById('contactModal')) closeContactModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContactModal(); });
+
+function submitContactForm() {
+    const name    = document.getElementById('fname').value.trim();
+    const email   = document.getElementById('femail').value.trim();
+    const company = document.getElementById('fcompany').value.trim();
+    const service = document.getElementById('fservice').value;
+    const message = document.getElementById('fmessage').value.trim();
+
+    if (!name || !email) { alert('Please fill in your name and email address.'); return; }
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    const subject = encodeURIComponent(`New Project Enquiry from ${name}${company ? ' — ' + company : ''}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company || 'N/A'}\nService: ${service || 'N/A'}\n\nMessage:\n${message}`);
+
+    window.location.href = `mailto:latitude12@gmail.com?subject=${subject}&body=${body}`;
+
+    setTimeout(() => {
+        document.getElementById('formContent').style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Send Message ✦';
+    }, 800);
+}
+</script>
+</body>
+</html>
