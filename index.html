@@ -400,16 +400,39 @@
 
         /* Clients Section */
         .clients {
-            padding: 8rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 8rem 0;
+            overflow: hidden;
         }
 
-        .clients-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 1.25rem;
+        .clients .section-title,
+        .clients .section-subtitle {
+            padding: 0 2rem;
+        }
+
+        /* Marquee track */
+        .clients-marquee {
             margin-top: 4rem;
+            overflow: hidden;
+            width: 100%;
+            /* Fade edges */
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+        }
+
+        .clients-track {
+            display: flex;
+            gap: 1.5rem;
+            width: max-content;
+            animation: marquee-scroll 30s linear infinite;
+        }
+
+        .clients-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes marquee-scroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         .client-card {
@@ -426,7 +449,9 @@
             justify-content: center;
             gap: 0.6rem;
             min-height: 130px;
+            min-width: 180px;
             box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            flex-shrink: 0;
         }
 
         .client-card:hover {
@@ -442,12 +467,7 @@
             object-fit: contain;
             display: block;
             margin: 0 auto;
-            filter: grayscale(1) opacity(0.55);
-            transition: filter 0.35s;
-        }
-
-        .client-card:hover .client-logo {
-            filter: grayscale(0) opacity(1);
+            transition: opacity 0.35s;
         }
 
         .client-name {
@@ -1208,7 +1228,6 @@
             }
 
             .services-grid,
-            .clients-grid,
             .testimonials-grid {
                 grid-template-columns: 1fr;
             }
@@ -1585,66 +1604,113 @@
         <h2 class="section-title">Trusted by Industry Leaders</h2>
         <p class="section-subtitle">From startups to global brands, we deliver results</p>
 
-        <div class="clients-grid">
-            <!-- 📌 For each card: replace href="#" with the company URL, and replace the src in <img> with the company logo file.
-                 Until you have logos, the company name text shows as a fallback. -->
-
-            <a href="https://www.kahc.co.ke" target="_blank" rel="noopener" class="client-card" aria-label="KAHC — Hospitality Association">
-                <!-- 📌 Replace src with KAHC logo: src="images/logos/kahc.png" -->
-                <img src="images/KAHKC.png" alt="KAHC Logo" class="client-logo"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span class="client-name" style="display:none;">KAHC</span>
-                <span class="client-type">Hospitality</span>
-            </a>
-
-            <a href="https://ihti.net" target="_blank" rel="noopener" class="client-card" aria-label="IHTI — Education">
-                <img src="images/ihti.png" alt="IHTI Logo" class="client-logo"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span class="client-name" style="display:none;">IHTI</span>
-                <span class="client-type">Education</span>
-            </a>
-
-            <a href="http://www.voyagerbeachresortmombasa.com/" target="_blank" rel="noopener" class="client-card" aria-label="Voyager — Travel & Tourism">
-                <img src="images/.png" alt="Voyager Logo" class="client-logo"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span class="client-name" style="display:none;">Voyager</span>
-                <span class="client-type">Travel & Tourism</span>
-            </a>
-
-            <a href="https://www.hiporabsea.com/" target="_blank" rel="noopener" class="client-card" aria-label="Hipora — Security">
-                <img src="images/hipora.png" alt="Hipora Logo" class="client-logo"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span class="client-name" style="display:none;">Hipora</span>
-                <span class="client-type">Security</span>
-            </a>
-
-            <a href="https://koddi.com/" target="_blank" rel="noopener" class="client-card" aria-label="Koddi — PropTech">
-                <img src="images/koddi.jpg" alt="Koddi Logo" class="client-logo"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span class="client-name" style="display:none;">Koddi</span>
-                <span class="client-type">PropTech</span>
-            </a>
-
-            <a href="https://memoraapp.io/" target="_blank" rel="noopener" class="client-card" aria-label="Memora — Digital Platform">
-                <img src="images/memora.png" alt="Memora Logo" class="client-logo"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span class="client-name" style="display:none;">Memora</span>
-                <span class="client-type">Digital Platform</span>
-            </a>
-
-            <a href="https://www.visitsasa.com" target="_blank" rel="noopener" class="client-card" aria-label="VisitSasa — AI Tourism">
-                <img src="images/visitsasa.png" alt="VisitSasa Logo" class="client-logo"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span class="client-name" style="display:none;">VisitSasa</span>
-                <span class="client-type">AI Tourism</span>
-            </a>
-
-            <a href="https://www.retrak.org" target="_blank" rel="noopener" class="client-card" aria-label="RETRAK — Trade Association">
-                <img src="images/retrak.png" alt="RETRAK Logo" class="client-logo"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span class="client-name" style="display:none;">RETRAK</span>
-                <span class="client-type">Trade Association</span>
-            </a>
+        <div class="clients-marquee">
+            <div class="clients-track">
+                <!-- First set -->
+                <a href="https://www.kahc.co.ke" target="_blank" rel="noopener" class="client-card" aria-label="KAHC — Hospitality Association">
+                    <img src="images/KAHKC.png" alt="KAHC Logo" class="client-logo"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="client-name" style="display:none;">KAHC</span>
+                    <span class="client-type">Hospitality</span>
+                </a>
+                <a href="https://ihti.net" target="_blank" rel="noopener" class="client-card" aria-label="IHTI — Education">
+                    <img src="images/ihti.png" alt="IHTI Logo" class="client-logo"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="client-name" style="display:none;">IHTI</span>
+                    <span class="client-type">Education</span>
+                </a>
+                <a href="http://www.voyagerbeachresortmombasa.com/" target="_blank" rel="noopener" class="client-card" aria-label="Voyager — Travel & Tourism">
+                    <img src="images/.png" alt="Voyager Logo" class="client-logo"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="client-name" style="display:none;">Voyager</span>
+                    <span class="client-type">Travel & Tourism</span>
+                </a>
+                <a href="https://www.hiporabsea.com/" target="_blank" rel="noopener" class="client-card" aria-label="Hipora — Security">
+                    <img src="images/hipora.png" alt="Hipora Logo" class="client-logo"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="client-name" style="display:none;">Hipora</span>
+                    <span class="client-type">Security</span>
+                </a>
+                <a href="https://koddi.com/" target="_blank" rel="noopener" class="client-card" aria-label="Koddi — PropTech">
+                    <img src="images/koddi.jpg" alt="Koddi Logo" class="client-logo"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="client-name" style="display:none;">Koddi</span>
+                    <span class="client-type">PropTech</span>
+                </a>
+                <a href="https://memoraapp.io/" target="_blank" rel="noopener" class="client-card" aria-label="Memora — Digital Platform">
+                    <img src="images/memora.png" alt="Memora Logo" class="client-logo"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="client-name" style="display:none;">Memora</span>
+                    <span class="client-type">Digital Platform</span>
+                </a>
+                <a href="https://www.visitsasa.com" target="_blank" rel="noopener" class="client-card" aria-label="VisitSasa — AI Tourism">
+                    <img src="images/visitsasa.png" alt="VisitSasa Logo" class="client-logo"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="client-name" style="display:none;">VisitSasa</span>
+                    <span class="client-type">AI Tourism</span>
+                </a>
+                <a href="https://www.retrak.org" target="_blank" rel="noopener" class="client-card" aria-label="RETRAK — Trade Association">
+                    <img src="images/retrak.png" alt="RETRAK Logo" class="client-logo"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="client-name" style="display:none;">RETRAK</span>
+                    <span class="client-type">Trade Association</span>
+                </a>
+                <!-- Duplicate set for seamless loop -->
+                <a href="https://www.kahc.co.ke" target="_blank" rel="noopener" class="client-card" aria-label="KAHC — Hospitality Association" tabindex="-1">
+                    <img src="images/KAHKC.png" alt="" class="client-logo" aria-hidden="true"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="client-name" style="display:none;">KAHC</span>
+                    <span class="client-type">Hospitality</span>
+                </a>
+                <a href="https://ihti.net" target="_blank" rel="noopener" class="client-card" aria-label="IHTI — Education" tabindex="-1">
+                    <img src="images/ihti.png" alt="" class="client-logo" aria-hidden="true"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="client-name" style="display:none;">IHTI</span>
+                    <span class="client-type">Education</span>
+                </a>
+                <a href="http://www.voyagerbeachresortmombasa.com/" target="_blank" rel="noopener" class="client-card" aria-label="Voyager — Travel & Tourism" tabindex="-1">
+                    <img src="images/.png" alt="" class="client-logo" aria-hidden="true"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="client-name" style="display:none;">Voyager</span>
+                    <span class="client-type">Travel & Tourism</span>
+                </a>
+                <a href="https://www.hiporabsea.com/" target="_blank" rel="noopener" class="client-card" aria-label="Hipora — Security" tabindex="-1">
+                    <img src="images/hipora.png" alt="" class="client-logo" aria-hidden="true"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="client-name" style="display:none;">Hipora</span>
+                    <span class="client-type">Security</span>
+                </a>
+                <a href="https://koddi.com/" target="_blank" rel="noopener" class="client-card" aria-label="Koddi — PropTech" tabindex="-1">
+                    <img src="images/koddi.jpg" alt="" class="client-logo" aria-hidden="true"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="client-name" style="display:none;">Koddi</span>
+                    <span class="client-type">PropTech</span>
+                </a>
+                <a href="https://memoraapp.io/" target="_blank" rel="noopener" class="client-card" aria-label="Memora — Digital Platform" tabindex="-1">
+                    <img src="images/memora.png" alt="" class="client-logo" aria-hidden="true"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="client-name" style="display:none;">Memora</span>
+                    <span class="client-type">Digital Platform</span>
+                </a>
+                <a href="https://www.visitsasa.com" target="_blank" rel="noopener" class="client-card" aria-label="VisitSasa — AI Tourism" tabindex="-1">
+                    <img src="images/visitsasa.png" alt="" class="client-logo" aria-hidden="true"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="client-name" style="display:none;">VisitSasa</span>
+                    <span class="client-type">Tourism</span>
+                </a>
+                <a href="https://www.fourthmedia.co.ke/" target="_blank" rel="noopener" class="client-card" aria-label=" Fourth Media" tabindex="-1">
+                    <img src="images/4ml.png" alt="" class="client-logo" aria-hidden="true"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="client-name" style="display:none;">Fourth Media Limited</span>
+                    <span class="client-type">Mulitimedia </span>
+                </a>
+                <a href="https://www.retrak.org" target="_blank" rel="noopener" class="client-card" aria-label="RETRAK — Trade Association" tabindex="-1">
+                    <img src="images/retrak.png" alt="" class="client-logo" aria-hidden="true"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="client-name" style="display:none;">RETRAK</span>
+                    <span class="client-type">Trade Association</span>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -1806,7 +1872,7 @@
             <div class="about-text">
                 <!-- 📸 Suggested Unsplash image: search "nairobi kenya cityscape" or "africa tech hub" -->
                 <img 
-                    src="images/latitude.png" 
+                    src="images/logo.png" 
                     alt="Nairobi, Kenya — Home of Latitude Digital" 
                     class="about-image"
                     loading="lazy"
@@ -1818,15 +1884,7 @@
             </div>
 
             <div class="founder-card">
-                <!-- 📌 REPLACE with Vivien's actual photo: src="images/vivien.jpg" -->
-                <!-- 📸 Suggested placeholder: search "professional woman entrepreneur" on Unsplash -->
-                <img 
-                    src="images/viv.jpeg" 
-                    alt="Vivien Wamalwa — Founder & Growth Strategist"
-                    class="founder-img"
-                    loading="lazy"
-                />
-                <div class="founder-name">Vivien Wamalwa</div>
+    <div class="founder-name">Vivien Wamalwa</div>
                 <div class="founder-title">Founder & Growth Strategist</div>
                 <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Award-winning entrepreneur with 15+ years of industry experience, leading Latitude to 3X revenue growth.</p>
                 
