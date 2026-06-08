@@ -7,2059 +7,1220 @@
     <link rel="icon" type="image/x-icon" href="/images/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --primary-purple: #9B6DFF;
-            --accent-pink: #FF6B9D;
-            --accent-yellow: #FFD60A;
-            --dark-bg: #0D0A1A;
-            --darker-bg: #130F24;
-            --card-bg: #1A1430;
-            --text-primary: #F0ECFF;
-            --text-secondary: #9B92BE;
-            --gradient-1: linear-gradient(135deg, #7B3FFF 0%, #C733FF 100%);
-            --gradient-2: linear-gradient(135deg, #FF6B9D 0%, #FFD60A 100%);
+            --purple: #6D2FFF;
+            --purple-mid: #8B47FF;
+            --purple-light: #A66BFF;
+            --ink: #0D0B1E;
+            --ink-mid: #1A1630;
+            --ink-soft: #2E2A4A;
+            --mist: #F4F2FF;
+            --mist2: #EDE9FF;
+            --text-off: #6B6880;
+            --g1: linear-gradient(135deg, #5A1FEE 0%, #8B47FF 100%);
+            --g-white: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.85) 100%);
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'DM Sans', system-ui, sans-serif;
             font-weight: 400;
-            background-color: var(--dark-bg);
-            color: var(--text-primary);
-            line-height: 1.8;
+            background: #fff;
+            color: var(--ink);
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
-            /* Header & Navigation */
-            header {
-                position: fixed;
-                top: 0;
-                width: 100%;
-                z-index: 1000;
-                background: rgba(13, 10, 26, 0.97);
-                backdrop-filter: blur(10px);
-                border-bottom: 1px solid rgba(155, 109, 255, 0.15);
-            }
+        /* ===== SCROLL REVEAL ===== */
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.75s ease, transform 0.75s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.75s ease, transform 0.75s ease; }
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+        .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.75s ease, transform 0.75s ease; }
+        .reveal-right.visible { opacity: 1; transform: translateX(0); }
 
-            nav {
-                max-width: 1400px;
-                margin: 0 auto;
-                padding: 1.5rem 2rem;
-                display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* ===== HEADER ===== */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            transition: background 0.4s, box-shadow 0.4s; padding: 0;
         }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
+        header.scrolled {
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 2px 30px rgba(109,47,255,0.08);
         }
-
-        .logo img {
-            height: 30px;
-            width: auto;
-            display: block;
-            object-fit: contain;
+        nav {
+            max-width: 1400px; margin: 0 auto; padding: 1.5rem 2.5rem;
+            display: flex; justify-content: space-between; align-items: center;
         }
-
-        /* Fallback if image fails to load */
+        .logo { display: flex; align-items: center; text-decoration: none; }
+        .logo img { height: 92px; width: auto; object-fit: contain; }
         .logo-fallback {
-            font-size: 1.5rem;
-            font-weight: 200;
-            letter-spacing: 0.05em;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 700;
+            background: var(--g1); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text;
         }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
         .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 300;
-            transition: color 0.3s;
+            color: var(--ink); text-decoration: none; font-size: 0.9rem;
+            font-weight: 400; letter-spacing: 0.02em; transition: color 0.25s;
         }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
+        .nav-links a:hover { color: var(--purple); }
         .cta-button {
-            background: var(--gradient-1);
-            color: white;
-            padding: 0.75rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 400;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(123, 63, 255, 0.3);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 12rem 2rem 8rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 900px;
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            font-weight: 200;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.02em;
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            font-weight: 300;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            max-width: 700px;
-        }
-
-        .impact-badge {
-            display: inline-block;
-            background: var(--gradient-2);
-            color: white;
-            padding: 0.75rem 2rem;
-            border-radius: 50px;
-            font-weight: 400;
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .stat-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(155, 109, 255, 0.15);
-            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-purple);
-            box-shadow: 0 10px 30px rgba(123, 63, 255, 0.1);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 200;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            font-weight: 300;
-        }
-
-        /* Services Section */
-        .services {
-            padding: 8rem 2rem;
-            background: var(--darker-bg);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: 200;
-            margin-bottom: 1rem;
-            letter-spacing: -0.01em;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 1.25rem;
-            font-weight: 300;
-            margin-bottom: 5rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .services-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: var(--card-bg);
-            padding: 3rem;
-            border-radius: 24px;
-            border: 1px solid rgba(155, 109, 255, 0.15);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-1);
-            transform: scaleX(0);
-            transition: transform 0.3s;
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-purple);
-            box-shadow: 0 15px 40px rgba(123, 63, 255, 0.1);
-        }
-
-        .service-icon {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 14px;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            font-weight: 300;
-        }
-
-        /* Why Choose Us Section */
-        .why-choose {
-            padding: 8rem 2rem;
-            background: var(--darker-bg);
-        }
-
-        .why-choose-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .why-choose-text h2 {
-            font-size: 3rem;
-            text-align: center;
-            font-weight: 300;
-            margin-bottom: 1rem;
-        }
-
-        /* Slider */
-        .benefits-slider-wrap {
-            position: relative;
-            overflow: hidden;
-            margin-top: 3rem;
-        }
-
-        .benefits-track {
-            display: flex;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .benefit-item {
-            min-width: 100%;
-            display: flex;
-            gap: 1.5rem;
-            align-items: start;
-            padding: 3rem;
-            background: var(--card-bg);
-            border-radius: 20px;
-            border: 1px solid rgba(155, 109, 255, 0.15);
-            box-shadow: 0 4px 20px rgba(123, 63, 255, 0.06);
-        }
-
-        .benefit-icon {
-            font-size: 3rem;
-            flex-shrink: 0;
-            width: 72px;
-            height: 72px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(123,63,255,0.1), rgba(199,51,255,0.1));
-            border-radius: 16px;
-        }
-
-        .benefit-content h3 {
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
-        }
-
-        .benefit-content p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            font-weight: 300;
-            font-size: 1.05rem;
-        }
-
-        .slider-controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .slider-btn {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            border: 2px solid var(--primary-purple);
-            background: transparent;
-            color: var(--primary-purple);
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .slider-btn:hover {
-            background: var(--primary-purple);
-            color: white;
-        }
-
-        .slider-dots {
-            display: flex;
-            gap: 8px;
-        }
-
-        .slider-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(123,63,255,0.25);
-            cursor: pointer;
-            transition: all 0.3s;
-            border: none;
-            padding: 0;
-        }
-
-        .slider-dot.active {
-            background: var(--primary-purple);
-            width: 28px;
-            border-radius: 5px;
-        }
-
-        /* Clients Section */
-        .clients {
-            padding: 8rem 0;
-            overflow: hidden;
-        }
-
-        .clients .section-title,
-        .clients .section-subtitle {
-            padding: 0 2rem;
-        }
-
-        /* Marquee track */
-        .clients-marquee {
-            margin-top: 4rem;
-            overflow: hidden;
-            width: 100%;
-            /* Fade edges */
-            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-            mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-        }
-
-        .clients-track {
-            display: flex;
-            gap: 1.5rem;
-            width: max-content;
-            animation: marquee-scroll 30s linear infinite;
-        }
-
-        .clients-track:hover {
-            animation-play-state: paused;
-        }
-
-        @keyframes marquee-scroll {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .client-card {
-            background: var(--card-bg);
-            padding: 2rem 1.5rem;
-            border-radius: 20px;
-            border: 1px solid rgba(155, 109, 255, 0.12);
-            text-align: center;
-            transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.6rem;
-            min-height: 130px;
-            min-width: 180px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.3);
-            flex-shrink: 0;
-        }
-
-        .client-card:hover {
-            transform: translateY(-6px) scale(1.02);
-            border-color: var(--primary-purple);
-            box-shadow: 0 16px 40px rgba(123, 63, 255, 0.14);
-        }
-
-        .client-logo {
-            width: 100%;
-            max-width: 120px;
-            height: 52px;
-            object-fit: contain;
-            display: block;
-            margin: 0 auto;
-            transition: opacity 0.35s;
-        }
-
-        .client-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            letter-spacing: 0.01em;
-        }
-
-        .client-type {
-            color: var(--text-secondary);
-            font-size: 0.78rem;
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        /* Case Studies / Portfolio Cards */
-        .case-studies {
-            padding: 8rem 2rem;
-            background: var(--darker-bg);
-        }
-
-        .portfolio-grid {
-            max-width: 1100px;
-            margin: 4rem auto 0;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.75rem;
-            align-items: start;
-        }
-
-        .portfolio-card {
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.10);
-            transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .portfolio-card:hover {
-            transform: translateY(-8px) scale(1.015);
-            box-shadow: 0 20px 50px rgba(123, 63, 255, 0.18);
-        }
-
-        .portfolio-card img {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover;
-        }
-
-        /* Case study old styles kept for compatibility */
-        .case-study-grid {
-            max-width: 1000px;
-            margin: 4rem auto 0;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .case-study {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(155, 109, 255, 0.15);
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .case-study:hover {
-            transform: translateY(-6px);
-            border-color: var(--primary-purple);
-            box-shadow: 0 15px 40px rgba(123, 63, 255, 0.1);
-        }
-
-        .case-study-content {
-            padding: 1.75rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .case-study-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 1rem;
-            gap: 0.75rem;
-        }
-
-        .case-study h3 {
-            font-size: 1.25rem;
-            font-weight: 500;
-            margin-bottom: 0.25rem;
-            line-height: 1.3;
-        }
-
-        .case-study-tag {
-            background: var(--gradient-2);
-            color: white;
-            padding: 0.3rem 0.9rem;
-            border-radius: 50px;
-            font-size: 0.78rem;
-            font-weight: 400;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        .case-study-description {
-            color: var(--text-secondary);
-            margin-bottom: 1.25rem;
-            line-height: 1.7;
-            font-weight: 300;
-            font-size: 0.9rem;
-            flex: 1;
-        }
-
-        .impact-metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-            gap: 1rem;
-            margin-top: 1.25rem;
-            padding-top: 1.25rem;
-            border-top: 1px solid rgba(155, 109, 255, 0.10);
-        }
-
-        .metric {
-            text-align: center;
-        }
-
-        .metric-value {
-            font-size: 1.4rem;
-            font-weight: 300;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .metric-label {
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-            font-weight: 300;
-            margin-top: 0.25rem;
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            padding: 8rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin-top: 4rem;
-        }
-
-        .testimonial-card {
-            background: var(--card-bg);
-            padding: 3rem;
-            border-radius: 24px;
-            border: 1px solid rgba(155, 109, 255, 0.15);
-            position: relative;
-            transition: all 0.3s;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-purple);
-            box-shadow: 0 20px 40px rgba(123, 63, 255, 0.1);
-        }
-
-        .quote-icon {
-            font-size: 4rem;
-            color: var(--primary-purple);
-            opacity: 0.2;
-            line-height: 1;
-            margin-bottom: 1rem;
-            font-family: Georgia, serif;
-        }
-
-        .testimonial-text {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            font-size: 1.05rem;
-            font-weight: 300;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(155, 109, 255, 0.10);
-        }
-
-        .author-name {
-            font-weight: 500;
-            color: var(--text-primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .author-position {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            font-weight: 300;
-        }
-
-        /* Our Process Section */
-        .process {
-            padding: 8rem 2rem;
-            background: var(--darker-bg);
-        }
-
-        .process-grid {
-            max-width: 1400px;
-            margin: 4rem auto 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-        }
-
-        .process-step {
-            position: relative;
-            padding: 2.5rem;
-            background: var(--card-bg);
-            border-radius: 20px;
-            border: 1px solid rgba(155, 109, 255, 0.15);
-            transition: all 0.3s;
-        }
-
-        .process-step:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(123, 63, 255, 0.1);
-        }
-
-        .step-number {
-            font-size: 4rem;
-            font-weight: 800;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-            margin-bottom: 1.5rem;
-        }
-
-        .process-step h3 {
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .process-step p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            font-weight: 300;
-        }
-
-        /* About Section */
-        .about {
-            padding: 8rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: 3rem;
-            font-weight: 200;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.01em;
-        }
-
-        .about-text p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            font-weight: 300;
-        }
-
-        .founder-card {
-            background: var(--card-bg);
-            padding: 3rem;
-            border-radius: 24px;
-            border: 1px solid rgba(155, 109, 255, 0.15);
-        }
-
-        .founder-name {
-            font-size: 2rem;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
-        }
-
-        .founder-title {
-            color: var(--accent-pink);
-            font-size: 1.1rem;
-            font-weight: 300;
-            margin-bottom: 1.5rem;
-        }
-
-        .achievements {
-            list-style: none;
-            margin-top: 2rem;
-        }
-
-        .achievements li {
-            padding: 0.75rem 0;
-            padding-left: 2rem;
-            position: relative;
-            color: var(--text-secondary);
-            font-weight: 300;
-        }
-
-        .achievements li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--primary-purple);
-            font-weight: bold;
-        }
-
-        /* FAQ Section */
-        .faq {
-            padding: 8rem 2rem;
-            background: var(--darker-bg);
-        }
-
-        .faq-container {
-            max-width: 900px;
-            margin: 4rem auto 0;
-        }
-
-        .faq-item {
-            background: var(--card-bg);
-            border: 1px solid rgba(155, 109, 255, 0.15);
-            border-radius: 16px;
-            margin-bottom: 1.5rem;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .faq-item:hover {
-            border-color: var(--primary-purple);
-        }
-
-        .faq-item summary {
-            padding: 2rem;
-            font-size: 1.15rem;
-            font-weight: 500;
-            cursor: pointer;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text-primary);
-            transition: all 0.3s;
-        }
-
-        .faq-item summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .faq-item summary::after {
-            content: '+';
-            font-size: 1.5rem;
-            font-weight: 300;
-            color: var(--primary-purple);
-            transition: transform 0.3s;
-        }
-
-        .faq-item[open] summary::after {
-            transform: rotate(45deg);
-        }
-
-        .faq-item summary:hover {
-            color: var(--primary-purple);
-        }
-
-        .faq-item p {
-            padding: 0 2rem 2rem 2rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            font-weight: 300;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 8rem 2rem;
-            background: var(--darker-bg);
-            text-align: center;
-        }
-
-        .contact-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .contact h2 {
-            font-size: 3.5rem;
-            font-weight: 200;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.01em;
-        }
-
-        .contact p {
-            color: var(--text-secondary);
-            font-size: 1.25rem;
-            font-weight: 300;
-            margin-bottom: 3rem;
-        }
-
-        .contact-details {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .contact-item a {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 300;
-            transition: color 0.3s;
-        }
-
-        .contact-item a:hover {
-            color: var(--primary-purple);
-        }
-
-        /* Newsletter Section */
-        .newsletter {
-            padding: 6rem 2rem;
-            background: var(--gradient-1);
-            text-align: center;
-        }
-
-        .newsletter-content {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .newsletter h2 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .newsletter p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 1rem;
-            max-width: 500px;
-            margin: 0 auto 1rem;
-        }
-
-        .newsletter-form input {
-            background: rgba(255,255,255,0.08);
-            color: white;
-            flex: 1;
-            padding: 1rem 1.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-            outline: none;
-        }
-
-        .newsletter-form button {
-            white-space: nowrap;
-            background: var(--card-bg);
-            color: var(--primary-purple);
-        }
-
-        .newsletter-form button:hover {
-            background: rgba(26, 20, 48, 0.97);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-        }
-
-        .newsletter-privacy {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.7);
-            font-weight: 300;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--darker-bg);
-            padding: 3rem 2rem;
-            text-align: center;
-            border-top: 1px solid rgba(155, 109, 255, 0.10);
-        }
-
-        footer p {
-            color: var(--text-secondary);
-            font-weight: 300;
-        }
-
-        /* Hamburger Menu */
+            background: var(--g1); color: white; padding: 0.75rem 1.8rem;
+            border-radius: 50px; text-decoration: none; font-weight: 500;
+            font-size: 0.9rem; border: none; cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            transition: transform 0.3s, box-shadow 0.3s; display: inline-block;
+        }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(109,47,255,0.35); }
+        .cta-outline {
+            border: 2px solid var(--purple); color: var(--purple); background: transparent;
+            padding: 0.65rem 1.6rem; border-radius: 50px; text-decoration: none;
+            font-weight: 500; font-size: 0.9rem; cursor: pointer;
+            font-family: 'DM Sans', sans-serif; transition: all 0.3s; display: inline-block;
+        }
+        .cta-outline:hover { background: var(--purple); color: white; }
+
+        /* ===== HAMBURGER ===== */
         .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 8px;
-            background: none;
-            border: none;
-            z-index: 1001;
+            display: none; flex-direction: column; gap: 5px; cursor: pointer;
+            padding: 8px; background: none; border: none;
         }
-
         .hamburger span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--text-primary);
-            border-radius: 2px;
-            transition: all 0.3s ease;
-            transform-origin: center;
+            display: block; width: 24px; height: 2px; background: var(--ink);
+            border-radius: 2px; transition: all 0.3s ease; transform-origin: center;
         }
-
-        .hamburger.active span:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-            transform: scaleX(0);
-        }
-        .hamburger.active span:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
-        }
-
+        .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
         .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(13, 10, 26, 0.97);
-            backdrop-filter: blur(20px);
-            z-index: 999;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: rgba(255,255,255,0.99); backdrop-filter: blur(20px); z-index: 999;
+            flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
         }
-
-        .mobile-menu.active {
-            display: flex;
-        }
-
+        .mobile-menu.active { display: flex; }
         .mobile-menu a {
-            font-size: 2rem;
-            font-weight: 300;
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: color 0.3s;
+            font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 600;
+            color: var(--ink); text-decoration: none; transition: color 0.3s;
         }
+        .mobile-menu a:hover { color: var(--purple); }
+        .mobile-menu .cta-button { font-size: 1.25rem; color: white; margin-top: 1rem; }
 
-        .mobile-menu a:hover {
-            color: var(--primary-purple);
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh; background: var(--ink); position: relative;
+            overflow: hidden; display: flex; align-items: center;
         }
-
-        .mobile-menu .cta-button {
-            font-size: 1.25rem;
-            color: white;
-            margin-top: 1rem;
+        .hero-orb {
+            position: absolute; border-radius: 50%; filter: blur(80px);
+            opacity: 0.45; animation: orbFloat 8s ease-in-out infinite;
         }
+        .hero-orb-1 { width: 600px; height: 600px; background: var(--purple); top: -150px; right: -100px; animation-delay: 0s; }
+        .hero-orb-2 { width: 400px; height: 400px; background: var(--purple-mid); bottom: -100px; left: -80px; animation-delay: -3s; }
+        .hero-orb-3 { width: 300px; height: 300px; background: #3A10CC; top: 50%; left: 40%; animation-delay: -5s; opacity: 0.2; }
+        @keyframes orbFloat { 0%,100%{transform:translateY(0) scale(1);} 50%{transform:translateY(-30px) scale(1.05);} }
 
-        /* Hero image */
-        .hero-image-wrap {
-            margin-top: 4rem;
-            border-radius: 24px;
-            overflow: hidden;
-            max-height: 480px;
-            border: 1px solid rgba(0,0,0,0.07);
-            box-shadow: 0 20px 60px rgba(123,63,255,0.08);
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 60px 60px; z-index: 0;
         }
-
-        .hero-image-wrap img {
-            width: 100%;
-            height: 480px;
-            object-fit: cover;
-            display: block;
+        .hero-inner {
+            position: relative; z-index: 1; max-width: 1400px; margin: 0 auto;
+            padding: 10rem 2.5rem 6rem; display: grid;
+            grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; width: 100%;
         }
-
-        /* Section image strips */
-        .section-image {
-            width: 100%;
-            height: 360px;
-            object-fit: cover;
-            display: block;
-            border-radius: 20px;
-            margin: 3rem 0;
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(109,47,255,0.25); border: 1px solid rgba(109,47,255,0.4);
+            color: #C4A8FF; padding: 0.5rem 1.2rem; border-radius: 50px;
+            font-size: 0.85rem; font-weight: 500; margin-bottom: 1.75rem; backdrop-filter: blur(8px);
         }
-
-        .about-image {
-            width: 100%;
-            height: 320px;
-            object-fit: cover;
-            border-radius: 20px;
-            margin-bottom: 2rem;
-            display: block;
+        .hero-badge span { width: 6px; height: 6px; background: #C4A8FF; border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(1.5);} }
+        .hero h1 {
+            font-family: 'Syne', sans-serif; font-size: clamp(2.8rem, 5vw, 4.5rem);
+            font-weight: 800; line-height: 1.05; color: white; margin-bottom: 1.5rem; letter-spacing: -0.02em;
         }
-
-        /* Founder image */
-        .founder-img {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            object-position: center top;
-            border-radius: 16px;
-            margin-bottom: 1.5rem;
-            display: block;
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, #fff 0%, var(--purple-light) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-
-        /* Process images */
-        .process-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
+        .hero-subtitle {
+            font-size: 1.15rem; font-weight: 300; color: rgba(255,255,255,0.7);
+            margin-bottom: 2.5rem; max-width: 500px; line-height: 1.8;
         }
-
-        /* Case study banner images */
-        .case-study-banner {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            display: block;
+        .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+        .hero-cta-secondary {
+            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2);
+            color: white; padding: 0.75rem 1.8rem; border-radius: 50px; font-weight: 400;
+            font-size: 0.9rem; cursor: pointer; font-family: 'DM Sans', sans-serif;
+            transition: all 0.3s; text-decoration: none; backdrop-filter: blur(8px);
         }
-
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            nav > .cta-button {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .contact h2 {
-                font-size: 2.5rem;
-            }
-
-            .contact-details {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-
-            .process-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .benefit-item {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .newsletter h2 {
-                font-size: 1.75rem;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-            }
-
-            .hero {
-                padding: 8rem 1.25rem 4rem;
-            }
-
-            .hero-image-wrap img {
-                height: 240px;
-            }
-
-            .hero-image-wrap {
-                margin-top: 2.5rem;
-            }
-
-            .services {
-                padding: 5rem 1.25rem;
-            }
-
-            .why-choose, .clients, .case-studies, .testimonials,
-            .process, .about, .faq, .contact, .newsletter {
-                padding: 5rem 1.25rem;
-            }
-
-            .case-study-header {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .case-study-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .stat-number {
-                font-size: 2rem;
-            }
-
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .section-title {
-                font-size: 1.9rem;
-            }
-
-            .about-text h2 {
-                font-size: 2rem;
-            }
-
-            .contact h2 {
-                font-size: 2rem;
-            }
-
-            .section-image {
-                height: 220px;
-            }
-
-            .case-study-banner {
-                height: 160px;
-            }
-
-            nav {
-                padding: 1rem 1.25rem;
-            }
+        .hero-cta-secondary:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.4); }
+        .hero-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+        .hero-metric {
+            text-align: center; padding: 1.25rem 0.75rem;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px; backdrop-filter: blur(8px); transition: all 0.3s;
         }
-
-        @media (max-width: 480px) {
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .services-grid,
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                font-size: 1.9rem;
-            }
+        .hero-metric:hover { background: rgba(109,47,255,0.2); border-color: rgba(109,47,255,0.4); transform: translateY(-4px); }
+        .hero-metric-num {
+            font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 700;
+            color: white; line-height: 1.1;
         }
-
-
-        /* Contact Popup Modal */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(26, 26, 46, 0.65);
-            backdrop-filter: blur(6px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
+        .hero-metric-label { font-size: 0.78rem; color: rgba(255,255,255,0.55); margin-top: 0.25rem; font-weight: 400; }
+        .hero-visual { position: relative; }
+        .hero-img-main { width: 100%; height: 520px; object-fit: cover; border-radius: 24px; display: block; box-shadow: 0 40px 80px rgba(0,0,0,0.4); }
+        .hero-img-badge {
+            position: absolute; bottom: -20px; left: -20px; background: white;
+            border-radius: 20px; padding: 1.25rem 1.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            display: flex; align-items: center; gap: 0.75rem; min-width: 200px;
         }
-
-        .modal-overlay.active {
-            display: flex;
+        .hero-img-badge .badge-icon {
+            width: 44px; height: 44px; background: var(--g1); border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;
         }
-
-        .modal-box {
-            background: var(--card-bg);
-            border-radius: 28px;
-            padding: 3rem;
-            max-width: 560px;
-            width: 100%;
-            position: relative;
-            box-shadow: 0 30px 80px rgba(123, 63, 255, 0.2);
-            animation: modalIn 0.35s cubic-bezier(0.4,0,0.2,1);
+        .hero-img-badge .badge-label { font-size: 0.75rem; color: var(--text-off); font-weight: 400; }
+        .hero-img-badge .badge-value { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); }
+        .hero-img-badge2 {
+            position: absolute; top: 20px; right: -16px; background: var(--ink-mid);
+            border: 1px solid rgba(109,47,255,0.3); border-radius: 16px;
+            padding: 1rem 1.25rem; box-shadow: 0 16px 40px rgba(0,0,0,0.3);
         }
+        .hero-img-badge2 .b2-label { font-size: 0.72rem; color: rgba(255,255,255,0.5); margin-bottom: 0.3rem; }
+        .hero-img-badge2 .b2-value { font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 700; color: white; }
+        .hero-img-badge2 .b2-sub { font-size: 0.72rem; color: var(--purple-light); margin-top: 0.15rem; }
 
-        @keyframes modalIn {
-            from { opacity: 0; transform: translateY(30px) scale(0.97); }
-            to   { opacity: 1; transform: translateY(0) scale(1); }
+        /* ===== NARRATIVE ===== */
+        .narrative { padding: 8rem 2.5rem; background: var(--ink); position: relative; overflow: hidden; }
+        .narrative::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(109,47,255,0.15) 0%, transparent 70%);
         }
-
-        .modal-close {
-            position: absolute;
-            top: 1.25rem;
-            right: 1.5rem;
-            background: none;
-            border: none;
-            font-size: 1.6rem;
-            cursor: pointer;
-            color: var(--text-secondary);
-            line-height: 1;
-            transition: color 0.2s;
+        .narrative-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+        .narrative-label { text-align: center; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--purple-mid); margin-bottom: 1rem; font-weight: 500; }
+        .narrative h2 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; color: white; text-align: center; margin-bottom: 1.5rem; line-height: 1.15; }
+        .narrative h2 em { font-style: normal; background: linear-gradient(135deg, #fff 0%, var(--purple-light) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .narrative-sub { text-align: center; color: rgba(255,255,255,0.6); font-size: 1.1rem; max-width: 600px; margin: 0 auto 5rem; }
+        .narrative-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; align-items: center; position: relative; }
+        .narrative-step { text-align: center; padding: 2rem 1rem; }
+        .narrative-step-icon {
+            width: 64px; height: 64px; margin: 0 auto 1.25rem;
+            background: rgba(109,47,255,0.2); border: 1px solid rgba(109,47,255,0.35);
+            border-radius: 20px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem; transition: all 0.4s;
         }
+        .narrative-step:hover .narrative-step-icon { background: rgba(109,47,255,0.4); transform: translateY(-6px); box-shadow: 0 16px 40px rgba(109,47,255,0.3); }
+        .narrative-step h3 { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 600; color: white; margin-bottom: 0.5rem; }
+        .narrative-step p { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+        .narrative-arrow { text-align: center; color: var(--purple-mid); font-size: 1.5rem; opacity: 0.7; }
 
-        .modal-close:hover { color: var(--primary-purple); }
-
-        .modal-box h2 {
-            font-size: 1.9rem;
-            font-weight: 300;
-            margin-bottom: 0.5rem;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        /* ===== SERVICES ===== */
+        .services { padding: 8rem 2.5rem; background: #fff; }
+        .section-label { text-align: center; font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--purple); margin-bottom: 0.75rem; font-weight: 500; }
+        .section-title { font-family: 'Syne', sans-serif; text-align: center; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.01em; color: var(--ink); }
+        .section-subtitle { text-align: center; color: var(--text-off); font-size: 1.1rem; font-weight: 300; margin-bottom: 4rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .services-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.75rem; }
+        .service-card {
+            background: #fff; border-radius: 20px; border: 1px solid rgba(0,0,0,0.07);
+            overflow: hidden; transition: all 0.35s cubic-bezier(0.4,0,0.2,1); position: relative;
         }
-
-        .modal-box p.modal-sub {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
+        .service-card:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(109,47,255,0.14); border-color: rgba(109,47,255,0.2); }
+        .service-img { width: 100%; height: 180px; object-fit: cover; display: block; }
+        .service-body { padding: 1.75rem; }
+        .service-tag {
+            display: inline-block; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--purple); background: var(--mist);
+            padding: 0.3rem 0.8rem; border-radius: 50px; margin-bottom: 0.85rem;
         }
+        .service-card h3 { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--ink); }
+        .service-card p { color: var(--text-off); font-size: 0.92rem; line-height: 1.75; font-weight: 300; }
 
-        .modal-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
+        /* ===== WHY CHOOSE ===== */
+        .why-choose { padding: 8rem 2.5rem; background: var(--ink); position: relative; overflow: hidden; }
+        .why-choose::before { content: ''; position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(109,47,255,0.2) 0%, transparent 70%); top: -100px; right: -100px; pointer-events: none; }
+        .why-choose .section-title { color: white; }
+        .why-choose .section-subtitle { color: rgba(255,255,255,0.55); }
+        .benefits-slider-wrap { position: relative; overflow: hidden; margin-top: 3rem; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .benefits-track { display: flex; transition: transform 0.55s cubic-bezier(0.4,0,0.2,1); }
+        .benefit-item { min-width: 100%; display: flex; gap: 2rem; align-items: start; padding: 3rem; background: rgba(255,255,255,0.05); border-radius: 24px; border: 1px solid rgba(109,47,255,0.2); backdrop-filter: blur(8px); }
+        .benefit-icon { font-size: 2.2rem; flex-shrink: 0; width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; background: rgba(109,47,255,0.2); border: 1px solid rgba(109,47,255,0.3); border-radius: 20px; }
+        .benefit-content h3 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.75rem; color: white; }
+        .benefit-content p { color: rgba(255,255,255,0.6); line-height: 1.75; font-size: 1rem; }
+        .slider-controls { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: 2rem; }
+        .slider-btn { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.07); color: white; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+        .slider-btn:hover { background: var(--purple); border-color: var(--purple); }
+        .slider-dots { display: flex; gap: 8px; }
+        .slider-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.25); cursor: pointer; transition: all 0.3s; border: none; padding: 0; }
+        .slider-dot.active { background: var(--purple-mid); width: 24px; border-radius: 4px; }
 
-        .modal-form input,
-        .modal-form textarea,
-        .modal-form select {
-            width: 100%;
-            padding: 0.9rem 1.25rem;
-            border: 1.5px solid rgba(155, 109, 255, 0.2);
-            border-radius: 12px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            color: var(--text-primary);
-            background: var(--darker-bg);
-            outline: none;
-            transition: border-color 0.3s;
-        }
+        /* ===== CLIENTS ===== */
+        .clients { padding: 7rem 0; overflow: hidden; background: #fff; }
+        .clients .section-title, .clients .section-subtitle { padding: 0 2.5rem; }
+        .clients-marquee { margin-top: 3.5rem; overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%); }
+        .clients-track { display: flex; gap: 1.5rem; width: max-content; animation: marquee-scroll 30s linear infinite; }
+        .clients-track:hover { animation-play-state: paused; }
+        @keyframes marquee-scroll { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+        .client-card { background: #fff; padding: 1.75rem 1.5rem; border-radius: 16px; border: 1px solid rgba(0,0,0,0.06); text-align: center; transition: all 0.35s; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; min-height: 120px; min-width: 170px; flex-shrink: 0; }
+        .client-card:hover { transform: translateY(-5px); border-color: var(--purple); box-shadow: 0 16px 40px rgba(109,47,255,0.12); }
+        .client-logo { width: 100%; max-width: 110px; height: 48px; object-fit: contain; display: block; margin: 0 auto; }
+        .client-name { font-size: 1rem; font-weight: 600; color: var(--ink); letter-spacing: 0.01em; }
+        .client-type { color: var(--text-off); font-size: 0.74rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.08em; }
 
-        .modal-form input:focus,
-        .modal-form textarea:focus,
-        .modal-form select:focus {
-            border-color: var(--primary-purple);
-            background: var(--card-bg);
-        }
+        /* ===== CASE STUDIES ===== */
+        .case-studies { padding: 8rem 2.5rem; background: var(--mist); }
+        .case-tabs { max-width: 900px; margin: 3.5rem auto 0; }
+        .case-tab-nav { display: flex; gap: 0.5rem; margin-bottom: 2.5rem; background: rgba(109,47,255,0.07); border-radius: 50px; padding: 0.4rem; }
+        .case-tab-btn { flex: 1; padding: 0.7rem 1.2rem; border: none; border-radius: 50px; background: transparent; color: var(--text-off); font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 500; cursor: pointer; transition: all 0.3s; text-align: center; }
+        .case-tab-btn.active { background: var(--purple); color: white; box-shadow: 0 8px 20px rgba(109,47,255,0.3); }
+        .case-panel { display: none; }
+        .case-panel.active { display: block; }
+        .case-card-full { background: white; border-radius: 24px; overflow: hidden; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 8px 40px rgba(109,47,255,0.06); }
+        .case-card-img { width: 100%; height: 200px; object-fit: cover; object-position: center 20%; display: block; }
+        .case-card-body { padding: 2.5rem; }
+        .case-card-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .case-tag { background: var(--purple); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.75rem; font-weight: 500; }
+        .case-industry { font-size: 0.82rem; color: var(--text-off); background: var(--mist); padding: 0.3rem 1rem; border-radius: 50px; }
+        .case-card-body h3 { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem; color: var(--ink); }
+        .case-card-body p { color: var(--text-off); line-height: 1.8; margin-bottom: 2rem; font-size: 0.96rem; }
+        .case-metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.06); }
+        .case-metric { text-align: center; }
+        .case-metric-val { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 700; background: var(--g1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .case-metric-label { font-size: 0.78rem; color: var(--text-off); margin-top: 0.25rem; }
 
+        /* ===== TESTIMONIALS ===== */
+        .testimonials { padding: 8rem 2.5rem; background: #fff; }
+        .testimonials-grid { max-width: 1200px; margin: 4rem auto 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+        .testimonial-card { background: var(--mist); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(109,47,255,0.1); position: relative; transition: all 0.3s; }
+        .testimonial-card:hover { transform: translateY(-8px); border-color: var(--purple); box-shadow: 0 20px 50px rgba(109,47,255,0.1); }
+        .quote-mark { font-family: Georgia, serif; font-size: 5rem; line-height: 0.6; color: var(--purple); opacity: 0.2; margin-bottom: 1rem; }
+        .testimonial-text { color: var(--text-off); line-height: 1.8; margin-bottom: 2rem; font-size: 0.98rem; }
+        .testimonial-author { display: flex; align-items: center; gap: 0.75rem; padding-top: 1.25rem; border-top: 1px solid rgba(0,0,0,0.06); }
+        .author-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--g1); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem; flex-shrink: 0; }
+        .author-name { font-weight: 600; font-size: 0.9rem; color: var(--ink); }
+        .author-position { font-size: 0.8rem; color: var(--text-off); }
+
+        /* ===== PROCESS ===== */
+        .process { padding: 8rem 2.5rem; background: var(--ink); }
+        .process .section-title { color: white; }
+        .process .section-subtitle { color: rgba(255,255,255,0.5); }
+        .process-timeline { max-width: 1200px; margin: 4rem auto 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; position: relative; }
+        .process-timeline::before { content: ''; position: absolute; top: 40px; left: calc(12.5% + 16px); right: calc(12.5% + 16px); height: 1px; background: linear-gradient(90deg, var(--purple), var(--purple-mid)); opacity: 0.4; }
+        .process-step { position: relative; padding: 2rem 1.5rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; transition: all 0.35s; text-align: center; }
+        .process-step:hover { background: rgba(109,47,255,0.15); border-color: rgba(109,47,255,0.3); transform: translateY(-6px); }
+        .process-num { font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; color: var(--purple-mid); background: rgba(109,47,255,0.15); border-radius: 50px; padding: 0.25rem 0.8rem; display: inline-block; margin-bottom: 1.25rem; }
+        .process-step h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 600; color: white; margin-bottom: 0.75rem; }
+        .process-step p { color: rgba(255,255,255,0.5); font-size: 0.85rem; line-height: 1.7; }
+        .process-step-icon { font-size: 1.75rem; margin-bottom: 1rem; }
+
+        /* ===== ABOUT ===== */
+        .about { padding: 8rem 2.5rem; background: #fff; }
+        .about-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+        .about-img-wrap { position: relative; }
+        .about-img-main { width: 100%; height: 480px; object-fit: cover; border-radius: 24px; display: block; }
+        .founder-card { position: absolute; bottom: -24px; right: -24px; background: var(--ink); border: 1px solid rgba(109,47,255,0.3); border-radius: 20px; padding: 1.5rem; max-width: 240px; box-shadow: 0 24px 60px rgba(0,0,0,0.25); }
+        .founder-name { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: white; margin-bottom: 0.25rem; }
+        .founder-title { font-size: 0.78rem; color: var(--purple-light); margin-bottom: 1rem; }
+        .achievements { list-style: none; }
+        .achievements li { padding: 0.4rem 0 0.4rem 1.5rem; position: relative; color: rgba(255,255,255,0.6); font-size: 0.8rem; }
+        .achievements li::before { content: '→'; position: absolute; left: 0; color: var(--purple-mid); }
+
+        /* ===== LEAD MAGNET ===== */
+        .lead-magnet { padding: 6rem 2.5rem; background: var(--mist); }
+        .lead-magnet-inner { max-width: 900px; margin: 0 auto; background: var(--ink); border-radius: 28px; padding: 4rem; position: relative; overflow: hidden; display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center; }
+        .lead-magnet-inner::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(109,47,255,0.25) 0%, rgba(139,71,255,0.1) 100%); }
+        .lead-magnet-content { position: relative; z-index: 1; }
+        .lead-magnet h2 { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 700; color: white; margin-bottom: 0.75rem; line-height: 1.2; }
+        .lead-magnet p { color: rgba(255,255,255,0.65); margin-bottom: 0.25rem; font-size: 0.98rem; }
+        .lead-magnet-cta { position: relative; z-index: 1; flex-shrink: 0; }
+        .lead-magnet-form { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+        .lead-magnet-form input { flex: 1; padding: 0.85rem 1.25rem; border: 1px solid rgba(255,255,255,0.15); border-radius: 50px; background: rgba(255,255,255,0.08); color: white; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; outline: none; transition: border-color 0.3s; backdrop-filter: blur(8px); }
+        .lead-magnet-form input::placeholder { color: rgba(255,255,255,0.4); }
+        .lead-magnet-form input:focus { border-color: var(--purple-mid); }
+
+        /* ===== FAQ ===== */
+        .faq { padding: 8rem 2.5rem; background: #fff; }
+        .faq-container { max-width: 800px; margin: 3.5rem auto 0; }
+        .faq-item { background: var(--mist); border: 1px solid rgba(109,47,255,0.1); border-radius: 16px; margin-bottom: 1rem; overflow: hidden; transition: all 0.3s; }
+        .faq-item:hover { border-color: var(--purple); }
+        .faq-item summary { padding: 1.75rem 2rem; font-size: 1rem; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--ink); font-family: 'Syne', sans-serif; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.4rem; color: var(--purple); transition: transform 0.3s; font-family: 'DM Sans', sans-serif; font-weight: 300; }
+        .faq-item[open] summary::after { transform: rotate(45deg); }
+        .faq-item p { padding: 0 2rem 1.75rem; color: var(--text-off); line-height: 1.8; font-size: 0.95rem; }
+
+        /* ===== CONTACT ===== */
+        .contact { padding: 8rem 2.5rem; background: var(--mist); text-align: center; }
+        .contact-content { max-width: 800px; margin: 0 auto; }
+        .contact h2 { font-family: 'Syne', sans-serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1.25rem; letter-spacing: -0.01em; }
+        .contact p { color: var(--text-off); font-size: 1.15rem; margin-bottom: 2.5rem; }
+        .contact-details { display: flex; justify-content: center; gap: 3rem; margin-top: 3rem; flex-wrap: wrap; }
+        .contact-item { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
+        .contact-item-label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-off); }
+        .contact-item a { color: var(--ink); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .contact-item a:hover { color: var(--purple); }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter { padding: 6rem 2.5rem; background: var(--ink); text-align: center; position: relative; overflow: hidden; }
+        .newsletter::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(109,47,255,0.3) 0%, transparent 70%); }
+        .newsletter-content { max-width: 600px; margin: 0 auto; position: relative; z-index: 1; }
+        .newsletter h2 { font-family: 'Syne', sans-serif; font-size: 2.25rem; font-weight: 700; color: white; margin-bottom: 1rem; }
+        .newsletter p { color: rgba(255,255,255,0.7); margin-bottom: 2rem; }
+        .newsletter-form { display: flex; gap: 0.75rem; max-width: 460px; margin: 0 auto 1rem; }
+        .newsletter-form input { flex: 1; padding: 1rem 1.5rem; border: 1px solid rgba(255,255,255,0.15); border-radius: 50px; font-size: 0.95rem; font-family: 'DM Sans', sans-serif; outline: none; background: rgba(255,255,255,0.08); color: white; }
+        .newsletter-form input::placeholder { color: rgba(255,255,255,0.4); }
+        .newsletter-form button { white-space: nowrap; background: white; color: var(--purple); font-weight: 600; }
+        .newsletter-form button:hover { background: rgba(255,255,255,0.9); transform: translateY(-2px); }
+        .newsletter-privacy { font-size: 0.8rem; color: rgba(255,255,255,0.45); }
+
+        /* ===== FOOTER ===== */
+        footer { background: #000; padding: 3rem 2.5rem; text-align: center; }
+        footer p { color: rgba(255,255,255,0.35); font-size: 0.87rem; }
+
+        /* ===== MODAL ===== */
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(13,11,30,0.7); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; padding: 1.5rem; }
+        .modal-overlay.active { display: flex; }
+        .modal-box { background: #fff; border-radius: 28px; padding: 3rem; max-width: 540px; width: 100%; position: relative; box-shadow: 0 40px 100px rgba(109,47,255,0.25); animation: modalIn 0.35s cubic-bezier(0.4,0,0.2,1); }
+        @keyframes modalIn { from{opacity:0;transform:translateY(30px) scale(0.97);} to{opacity:1;transform:translateY(0) scale(1);} }
+        .modal-close { position: absolute; top: 1.25rem; right: 1.5rem; background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--text-off); transition: color 0.2s; }
+        .modal-close:hover { color: var(--purple); }
+        .modal-box h2 { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; background: var(--g1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .modal-box p.modal-sub { color: var(--text-off); font-size: 0.92rem; margin-bottom: 1.75rem; }
+        .modal-form { display: flex; flex-direction: column; gap: 1rem; }
+        .modal-form input, .modal-form textarea, .modal-form select { width: 100%; padding: 0.9rem 1.25rem; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 0.93rem; color: var(--ink); background: var(--mist); outline: none; transition: border-color 0.3s; }
+        .modal-form input:focus, .modal-form textarea:focus, .modal-form select:focus { border-color: var(--purple); background: #fff; }
         .modal-form textarea { resize: vertical; min-height: 110px; }
+        .modal-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .modal-submit { background: var(--g1); color: white; padding: 1rem 2rem; border-radius: 50px; border: none; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 500; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; margin-top: 0.5rem; }
+        .modal-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(109,47,255,0.3); }
+        .modal-submit:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+        .form-success { display: none; text-align: center; padding: 2rem 0; }
+        .form-success .success-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+        .form-success h3 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .form-success p { color: var(--text-off); }
 
-        .modal-form .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+            .hero-visual { display: none; }
+            .hero-metrics { grid-template-columns: repeat(2, 1fr); }
+            .about-inner { grid-template-columns: 1fr; }
+            .about-img-wrap { display: none; }
+            .founder-card { position: static; max-width: none; }
+            .narrative-steps { grid-template-columns: 1fr; }
+            .narrative-arrow { display: none; }
+            .process-timeline { grid-template-columns: repeat(2, 1fr); }
+            .process-timeline::before { display: none; }
         }
-
-        .modal-submit {
-            background: var(--gradient-1);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            border: none;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            margin-top: 0.5rem;
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links { display: none; }
+            nav > .cta-button { display: none; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero-metrics { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+            .section-title { font-size: 1.9rem; }
+            .contact h2 { font-size: 2rem; }
+            .contact-details { flex-direction: column; gap: 1.5rem; }
+            .newsletter-form { flex-direction: column; }
+            .benefit-item { flex-direction: column; }
+            .lead-magnet-inner { grid-template-columns: 1fr; gap: 2rem; }
+            .lead-magnet-form { flex-direction: column; }
+            .case-tab-nav { flex-wrap: wrap; }
+            .case-metrics-row { grid-template-columns: repeat(3, 1fr); }
+            nav { padding: 1rem 1.25rem; }
         }
-
-        .modal-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(123, 63, 255, 0.3);
-        }
-
-        .modal-submit:disabled {
-            opacity: 0.65;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .form-success {
-            display: none;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        .form-success .success-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .form-success h3 {
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-success p { color: var(--text-secondary); font-weight: 300; }
-
         @media (max-width: 480px) {
+            .hero-metrics { grid-template-columns: repeat(2, 1fr); }
+            .services-grid, .testimonials-grid { grid-template-columns: 1fr; }
             .modal-box { padding: 2rem 1.5rem; }
             .modal-form .form-row { grid-template-columns: 1fr; }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease-out;
+            .process-timeline { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <a href="/" class="logo" aria-label="Latitude Digital - Home">
-                <!-- 📌 REPLACE src below with your actual logo image path, e.g. src="images/logo.png" -->
-                <img 
-                    src="/images/Revision2(png).png" 
-                    alt="Latitude Digital Logo"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-                />
-                <span class="logo-fallback" style="display:none;">Latitude</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#clients">Clients</a></li>
-                <li><a href="#case-studies">Work</a></li>
-                <li><a href="#about">About</a></li>
-                 <li><a href="/blog">Blog</a></li>
-            </ul>
-            <button onclick="openContactModal()" class="cta-button" style="display: inline-block; margin-bottom: 2rem; border: none; cursor: pointer; font-family: inherit; font-size: 1rem;">Get Started</button>
-            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </nav>
-    </header>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#services" class="mobile-nav-link">Services</a>
-        <a href="#clients" class="mobile-nav-link">Clients</a>
-        <a href="#case-studies" class="mobile-nav-link">Work</a>
-        <a href="#about" class="mobile-nav-link">About</a>
-        <a href="#contact" class="cta-button mobile-nav-link">Get Started</a>
-        <a href="/blog" class="mobile-nav-link">Blog</a>
+<!-- ===== HEADER ===== -->
+<header id="mainHeader">
+    <nav>
+        <a href="/" class="logo" aria-label="Latitude Digital - Home">
+            <img src="images/logo2.png" alt="Latitude Digital Logo"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+            <span class="logo-fallback" style="display:none;">Latitude</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#clients">Clients</a></li>
+            <li><a href="#case-studies">Work</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="/blog">Blog</a></li>
+        </ul>
+        <button onclick="openContactModal()" class="cta-button" style="border:none;">Get Started</button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#services" class="mobile-nav-link">Services</a>
+    <a href="#clients" class="mobile-nav-link">Clients</a>
+    <a href="#case-studies" class="mobile-nav-link">Work</a>
+    <a href="#about" class="mobile-nav-link">About</a>
+    <a href="/blog" class="mobile-nav-link">Blog</a>
+    <button onclick="openContactModal(); document.getElementById('hamburger').classList.remove('active'); document.getElementById('mobileMenu').classList.remove('active');" class="cta-button" style="border:none;">Get Started</button>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="hero-inner">
+        <div class="hero-left">
+            <div class="hero-badge">
+                <span></span>  3X Market Impact
+            </div>
+            <h1>
+                AI-Driven<br>
+                <span class="gradient-text">Growth Marketing</span><br>
+                for Africa.
+            </h1>
+            <div class="hero-ctas">
+                <button onclick="openContactModal()" class="cta-button" style="border:none; font-size:1rem; padding: 0.9rem 2.2rem;">Start Your Journey</button>
+                <a href="#case-studies" class="hero-cta-secondary">See Our Work →</a>
+            </div>
+            <div class="hero-metrics">
+                <div class="hero-metric">
+                    <div class="hero-metric-num">10+</div>
+                    <div class="hero-metric-label">Years Experience</div>
+                </div>
+                <div class="hero-metric">
+                    <div class="hero-metric-num">120+</div>
+                    <div class="hero-metric-label">Clients Served</div>
+                </div>
+                <div class="hero-metric">
+                    <div class="hero-metric-num">200+</div>
+                    <div class="hero-metric-label">Projects Delivered</div>
+                </div>
+                <div class="hero-metric">
+                    <div class="hero-metric-num">3X</div>
+                    <div class="hero-metric-label">Revenue Growth</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <img src="images/advisory-board-members-team-leaders-gathering-review-project-outcomes.jpg" alt="Latitude Digital team collaborating on growth strategy" class="hero-img-main"/>
+            <div class="hero-img-badge">
+                <div class="badge-icon">📈</div>
+                <div>
+                    <div class="badge-label">Avg. Client Growth</div>
+                    <div class="badge-value">3X Revenue</div>
+                </div>
+            </div>
+            <div class="hero-img-badge2">
+                <div class="b2-label">CAC Reduction</div>
+                <div class="b2-value">−25%</div>
+                <div class="b2-sub">↑ via AI Optimization</div>
+            </div>
+        </div>
     </div>
+</section>
 
-    <!-- Hero Section -->
-    <section class="hero fade-in-up">
-        <div class="hero-content">
-            <div class="impact-badge">🚀 3X Market Impact</div>
-            <h1>AI-Driven Growth Marketing for Africa</h1>
-            <p class="hero-subtitle">Empowering businesses with data-driven, culturally relevant campaigns that deliver measurable results across Kenya and beyond.</p>
-            <button onclick="openContactModal()" class="cta-button" style="border:none;cursor:pointer;font-family:inherit;font-size:1rem;">Start Your Growth Journey</button>
+<!-- ===== SCROLL NARRATIVE ===== -->
+<section class="narrative">
+    <div class="narrative-inner">
+        <p class="narrative-label reveal">Our Approach</p>
+        <h2 class="reveal">From <em>Problem</em> to <em>Growth</em> — in 5 steps</h2>
+        <p class="narrative-sub reveal">We guide every client through a proven narrative journey that turns insight into revenue.</p>
+        <div class="narrative-steps">
+            <div class="narrative-step reveal" style="transition-delay:0.05s">
+                <div class="narrative-step-icon">🔍</div>
+                <h3>Problem</h3>
+                <p>Understand your unique market challenge & growth blockers</p>
+            </div>
+            <div class="narrative-arrow reveal" style="transition-delay:0.1s">→</div>
+            <div class="narrative-step reveal" style="transition-delay:0.15s">
+                <div class="narrative-step-icon">💡</div>
+                <h3>Insight</h3>
+                <p>AI-powered data reveals your winning opportunity</p>
+            </div>
+            <div class="narrative-arrow reveal" style="transition-delay:0.2s">→</div>
+            <div class="narrative-step reveal" style="transition-delay:0.25s">
+                <div class="narrative-step-icon">⚡</div>
+                <h3>Solution</h3>
+                <p>Custom growth strategy built for your brand and audience</p>
+            </div>
+            <div class="narrative-arrow reveal" style="transition-delay:0.3s">→</div>
+            <div class="narrative-step reveal" style="transition-delay:0.35s">
+                <div class="narrative-step-icon">📊</div>
+                <h3>Evidence</h3>
+                <p>Measurable KPIs tracked in real time with full transparency</p>
+            </div>
+            <div class="narrative-arrow reveal" style="transition-delay:0.4s">→</div>
+            <div class="narrative-step reveal" style="transition-delay:0.45s">
+                <div class="narrative-step-icon">🚀</div>
+                <h3>Conversion</h3>
+                <p>Trust built, visitors turned into loyal paying clients</p>
+            </div>
         </div>
+    </div>
+</section>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-number">10+</div>
-                <div class="stat-label">Years Experience</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">120+</div>
-                <div class="stat-label">Clients Served</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">200+</div>
-                <div class="stat-label">Projects Delivered</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">3X</div>
-                <div class="stat-label">Revenue Growth</div>
-            </div>
-        </div>
-        <div class="hero-image-wrap">
-            <img 
-                src="images/girls.png" 
-                alt="Diverse professional team collaborating on digital marketing strategy"
-                loading="lazy"
-            />
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <h2 class="section-title">Our Services</h2>
-        <p class="section-subtitle">Comprehensive digital solutions powered by AI and data insights</p>
-        
-        <div class="services-grid">
-            <div class="service-card">
-                <img class="service-icon" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&auto=format&fit=crop&q=80" alt="AI-Driven Marketing" loading="lazy">
+<!-- ===== SERVICES ===== -->
+<section id="services" class="services">
+    <p class="section-label reveal">What We Do</p>
+    <h2 class="section-title reveal">Our Services</h2>
+    <p class="section-subtitle reveal">Comprehensive AI-powered growth solutions tailored for ambitious African brands.</p>
+    <div class="services-grid">
+        <div class="service-card reveal" style="transition-delay:0.05s">
+            <img class="service-img" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&auto=format&fit=crop&q=80" alt="AI-Driven Marketing" loading="lazy">
+            <div class="service-body">
+                <span class="service-tag">AI-Powered</span>
                 <h3>AI-Driven Marketing</h3>
-                <p>Leverage cutting-edge AI technology to optimize campaigns, reduce customer acquisition costs by 25%, and drive 2-5X growth in lead generation.</p>
+                <p>Leverage cutting-edge AI to optimize campaigns, reduce CAC by 25%, and drive 2–5X growth in lead generation.</p>
             </div>
-
-            <div class="service-card">
-                <img class="service-icon" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80" alt="Digital Strategy" loading="lazy">
+        </div>
+        <div class="service-card reveal" style="transition-delay:0.1s">
+            <img class="service-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80" alt="Digital Strategy" loading="lazy">
+            <div class="service-body">
+                <span class="service-tag">Strategy</span>
                 <h3>Digital Strategy</h3>
-                <p>Data-driven strategies tailored to your market, ensuring culturally relevant campaigns that resonate with your target audience.</p>
+                <p>Data-driven strategies tailored to your market, ensuring culturally relevant campaigns that resonate.</p>
             </div>
-
-            <div class="service-card">
-                <img class="service-icon" src="images/people-working-elegant-cozy-office.jpg" alt="Brand Management" loading="lazy">
+        </div>
+        <div class="service-card reveal" style="transition-delay:0.15s">
+            <img class="service-img" src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&auto=format&fit=crop&q=80" alt="Brand Management" loading="lazy">
+            <div class="service-body">
+                <span class="service-tag">Branding</span>
                 <h3>Brand Management & Strategy</h3>
-                <p>Comprehensive brand development from positioning to identity, ensuring consistent messaging across all touchpoints that builds lasting brand equity.</p>
+                <p>Comprehensive brand development from positioning to identity — consistent messaging that builds lasting equity.</p>
             </div>
-
-            <div class="service-card">
-                <img class="service-icon" src="images/advisory-board-members-team-leaders-gathering-review-project-outcomes.jpg" alt="Campaign Management" loading="lazy">
+        </div>
+        <div class="service-card reveal" style="transition-delay:0.2s">
+            <img class="service-img" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&auto=format&fit=crop&q=80" alt="Campaign Management" loading="lazy">
+            <div class="service-body">
+                <span class="service-tag">Campaigns</span>
                 <h3>Campaign Management</h3>
-                <p>End-to-end campaign execution across multiple channels with real-time optimization, performance tracking, and measurable ROI.</p>
+                <p>End-to-end campaign execution across channels with real-time optimization and measurable ROI.</p>
             </div>
-
-            <div class="service-card">
-                <img class="service-icon" src="images/dynamic-data-visualization-3d.jpg" alt="Growth Hacking" loading="lazy">
+        </div>
+        <div class="service-card reveal" style="transition-delay:0.25s">
+            <img class="service-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80" alt="Growth Hacking" loading="lazy">
+            <div class="service-body">
+                <span class="service-tag">Growth</span>
                 <h3>Growth Hacking</h3>
-                <p>Rapid experimentation across marketing channels to identify the most effective ways to grow your business exponentially.</p>
+                <p>Rapid experimentation across channels to identify the most effective ways to grow your business exponentially.</p>
             </div>
-
-            <div class="service-card">
-                <img class="service-icon" src="images/teleworking-woman-living-room-office-using-chroma-key-laptop.jpg" alt="Content Marketing" loading="lazy">
+        </div>
+        <div class="service-card reveal" style="transition-delay:0.3s">
+            <img class="service-img" src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&auto=format&fit=crop&q=80" alt="Content Marketing" loading="lazy">
+            <div class="service-body">
+                <span class="service-tag">Content</span>
                 <h3>Content Marketing</h3>
                 <p>Compelling content that tells your story, builds community, and drives engagement across all digital platforms.</p>
             </div>
-
-            <div class="service-card">
-                <img class="service-icon" src="images/socialmedia.jpg" alt="Social Media Management" loading="lazy">
+        </div>
+        <div class="service-card reveal" style="transition-delay:0.35s">
+            <img class="service-img" src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&auto=format&fit=crop&q=80" alt="Social Media Management" loading="lazy">
+            <div class="service-body">
+                <span class="service-tag">Social</span>
                 <h3>Social Media Management</h3>
-                <p>Strategic social media campaigns that increase visibility, engagement, and build lasting relationships with your audience.</p>
+                <p>Strategic social campaigns that increase visibility, engagement, and build lasting audience relationships.</p>
             </div>
-
-            <div class="service-card">
-                <img class="service-icon" src="images/coding.jpg" alt="Web & App Development" loading="lazy">
+        </div>
+        <div class="service-card reveal" style="transition-delay:0.4s">
+            <img class="service-img" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=80" alt="Web & App Development" loading="lazy">
+            <div class="service-body">
+                <span class="service-tag">Development</span>
                 <h3>Web & App Development</h3>
-                <p>Custom websites and mobile applications designed for performance, user experience, and conversion optimization.</p>
-            </div>
-        </div>
-
-       
-    </section>
-
-    <!-- Clients Section -->
-    <section id="clients" class="clients">
-        <h2 class="section-title">Trusted by Industry Leaders</h2>
-        <p class="section-subtitle">From startups to global brands, we deliver results</p>
-
-        <div class="clients-marquee">
-            <div class="clients-track">
-                <!-- First set -->
-                <a href="https://www.kahc.co.ke" target="_blank" rel="noopener" class="client-card" aria-label="KAHC — Hospitality Association">
-                    <img src="images/KAHKC.png" alt="KAHC Logo" class="client-logo"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">KAHC</span>
-                    <span class="client-type">Hospitality</span>
-                </a>
-                <a href="https://ihti.net" target="_blank" rel="noopener" class="client-card" aria-label="IHTI — Education">
-                    <img src="images/ihti.png" alt="IHTI Logo" class="client-logo"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">IHTI</span>
-                    <span class="client-type">Education</span>
-                </a>
-                <a href="http://www.voyagerbeachresortmombasa.com/" target="_blank" rel="noopener" class="client-card" aria-label="Voyager — Travel & Tourism">
-                    <img src="images/voyager.jpeg" alt="Voyager Logo" class="client-logo"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">Voyager</span>
-                    <span class="client-type">Travel & Tourism</span>
-                </a>
-                <a href="https://www.hiporabsea.com/" target="_blank" rel="noopener" class="client-card" aria-label="Hipora — Security">
-                    <img src="images/hipora.png" alt="Hipora Logo" class="client-logo"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">Hipora</span>
-                    <span class="client-type">Security</span>
-                </a>
-                <a href="https://koddi.com/" target="_blank" rel="noopener" class="client-card" aria-label="Koddi — PropTech">
-                    <img src="images/koddi.jpg" alt="Koddi Logo" class="client-logo"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">Koddi</span>
-                    <span class="client-type">PropTech</span>
-                </a>
-                <a href="https://memoraapp.io/" target="_blank" rel="noopener" class="client-card" aria-label="Memora — Digital Platform">
-                    <img src="images/memora.png" alt="Memora Logo" class="client-logo"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">Memora</span>
-                    <span class="client-type">Digital Platform</span>
-                </a>
-                <a href="https://www.visitsasa.com" target="_blank" rel="noopener" class="client-card" aria-label="VisitSasa — AI Tourism">
-                    <img src="images/visitsasa.png" alt="VisitSasa Logo" class="client-logo"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">VisitSasa</span>
-                    <span class="client-type">AI Tourism</span>
-                </a>
-                <a href="https://www.retrak.org" target="_blank" rel="noopener" class="client-card" aria-label="RETRAK — Trade Association">
-                    <img src="images/retrak.png" alt="RETRAK Logo" class="client-logo"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">RETRAK</span>
-                    <span class="client-type">Trade Association</span>
-                </a>
-                <!-- Duplicate set for seamless loop -->
-                <a href="https://www.kahc.co.ke" target="_blank" rel="noopener" class="client-card" aria-label="KAHC — Hospitality Association" tabindex="-1">
-                    <img src="images/KAHKC.png" alt="" class="client-logo" aria-hidden="true"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">KAHC</span>
-                    <span class="client-type">Hospitality</span>
-                </a>
-                <a href="https://ihti.net" target="_blank" rel="noopener" class="client-card" aria-label="IHTI — Education" tabindex="-1">
-                    <img src="images/ihti.png" alt="" class="client-logo" aria-hidden="true"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">IHTI</span>
-                    <span class="client-type">Education</span>
-                </a>
-                <a href="http://www.voyagerbeachresortmombasa.com/" target="_blank" rel="noopener" class="client-card" aria-label="Voyager — Travel & Tourism" tabindex="-1">
-                    <img src="images/voyager.jpeg" alt="" class="client-logo" aria-hidden="true"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">Voyager</span>
-                    <span class="client-type">Travel & Tourism</span>
-                </a>
-                <a href="https://www.hiporabsea.com/" target="_blank" rel="noopener" class="client-card" aria-label="Hipora — Security" tabindex="-1">
-                    <img src="images/hipora.png" alt="" class="client-logo" aria-hidden="true"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">Hipora</span>
-                    <span class="client-type">Security</span>
-                </a>
-                <a href="https://koddi.com/" target="_blank" rel="noopener" class="client-card" aria-label="Koddi — PropTech" tabindex="-1">
-                    <img src="images/koddi.jpg" alt="" class="client-logo" aria-hidden="true"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">Koddi</span>
-                    <span class="client-type">PropTech</span>
-                </a>
-                <a href="https://memoraapp.io/" target="_blank" rel="noopener" class="client-card" aria-label="Memora — Digital Platform" tabindex="-1">
-                    <img src="images/memora.png" alt="" class="client-logo" aria-hidden="true"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">Memora</span>
-                    <span class="client-type">Digital Platform</span>
-                </a>
-                <a href="https://www.visitsasa.com" target="_blank" rel="noopener" class="client-card" aria-label="VisitSasa — AI Tourism" tabindex="-1">
-                    <img src="images/visitsasa.png" alt="" class="client-logo" aria-hidden="true"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">VisitSasa</span>
-                    <span class="client-type">Tourism</span>
-                </a>
-                <a href="https://www.fourthmedia.co.ke/" target="_blank" rel="noopener" class="client-card" aria-label=" Fourth Media" tabindex="-1">
-                    <img src="images/4ml.png" alt="" class="client-logo" aria-hidden="true"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">Fourth Media Limited</span>
-                    <span class="client-type">Mulitimedia </span>
-                </a>
-                <a href="https://www.retrak.org" target="_blank" rel="noopener" class="client-card" aria-label="RETRAK — Trade Association" tabindex="-1">
-                    <img src="images/retrak.png" alt="" class="client-logo" aria-hidden="true"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">RETRAK</span>
-                    <span class="client-type">Trade Association</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Case Studies / Portfolio -->
-    <section id="case-studies" class="case-studies">
-        <h2 class="section-title">Success Stories</h2>
-        <p class="section-subtitle">Real results for real businesses</p>
-
-        <div class="portfolio-grid">
-            <div class="portfolio-card">
-                <img 
-                    src="images/portfolio-ihti.jpg" 
-                    alt="International Hospitality Training Institute — Meta Ads, Lead Generation, Digital Presence & Events Marketing"
-                    loading="lazy"
-                />
-            </div>
-            <div class="portfolio-card">
-                <img 
-                    src="images/portfolio-kahc.jpg" 
-                    alt="Kenya Association of Hotelkeepers & Caterers — Social Media Management, Content Creation & Member Communications"
-                    loading="lazy"
-                />
-            </div>
-            <div class="portfolio-card">
-                <img 
-                    src="images/portfolio-voyager.jpg" 
-                    alt="Voyager Beach Resort — Brand Awareness, Content Production & Social Media Management"
-                    loading="lazy"
-                />
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <h2 class="section-title">What Our Clients Say</h2>
-        <p class="section-subtitle">Trusted partnerships delivering exceptional results</p>
-
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="quote-icon">"</div>
-                <p class="testimonial-text">Latitude Digital transformed our digital presence completely. Their AI-driven approach helped us reduce customer acquisition costs by 25% while scaling our user base exponentially.</p>
-                <div class="testimonial-author">
-                    <div class="author-info">
-                        <div class="author-name">Healthcare Technology Leader</div>
-                        <div class="author-position">Chief Marketing Officer</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="quote-icon">"</div>
-                <p class="testimonial-text">Working with Vivien and her team was a game-changer. They understood our cultural context and created campaigns that truly resonated with our audience. Revenue increased by 63%.</p>
-                <div class="testimonial-author">
-                    <div class="author-info">
-                        <div class="author-name">MSME Owner</div>
-                        <div class="author-position">Nairobi, Kenya</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="quote-icon">"</div>
-                <p class="testimonial-text">Their strategic approach to social media management increased our engagement by 240%. Latitude Digital doesn't just execute—they innovate and deliver measurable impact.</p>
-                <div class="testimonial-author">
-                    <div class="author-info">
-                        <div class="author-name">Digital Platform CEO</div>
-                        <div class="author-position">Tech Startup</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Process Section -->
-    <section class="process">
-        <h2 class="section-title">Our Process</h2>
-        <p class="section-subtitle">A proven methodology for sustainable growth</p>
-
-        <div class="process-grid">
-            <div class="process-step">
-                <div class="step-number">01</div>
-                <h3>Discovery & Research</h3>
-                <p>Deep dive into your business, market, and audience using AI-powered analytics and cultural insights to understand what drives your growth.</p>
-            </div>
-
-            <div class="process-step">
-                <div class="step-number">02</div>
-                <h3>Strategy Development</h3>
-                <p>Create data-driven strategies tailored to your specific goals, combining global best practices with local market expertise.</p>
-            </div>
-
-            <div class="process-step">
-                <div class="step-number">03</div>
-                <h3>Implementation</h3>
-                <p>Execute campaigns with precision using cutting-edge AI tools, creative excellence, and agile methodologies for rapid iteration.</p>
-            </div>
-
-            <div class="process-step">
-                <div class="step-number">04</div>
-                <h3>Optimization & Scale</h3>
-                <p>Continuously analyze performance, optimize for better results, and scale successful strategies to maximize your ROI.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="about-content">
-            <div class="about-text">
-                <!-- 📸 Suggested Unsplash image: search "nairobi kenya cityscape" or "africa tech hub" -->
-                <img 
-                    src="images/logo.png" 
-                    alt="Nairobi, Kenya — Home of Latitude Digital" 
-                    class="about-image"
-                    loading="lazy"
-                />
-                <h2>About Latitude Digital</h2>
-                <p>Founded in 2014 and headquartered in Nairobi, Kenya, Latitude Digital is a pioneering AI marketing agency specializing in growth marketing for African and global markets.</p>
-                <p>We empower tech startups, MSMEs, corporates, and sector associations with data-driven, culturally relevant campaigns designed to deliver 3X greater market impact.</p>
-                <p>Our mission is to bridge the gap between cutting-edge technology and authentic local engagement, driving measurable growth for businesses across Africa and beyond.</p>
-            </div>
-
-            <div class="founder-card">
-    <div class="founder-name">Vivien Wamalwa</div>
-                <div class="founder-title">Founder & Growth Strategist</div>
-                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Award-winning entrepreneur with 15+ years of industry experience, leading Latitude to 3X revenue growth.</p>
-                
-                <ul class="achievements">
-                    <li>Winner of "The Magnate" reality show, ChoraBizna</li>
-                    <li>Co-founded Safari Hunters & VisitSasa</li>
-                    <li>Scaled Byon8 to leading telehealth status in one year</li>
-                    <li>Strategy consulting for global brands like LEGO</li>
-                    <li>Specializes in AI-driven marketing & startup scale-up</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <p class="section-subtitle">Everything you need to know about working with us</p>
-
-        <div class="faq-container">
-            <details class="faq-item">
-                <summary>What makes Latitude Digital different from other marketing agencies?</summary>
-                <p>We combine AI-driven technology with deep cultural intelligence specific to African markets. Our proven track record shows consistent 3X growth impact, and we offer a unique blend of global best practices with local expertise. Plus, our girl-powered, Gen-Z team brings fresh, digital-native perspectives.</p>
-            </details>
-
-            <details class="faq-item">
-                <summary>What industries do you specialize in?</summary>
-                <p>We work across multiple sectors including tech startups, healthcare & digital health, tourism & hospitality, fintech, education, NGOs & development organizations, SMEs, corporates, and sector associations. Our diverse portfolio includes over 120 clients across these industries.</p>
-            </details>
-
-            <details class="faq-item">
-                <summary>How long does it typically take to see results?</summary>
-                <p>While timelines vary by project scope, most clients see measurable improvements within 6-12 months. Our case studies show 2-5X growth in lead generation, up to 4X increase in website traffic, and 25% customer acquisition cost savings through AI optimization.</p>
-            </details>
-
-            <details class="faq-item">
-                <summary>Do you work with businesses outside Kenya?</summary>
-                <p>Yes! While we're headquartered in Nairobi, we serve clients across Africa and have worked with global brands. Our digital-first approach allows us to effectively support businesses regardless of location.</p>
-            </details>
-
-            <details class="faq-item">
-                <summary>What is your pricing structure?</summary>
-                <p>We offer flexible pricing models tailored to each client's needs and budget, including project-based, retainer, and performance-based options. Contact us for a customized quote based on your specific requirements.</p>
-            </details>
-
-            <details class="faq-item">
-                <summary>Can you help with both strategy and execution?</summary>
-                <p>Absolutely! We're a full-service agency offering everything from strategic planning to complete execution—including content creation, web & app development, social media management, PPC campaigns, and ongoing optimization.</p>
-            </details>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="contact-content">
-            <h2>Let's Create Impact Together</h2>
-            <p>Ready to achieve 3X growth? Let's discuss how our AI-driven strategies can transform your business.</p>
-            
-            <button onclick="openContactModal()" class="cta-button" style="display: inline-block; margin-bottom: 2rem; border: none; cursor: pointer; font-family: inherit; font-size: 1rem;">Start Your Project</button>
-
-            <div class="contact-details">
-                <div class="contact-item">
-                    <div style="color: var(--text-secondary);">Email</div>
-                    <a href="/cdn-cgi/l/email-protection#3c55525a537c505d485548495859125f53125759"><span class="__cf_email__" data-cfemail="7d14131b123d111c091409081918531e12531618">[email&#160;protected]</span></a>
-                </div>
-                <div class="contact-item">
-                    <div style="color: var(--text-secondary);">Phone</div>
-                    <a href="tel:+254758886707">+254 758 886 707</a>
-                </div>
-                <div class="contact-item">
-                    <div style="color: var(--text-secondary);">WhatsApp</div>
-                    <a href="tel:+254778389333">+254 778 389 333</a>
-                </div>
-                <div class="contact-item">
-                    <div style="color: var(--text-secondary);">Social</div>
-                    <a href="#">@latitudedigital</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="newsletter">
-        <div class="newsletter-content">
-            <h2>Stay Ahead of the Curve</h2>
-            <p>Get the latest insights on AI marketing, growth strategies, and African market trends delivered to your inbox.</p>
-            <form class="newsletter-form">
-                <input type="email" placeholder="Enter your email address" required>
-                <button type="submit" class="cta-button">Subscribe</button>
-            </form>
-            <p class="newsletter-privacy">We respect your privacy. Unsubscribe at any time.</p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Latitude Digital. Your Growth Marketing Partner. All rights reserved.</p>
-        <p style="margin-top: 0.5rem; font-size: 0.85rem;">Powered by AI. Built for Africa.</p>
-    </footer>
-
-    <!-- Contact Modal -->
-    <div class="modal-overlay" id="contactModal" onclick="handleModalOverlayClick(event)">
-        <div class="modal-box">
-            <button class="modal-close" onclick="closeContactModal()" aria-label="Close">&times;</button>
-            
-            <div id="formContent">
-                <h2>Tell us about your goals — we'll get back to you within 24 hours</h2>
-                <div class="modal-form" id="contactForm">
-                    <div class="form-row">
-                        <input type="text" id="fname" placeholder="Your Name" required>
-                        <input type="email" id="femail" placeholder="Email Address" required>
-                    </div>
-                    <input type="text" id="fcompany" placeholder="Company / Organisation">
-                    <select id="fservice">
-                        <option value="" disabled selected>What service are you interested in?</option>
-                        <option>AI-Driven Marketing</option>
-                        <option>Digital Strategy</option>
-                        <option>Brand Management & Strategy</option>
-                        <option>Campaign Management</option>
-                        <option>Growth Hacking</option>
-                        <option>Content Marketing</option>
-                        <option>Social Media Management</option>
-                        <option>Web & App Development</option>
-                        <option>Other / Not Sure Yet</option>
-                    </select>
-                    <textarea id="fmessage" placeholder="Tell us about your project and goals…"></textarea>
-                    <button class="modal-submit" id="submitBtn" onclick="submitContactForm()">Send Message ✦</button>
-                </div>
-            </div>
-
-            <div class="form-success" id="formSuccess">
-                <div class="success-icon">✅</div>
-                <h3>Message Sent!</h3>
-                <p>Thanks for reaching out. The Latitude Digital team will be in touch within 24 hours.</p>
+                <p>Custom websites and mobile apps designed for performance, user experience, and conversion optimization.</p>
             </div>
         </div>
     </div>
+</section>
 
-    <script>
-        // Hamburger menu toggle
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+<!-- ===== WHY CHOOSE US ===== -->
+<section class="why-choose" id="why">
+    <p class="section-label reveal" style="color: rgba(196,168,255,0.8);">Why Latitude</p>
+    <h2 class="section-title reveal">Built Different</h2>
+    <p class="section-subtitle reveal">What sets us apart from every other agency in the market.</p>
+    <div class="benefits-slider-wrap reveal">
+        <div class="benefits-track" id="benefitsTrack">
+            <div class="benefit-item">
+                <div class="benefit-icon">🧠</div>
+                <div class="benefit-content">
+                    <h3>AI-First Methodology</h3>
+                    <p>We don't use AI as a buzzword — it's baked into every campaign, from audience targeting to creative testing and real-time budget optimization. Our clients average 25% lower customer acquisition costs as a direct result.</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">🌍</div>
+                <div class="benefit-content">
+                    <h3>Deep Cultural Intelligence</h3>
+                    <p>Our Nairobi-based team understands the nuances of African markets that global agencies simply don't. We craft campaigns that resonate authentically, driving engagement that actually converts.</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">📐</div>
+                <div class="benefit-content">
+                    <h3>Full-Funnel Architecture</h3>
+                    <p>From brand awareness to conversion infrastructure — lead magnets, CRM integration, smart forms, retargeting — we build the entire growth engine, not just the top of the funnel.</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">⚡</div>
+                <div class="benefit-content">
+                    <h3>Gen-Z Native Team</h3>
+                    <p>Our girl-powered, digitally-native team doesn't just understand the algorithms — they live the culture. This gives our clients an authentic edge with the most valuable consumer demographic on earth.</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">📈</div>
+                <div class="benefit-content">
+                    <h3>Proven 3X Impact Track Record</h3>
+                    <p>Over 120 clients served, 200+ projects delivered, with consistently documented 3X revenue growth outcomes. We measure everything, report transparently, and optimize relentlessly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slider-controls">
+        <button class="slider-btn" id="benefitsPrev" aria-label="Previous">←</button>
+        <div class="slider-dots" id="benefitsDots"></div>
+        <button class="slider-btn" id="benefitsNext" aria-label="Next">→</button>
+    </div>
+</section>
 
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-        });
+<!-- ===== CLIENTS ===== -->
+<section id="clients" class="clients">
+    <p class="section-label reveal">Our Clients</p>
+    <h2 class="section-title reveal">Trusted by Industry Leaders</h2>
+    <p class="section-subtitle reveal">From startups to global brands, we deliver results across Africa and beyond.</p>
+    <div class="clients-marquee">
+        <div class="clients-track">
+            <a href="https://www.kahc.co.ke" target="_blank" rel="noopener" class="client-card">
+                <img src="images/KAHKC.png" alt="KAHC" class="client-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="client-name" style="display:none;">KAHC</span>
+                <span class="client-type">Hospitality</span>
+            </a>
+            <a href="https://ihti.net" target="_blank" rel="noopener" class="client-card">
+                <img src="images/ihti.png" alt="IHTI" class="client-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="client-name" style="display:none;">IHTI</span>
+                <span class="client-type">Education</span>
+            </a>
+            <a href="http://www.voyagerbeachresortmombasa.com/" target="_blank" rel="noopener" class="client-card">
+                <img src="images/voyager.jpeg" alt="Voyager" class="client-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="client-name" style="display:none;">Voyager</span>
+                <span class="client-type">Travel & Tourism</span>
+            </a>
+            <a href="https://www.hiporabsea.com/" target="_blank" rel="noopener" class="client-card">
+                <img src="images/hipora.png" alt="Hipora" class="client-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="client-name" style="display:none;">Hipora</span>
+                <span class="client-type">Security</span>
+            </a>
+            <a href="https://koddi.com/" target="_blank" rel="noopener" class="client-card">
+                <img src="images/koddi.jpg" alt="Koddi" class="client-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="client-name" style="display:none;">Koddi</span>
+                <span class="client-type">PropTech</span>
+            </a>
+            <a href="https://memoraapp.io/" target="_blank" rel="noopener" class="client-card">
+                <img src="images/memora.png" alt="Memora" class="client-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="client-name" style="display:none;">Memora</span>
+                <span class="client-type">Digital Platform</span>
+            </a>
+            <a href="https://www.visitsasa.com" target="_blank" rel="noopener" class="client-card">
+                <img src="images/visitsasa.png" alt="VisitSasa" class="client-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="client-name" style="display:none;">VisitSasa</span>
+                <span class="client-type">AI Tourism</span>
+            </a>
+            <a href="https://www.retrak.org" target="_blank" rel="noopener" class="client-card">
+                <img src="images/retrak.png" alt="RETRAK" class="client-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="client-name" style="display:none;">RETRAK</span>
+                <span class="client-type">Trade Association</span>
+            </a>
+            <!-- Duplicates for loop -->
+            <a href="https://www.kahc.co.ke" target="_blank" rel="noopener" class="client-card" tabindex="-1" aria-hidden="true">
+                <img src="images/KAHKC.png" alt="" class="client-logo" onerror="this.style.display='none';">
+                <span class="client-type">Hospitality</span>
+            </a>
+            <a href="https://ihti.net" target="_blank" rel="noopener" class="client-card" tabindex="-1" aria-hidden="true">
+                <img src="images/ihti.png" alt="" class="client-logo" onerror="this.style.display='none';">
+                <span class="client-type">Education</span>
+            </a>
+            <a href="http://www.voyagerbeachresortmombasa.com/" target="_blank" rel="noopener" class="client-card" tabindex="-1" aria-hidden="true">
+                <img src="images/voyager.jpeg" alt="" class="client-logo" onerror="this.style.display='none';">
+                <span class="client-type">Travel & Tourism</span>
+            </a>
+            <a href="https://www.hiporabsea.com/" target="_blank" rel="noopener" class="client-card" tabindex="-1" aria-hidden="true">
+                <img src="images/hipora.png" alt="" class="client-logo" onerror="this.style.display='none';">
+                <span class="client-type">Security</span>
+            </a>
+            <a href="https://koddi.com/" target="_blank" rel="noopener" class="client-card" tabindex="-1" aria-hidden="true">
+                <img src="images/koddi.jpg" alt="" class="client-logo" onerror="this.style.display='none';">
+                <span class="client-type">PropTech</span>
+            </a>
+            <a href="https://memoraapp.io/" target="_blank" rel="noopener" class="client-card" tabindex="-1" aria-hidden="true">
+                <img src="images/memora.png" alt="" class="client-logo" onerror="this.style.display='none';">
+                <span class="client-type">Digital Platform</span>
+            </a>
+            <a href="https://www.visitsasa.com" target="_blank" rel="noopener" class="client-card" tabindex="-1" aria-hidden="true">
+                <img src="images/visitsasa.png" alt="" class="client-logo" onerror="this.style.display='none';">
+                <span class="client-type">AI Tourism</span>
+            </a>
+            <a href="https://www.retrak.org" target="_blank" rel="noopener" class="client-card" tabindex="-1" aria-hidden="true">
+                <img src="images/retrak.png" alt="" class="client-logo" onerror="this.style.display='none';">
+                <span class="client-type">Trade Association</span>
+            </a>
+        </div>
+    </div>
+</section>
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        });
+<!-- ===== CASE STUDIES ===== -->
+<section id="case-studies" class="case-studies">
+    <p class="section-label reveal">Real Results</p>
+    <h2 class="section-title reveal">Success Stories</h2>
+    <p class="section-subtitle reveal">Not just logos — real growth stories with before/after impact metrics.</p>
+    <div class="case-tabs reveal">
+        <div class="case-tab-nav">
+            <button class="case-tab-btn active" onclick="switchCase(0, this)">IHTI</button>
+            <button class="case-tab-btn" onclick="switchCase(1, this)">KAHC</button>
+            <button class="case-tab-btn" onclick="switchCase(2, this)">Voyager Beach Resort</button>
+        </div>
+        <div class="case-panel active" id="case-0">
+            <div class="case-card-full">
+                <img src="images/portfolio-ihti.jpg" alt="International Hospitality Training Institute" class="case-card-img" loading="lazy">
+                <div class="case-card-body">
+                    <div class="case-card-meta">
+                        <span class="case-tag">Education</span>
+                        <span class="case-industry">Hospitality Training</span>
+                    </div>
+                    <h3>International Hospitality Training Institute</h3>
+                    <p>Drove full-funnel growth for IHTI through Meta Ads, lead generation, digital presence management, and events marketing. Delivered a complete brand and collateral suite alongside a Sprint sales conversion programme that turned awareness into enrolments.</p>
+                    <div class="case-metrics-row">
+                        <div class="case-metric"><div class="case-metric-val">~10K</div><div class="case-metric-label">Leads generated via Meta Ads</div></div>
+                        <div class="case-metric"><div class="case-metric-val">Full Brand</div><div class="case-metric-label">& collateral suite delivered</div></div>
+                        <div class="case-metric"><div class="case-metric-val">Sprint</div><div class="case-metric-label">Sales conversion programme</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="case-panel" id="case-1">
+            <div class="case-card-full">
+                <img src="images/portfolio-kahc.jpg" alt="Kenya Association of Hotelkeepers & Caterers" class="case-card-img" loading="lazy">
+                <div class="case-card-body">
+                    <div class="case-card-meta">
+                        <span class="case-tag">Hospitality</span>
+                        <span class="case-industry">Trade Association</span>
+                    </div>
+                    <h3>Kenya Association of Hotelkeepers & Caterers</h3>
+                    <p>Managed social media, content creation, and member communications for Kenya's premier hospitality trade body. Built a structured content calendar with monthly reporting cycles and consistent member spotlights across three content-pillar platforms.</p>
+                    <div class="case-metrics-row">
+                        <div class="case-metric"><div class="case-metric-val">10</div><div class="case-metric-label">Member properties featured monthly</div></div>
+                        <div class="case-metric"><div class="case-metric-val">Monthly</div><div class="case-metric-label">Content calendar & reporting cycle</div></div>
+                        <div class="case-metric"><div class="case-metric-val">3</div><div class="case-metric-label">Content pillars platforms</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="case-panel" id="case-2">
+            <div class="case-card-full">
+                <img src="images/portfolio-voyager.jpg" alt="Voyager Beach Resort" class="case-card-img" loading="lazy">
+                <div class="case-card-body">
+                    <div class="case-card-meta">
+                        <span class="case-tag">Travel & Tourism</span>
+                        <span class="case-industry">Hospitality</span>
+                    </div>
+                    <h3>Voyager Beach Resort</h3>
+                    <p>Led brand awareness, content production, and social media management for Voyager Beach Resort. Executed a monthly content production cycle with competitor benchmarking and performance reporting to hit ambitious reach and follower growth targets across channels.</p>
+                    <div class="case-metrics-row">
+                        <div class="case-metric"><div class="case-metric-val">3M+</div><div class="case-metric-label">Target impressions Jun–Sep 2026</div></div>
+                        <div class="case-metric"><div class="case-metric-val">200K+</div><div class="case-metric-label">Follower target across channels</div></div>
+                        <div class="case-metric"><div class="case-metric-val">Monthly</div><div class="case-metric-label">Content production cycle</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-        // ---- Contact Modal ----
-        function openContactModal() {
-            document.getElementById('contactModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials">
+    <p class="section-label reveal">Social Proof</p>
+    <h2 class="section-title reveal">What Our Clients Say</h2>
+    <p class="section-subtitle reveal">Trusted partnerships delivering exceptional results across Africa.</p>
+    <div class="testimonials-grid">
+        <div class="testimonial-card reveal" style="transition-delay:0.05s">
+            <div class="quote-mark">"</div>
+            <p class="testimonial-text">Latitude Digital transformed our digital presence completely. Their AI-driven approach helped us reduce customer acquisition costs by 25% while scaling our user base exponentially.</p>
+            <div class="testimonial-author">
+                <div class="author-avatar">HT</div>
+                <div>
+                    <div class="author-name">Healthcare Technology Leader</div>
+                    <div class="author-position">Chief Marketing Officer</div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card reveal" style="transition-delay:0.12s">
+            <div class="quote-mark">"</div>
+            <p class="testimonial-text">Working with Vivien and her team was a game-changer. They understood our cultural context and created campaigns that truly resonated. Revenue increased by 63%.</p>
+            <div class="testimonial-author">
+                <div class="author-avatar">MO</div>
+                <div>
+                    <div class="author-name">MSME Owner</div>
+                    <div class="author-position">Nairobi, Kenya</div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card reveal" style="transition-delay:0.2s">
+            <div class="quote-mark">"</div>
+            <p class="testimonial-text">Their strategic approach to social media management increased our engagement by 240%. Latitude Digital doesn't just execute — they innovate and deliver measurable impact.</p>
+            <div class="testimonial-author">
+                <div class="author-avatar">DC</div>
+                <div>
+                    <div class="author-name">Digital Platform CEO</div>
+                    <div class="author-position">Tech Startup</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-        function closeContactModal() {
-            document.getElementById('contactModal').classList.remove('active');
+<!-- ===== PROCESS ===== -->
+<section class="process">
+    <p class="section-label reveal" style="color: rgba(196,168,255,0.8);">How We Work</p>
+    <h2 class="section-title reveal">Our Process</h2>
+    <p class="section-subtitle reveal">A proven methodology built for sustainable, scalable growth.</p>
+    <div class="process-timeline">
+        <div class="process-step reveal" style="transition-delay:0.05s">
+            <div class="process-step-icon">🔬</div>
+            <div class="process-num">PHASE 01</div>
+            <h3>Discovery & Audit</h3>
+            <p>Deep dive into your business, market, and audience using AI-powered analytics and cultural insights.</p>
+        </div>
+        <div class="process-step reveal" style="transition-delay:0.1s">
+            <div class="process-step-icon">🗺️</div>
+            <div class="process-num">PHASE 02</div>
+            <h3>Strategy Development</h3>
+            <p>Data-driven strategies combining global best practices with local market expertise and brand positioning.</p>
+        </div>
+        <div class="process-step reveal" style="transition-delay:0.15s">
+            <div class="process-step-icon">🛠️</div>
+            <div class="process-num">PHASE 03</div>
+            <h3>Implementation</h3>
+            <p>Execute campaigns with precision using cutting-edge AI tools, creative excellence, and agile iteration.</p>
+        </div>
+        <div class="process-step reveal" style="transition-delay:0.2s">
+            <div class="process-step-icon">📈</div>
+            <div class="process-num">PHASE 04</div>
+            <h3>Optimize & Scale</h3>
+            <p>Continuously analyze performance, optimize for better results, and scale winning strategies to maximize ROI.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about" class="about">
+    <div class="about-inner">
+        <div class="reveal-left">
+            <div class="about-img-wrap">
+                <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&auto=format&fit=crop&q=80" alt="Nairobi tech hub — home of Latitude Digital" class="about-img-main" loading="lazy"/>
+                <div class="founder-card">
+                    <div class="founder-name">Vivien Wamalwa</div>
+                    <div class="founder-title">Founder & Growth Strategist</div>
+                    <ul class="achievements">
+                        <li>Winner — "The Magnate" (ChoraBizna)</li>
+                        <li>Co-founded Safari Hunters & VisitSasa</li>
+                        <li>Scaled Byon8 to #1 telehealth in Kenya</li>
+                        <li>Strategy consulting for LEGO & global brands</li>
+                        <li>15+ years industry experience</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="reveal-right">
+            <p class="section-label" style="text-align:left; margin-bottom:0.5rem;">About Us</p>
+            <h2 class="section-title" style="text-align:left; font-size: clamp(2rem, 3vw, 2.75rem);">AI-Driven Growth Marketing, Built for Africa.</h2>
+            <p style="color: var(--text-off); line-height:1.85; margin-bottom:1.25rem;">Founded in 2014 and headquartered in Nairobi, Latitude Digital is a pioneering AI marketing agency specializing in growth marketing for African and global markets.</p>
+            <p style="color: var(--text-off); line-height:1.85; margin-bottom:1.25rem;">We empower tech startups, MSMEs, corporates, and sector associations with data-driven, culturally relevant campaigns designed to deliver 3X greater market impact.</p>
+            <p style="color: var(--text-off); line-height:1.85; margin-bottom: 2rem;">Our mission: bridge cutting-edge technology with authentic local engagement, driving measurable growth for businesses across Africa and beyond.</p>
+            <button onclick="openContactModal()" class="cta-button" style="border:none; font-size:1rem;">Work With Us →</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== LEAD MAGNET ===== -->
+<section class="lead-magnet">
+    <div class="lead-magnet-inner reveal">
+        <div class="lead-magnet-content">
+            <h2>Free Growth Audit for Your Brand</h2>
+            <p>Get a personalized 15-minute analysis of your digital presence — what's working, what's broken, and exactly how to fix it.</p>
+            <div class="lead-magnet-form">
+                <input type="email" placeholder="Enter your work email" id="auditEmail">
+                <button onclick="claimAudit()" class="cta-button" style="border:none; white-space:nowrap;">Claim Free Audit</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq">
+    <p class="section-label reveal">Common Questions</p>
+    <h2 class="section-title reveal">Frequently Asked</h2>
+    <p class="section-subtitle reveal">Everything you need to know about working with us.</p>
+    <div class="faq-container reveal">
+        <details class="faq-item">
+            <summary>What makes Latitude Digital different from other agencies?</summary>
+            <p>We combine AI-driven technology with deep cultural intelligence specific to African markets. Our proven track record shows consistent 3X growth impact, and we offer a unique blend of global best practices with local expertise. Plus, our girl-powered, Gen-Z team brings fresh, digital-native perspectives.</p>
+        </details>
+        <details class="faq-item">
+            <summary>What industries do you specialize in?</summary>
+            <p>We work across tech startups, healthcare & digital health, tourism & hospitality, fintech, education, NGOs, SMEs, corporates, and sector associations. Our diverse portfolio includes over 120 clients across these industries.</p>
+        </details>
+        <details class="faq-item">
+            <summary>How long does it typically take to see results?</summary>
+            <p>Most clients see measurable improvements within 6–12 months. Our case studies show 2–5X growth in lead generation, up to 4X website traffic increase, and 25% CAC savings through AI optimization.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Do you work with businesses outside Kenya?</summary>
+            <p>Yes! While headquartered in Nairobi, we serve clients across Africa and have worked with global brands. Our digital-first approach allows us to support businesses regardless of location.</p>
+        </details>
+        <details class="faq-item">
+            <summary>What is your pricing structure?</summary>
+            <p>We offer flexible pricing models including project-based, retainer, and performance-based options. Contact us for a customized quote based on your specific requirements and goals.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Can you help with both strategy and execution?</summary>
+            <p>Absolutely! We're a full-service agency offering everything from strategic planning to complete execution — including content creation, web & app development, social media management, PPC campaigns, and ongoing optimization.</p>
+        </details>
+    </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="contact">
+    <div class="contact-content reveal">
+        <p class="section-label" style="margin-bottom:0.5rem;">Let's Talk</p>
+        <h2>Let's Create Impact Together</h2>
+        <p>Ready to achieve 3X growth? Let's discuss how our AI-driven strategies can transform your business.</p>
+        <button onclick="openContactModal()" class="cta-button" style="border:none; font-size:1.1rem; padding:1rem 2.5rem;">Start Your Project</button>
+        <div class="contact-details">
+            <div class="contact-item">
+                <span class="contact-item-label">Email</span>
+                <a href="mailto:latitude12@gmail.com">latitude12@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <span class="contact-item-label">Phone</span>
+                <a href="tel:+254758886707">+254 758 886 707</a>
+            </div>
+            <div class="contact-item">
+                <span class="contact-item-label">WhatsApp</span>
+                <a href="https://wa.me/254778389333">+254 778 389 333</a>
+            </div>
+            <div class="contact-item">
+                <span class="contact-item-label">Social</span>
+                <a href="#">@latitudedigital</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== NEWSLETTER ===== -->
+<section class="newsletter">
+    <div class="newsletter-content">
+        <h2>Stay Ahead of the Curve</h2>
+        <p>Get the latest insights on AI marketing, growth strategies, and African market trends.</p>
+        <form class="newsletter-form" onsubmit="return false;">
+            <input type="email" placeholder="Your email address" required>
+            <button type="submit" class="cta-button" style="border:none;">Subscribe</button>
+        </form>
+        <p class="newsletter-privacy">No spam. Unsubscribe anytime.</p>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>© 2025 Latitude Digital. Your Growth Marketing Partner. All rights reserved.</p>
+    <p style="margin-top:0.5rem; opacity:0.5;">Powered by AI. Built for Africa.</p>
+</footer>
+
+<!-- ===== CONTACT MODAL ===== -->
+<div class="modal-overlay" id="contactModal" onclick="handleModalOverlayClick(event)">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeContactModal()" aria-label="Close">&times;</button>
+        <div id="formContent">
+            <h2>Tell us about your goals</h2>
+            <p class="modal-sub">We'll get back to you within 24 hours.</p>
+            <div class="modal-form" id="contactForm">
+                <div class="form-row">
+                    <input type="text" id="fname" placeholder="Your Name" required>
+                    <input type="email" id="femail" placeholder="Email Address" required>
+                </div>
+                <input type="text" id="fcompany" placeholder="Company / Organisation">
+                <select id="fservice">
+                    <option value="" disabled selected>What service are you interested in?</option>
+                    <option>AI-Driven Marketing</option>
+                    <option>Digital Strategy</option>
+                    <option>Brand Management & Strategy</option>
+                    <option>Campaign Management</option>
+                    <option>Growth Hacking</option>
+                    <option>Content Marketing</option>
+                    <option>Social Media Management</option>
+                    <option>Web & App Development</option>
+                    <option>Other / Not Sure Yet</option>
+                </select>
+                <textarea id="fmessage" placeholder="Tell us about your project and goals…"></textarea>
+                <button class="modal-submit" id="submitBtn" onclick="submitContactForm()">Send Message ✦</button>
+            </div>
+        </div>
+        <div class="form-success" id="formSuccess">
+            <div class="success-icon">✅</div>
+            <h3>Message Sent!</h3>
+            <p>Thanks for reaching out. The Latitude Digital team will be in touch within 24 hours.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ===== HEADER SCROLL =====
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // ===== SCROLL REVEAL =====
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+
+    // ===== HAMBURGER =====
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    });
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
             document.body.style.overflow = '';
-        }
-
-        function handleModalOverlayClick(e) {
-            if (e.target === document.getElementById('contactModal')) closeContactModal();
-        }
-
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') closeContactModal();
         });
+    });
 
-        function submitContactForm() {
-            const name    = document.getElementById('fname').value.trim();
-            const email   = document.getElementById('femail').value.trim();
-            const company = document.getElementById('fcompany').value.trim();
-            const service = document.getElementById('fservice').value;
-            const message = document.getElementById('fmessage').value.trim();
+    // ===== CONTACT MODAL =====
+    function openContactModal() {
+        document.getElementById('contactModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeContactModal() {
+        document.getElementById('contactModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    function handleModalOverlayClick(e) {
+        if (e.target === document.getElementById('contactModal')) closeContactModal();
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContactModal(); });
 
-            if (!name || !email) {
-                alert('Please fill in your name and email address.');
-                return;
-            }
+    function submitContactForm() {
+        const name = document.getElementById('fname').value.trim();
+        const email = document.getElementById('femail').value.trim();
+        const company = document.getElementById('fcompany').value.trim();
+        const service = document.getElementById('fservice').value;
+        const message = document.getElementById('fmessage').value.trim();
+        if (!name || !email) { alert('Please fill in your name and email.'); return; }
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = true; btn.textContent = 'Sending…';
+        const subject = encodeURIComponent(`New Enquiry from ${name}${company ? ' — ' + company : ''}`);
+        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company||'N/A'}\nService: ${service||'N/A'}\n\nMessage:\n${message}`);
+        window.location.href = `mailto:latitude12@gmail.com?subject=${subject}&body=${body}`;
+        setTimeout(() => {
+            document.getElementById('formContent').style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+            btn.disabled = false; btn.textContent = 'Send Message ✦';
+        }, 800);
+    }
 
-            const btn = document.getElementById('submitBtn');
-            btn.disabled = true;
-            btn.textContent = 'Sending…';
+    // ===== CASE STUDY TABS =====
+    function switchCase(idx, btn) {
+        document.querySelectorAll('.case-panel').forEach((p, i) => p.classList.toggle('active', i === idx));
+        document.querySelectorAll('.case-tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    }
 
-            const subject = encodeURIComponent(`New Project Enquiry from ${name}${company ? ' — ' + company : ''}`);
-            const body = encodeURIComponent(
-                `Name: ${name}\nEmail: ${email}\nCompany: ${company || 'N/A'}\nService: ${service || 'N/A'}\n\nMessage:\n${message}`
-            );
+    // ===== LEAD MAGNET =====
+    function claimAudit() {
+        const email = document.getElementById('auditEmail').value.trim();
+        if (!email) { alert('Please enter your email address.'); return; }
+        const subject = encodeURIComponent('Free Growth Audit Request');
+        const body = encodeURIComponent(`Growth audit requested for: ${email}`);
+        window.location.href = `mailto:latitude12@gmail.com?subject=${subject}&body=${body}`;
+    }
 
-            // Open mailto link to send the email
-            window.location.href = `mailto:latitude12@gmail.com?subject=${subject}&body=${body}`;
-
-            // Show success state after a short delay
-            setTimeout(() => {
-                document.getElementById('formContent').style.display = 'none';
-                document.getElementById('formSuccess').style.display = 'block';
-                btn.disabled = false;
-                btn.textContent = 'Send Message ✦';
-            }, 800);
-        }
-
-        // ---- Benefits Slider ----
-        (function() {
-            const track  = document.getElementById('benefitsTrack');
-            const dotsWrap = document.getElementById('benefitsDots');
-            const items  = track ? track.querySelectorAll('.benefit-item') : [];
-            let current  = 0;
-            let autoTimer;
-
-            if (!track || items.length === 0) return;
-
-            // Build dots
-            items.forEach((_, i) => {
-                const dot = document.createElement('button');
-                dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
-                dot.setAttribute('aria-label', `Slide ${i + 1}`);
-                dot.addEventListener('click', () => goTo(i));
-                dotsWrap.appendChild(dot);
-            });
-
-            function goTo(index) {
-                current = (index + items.length) % items.length;
-                track.style.transform = `translateX(-${current * 100}%)`;
-                dotsWrap.querySelectorAll('.slider-dot').forEach((d, i) => {
-                    d.classList.toggle('active', i === current);
-                });
-                resetAuto();
-            }
-
-            function resetAuto() {
-                clearInterval(autoTimer);
-                autoTimer = setInterval(() => goTo(current + 1), 4500);
-            }
-
-            document.getElementById('benefitsNext').addEventListener('click', () => goTo(current + 1));
-            document.getElementById('benefitsPrev').addEventListener('click', () => goTo(current - 1));
-
+    // ===== BENEFITS SLIDER =====
+    (function() {
+        const track = document.getElementById('benefitsTrack');
+        const dotsWrap = document.getElementById('benefitsDots');
+        const items = track ? track.querySelectorAll('.benefit-item') : [];
+        let current = 0, autoTimer;
+        if (!track || items.length === 0) return;
+        items.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', `Slide ${i+1}`);
+            dot.addEventListener('click', () => goTo(i));
+            dotsWrap.appendChild(dot);
+        });
+        function goTo(index) {
+            current = (index + items.length) % items.length;
+            track.style.transform = `translateX(-${current * 100}%)`;
+            dotsWrap.querySelectorAll('.slider-dot').forEach((d, i) => d.classList.toggle('active', i === current));
             resetAuto();
-        })();
-    </script>
+        }
+        function resetAuto() {
+            clearInterval(autoTimer);
+            autoTimer = setInterval(() => goTo(current + 1), 4500);
+        }
+        document.getElementById('benefitsNext').addEventListener('click', () => goTo(current + 1));
+        document.getElementById('benefitsPrev').addEventListener('click', () => goTo(current - 1));
+        resetAuto();
+    })();
+
+    // ===== COUNTER ANIMATION =====
+    function animateCounter(el, target, suffix = '') {
+        let start = 0;
+        const duration = 1800;
+        const isDecimal = target % 1 !== 0;
+        const step = timestamp => {
+            if (!start) start = timestamp;
+            const progress = Math.min((timestamp - start) / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 3);
+            const value = isDecimal ? (ease * target).toFixed(1) : Math.floor(ease * target);
+            el.textContent = value + suffix;
+            if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+    }
+    const metricNums = document.querySelectorAll('.hero-metric-num');
+    const metricData = [10, 120, 200, 3];
+    const metricSuffixes = ['+', '+', '+', 'X'];
+    let countersAnimated = false;
+    const counterObs = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && !countersAnimated) {
+            countersAnimated = true;
+            metricNums.forEach((el, i) => animateCounter(el, metricData[i], metricSuffixes[i]));
+        }
+    }, { threshold: 0.5 });
+    if (metricNums.length) counterObs.observe(metricNums[0].closest('.hero-metrics'));
+</script>
 </body>
 </html>
